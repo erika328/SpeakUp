@@ -51,3 +51,17 @@
   Youtube IFrame Player API
 - 発音採点
   Azure Cognitive Services Speech SDK
+
+## 主な使用技術
+### サーバーサイド
+- Ruby3.2.2
+- Rails7.0.8
+### データベース
+- postgres
+### 描画関係
+- HTML
+- Tailwind CSS + Daisy UI
+- JavaScript
+- HotWire
+### デプロイ
+- Fly.io
