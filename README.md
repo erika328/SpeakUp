@@ -65,3 +65,6 @@
 - HotWire
 ### デプロイ
 - Fly.io
+
+## 画面遷移図
+https://www.figma.com/file/EjuNvUqVm2o4K0gzmJQXDa/SpeakUp?type=design&node-id=0%3A1&mode=design&t=Xr7g2WWl6wiogAZH-1
