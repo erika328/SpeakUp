@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db:/var/lib/postgresql/data
+    ports:
+      - '3306:3306'
+  back:
+    build:
+      context: ./back/
+      dockerfile: Dockerfile
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./back:/SpeakUp
+      - bundle:/usr/local/bundle
+    command: bash -c "rm -rf tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    depends_on:
+      - db
+    ports:
+      - "3001:3000"
+    environment:
+      TZ: Asia/Tokyo
+  front:
+    build:
+      context: ./front/
+      dockerfile: Dockerfile
+    volumes:
+      - ./front:/usr/src/app
+    command: sh -c "cd app && npm install && npm start"
+    ports:
+      - "3000:3000"
+volumes:
+  db:
+    driver: local
+  bundle:
+    driver: local
