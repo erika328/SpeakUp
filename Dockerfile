@@ -19,6 +19,7 @@ COPY Gemfile.lock /app/Gemfile.lock
 COPY yarn.lock /app/yarn.lock
 RUN bundle install
 RUN yarn install
+RUN yarn global add tailwindcss esbuild
 RUN yarn add daisyui
 COPY . /app
 COPY entrypoint.sh /usr/bin/
