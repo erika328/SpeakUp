@@ -2,6 +2,6 @@
 
 set -e
 
-rm -f /SpeakUp/tmp/pids/server.pid
+rm -f /app/tmp/pids/server.pid
 
 exec "$@"
