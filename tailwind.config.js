@@ -1,4 +1,7 @@
 module.exports = {
+  daisyui: {
+    darkTheme: false,
+  },
   content: [
     './app/views/**/*.html.erb',
     './app/helpers/**/*.rb',
@@ -7,5 +10,5 @@ module.exports = {
   ],
   plugins: [
     require('daisyui')
-  ]
+  ],
 }
