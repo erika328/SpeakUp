@@ -1,44 +1,41 @@
-<header>
-  <div class="navbar bg-base-300">
-    <div class="flex-1">
-        <div class="btn btn-ghost text-xl"><%= link_to 'SpeakUp', '/' %></div>
-    </div>
-    <div class="flex-none">
-      <div class="drawer drawer-end">
-      <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content">
-        <!-- Page content here -->
-        <label class="btn btn-ghost"><%= link_to 'Logout', '#' %></label>
-        <label for="my-drawer-4" class="drawer-button btn btn-ghost">Menu</label>
-      </div> 
-      <div class="drawer-side">
-        <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
-        <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-          <!-- Sidebar content here -->
-          <li><%= link_to 'My page', '#' %></li>
-          <li><%= link_to 'Edit user', '#' %></li>
-          <li><%= link_to 'Pronunciation test', '#' %></li>
-          <li><%= link_to 'Translate', '#' %></li>
-          <li><%= link_to 'Review my words', '#' %></li>
-          <li>
-            <!-- todo シャドーイングのボタン押せるように。余白調整 -->
-            <div class="collapse ">
-              <input type="checkbox" class="min-h-5"/> 
-              <div class="collapse-title p-0 min-h-0">
-                Shadowing
-              </div>
-              <div class="collapse-content"> 
-                <ul>
-                  <li><%= link_to 'Easy', '#' %></li>
-                  <li><%= link_to 'Normal', '#' %></li>
-                  <li><%= link_to 'Hard', '#' %></li>
-                </ul>
-              </div>
+<div class="navbar bg-neutral">
+  <div class="flex-1">
+      <div class="btn btn-ghost text-xl"><%= link_to 'SpeakUp', '/' %></div>
+  </div>
+  <div class="flex-none">
+    <div class="drawer drawer-end">
+    <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+      <label class="btn btn-ghost"><%= link_to 'Logout', '#' %></label>
+      <label for="my-drawer-4" class="drawer-button btn btn-ghost">Menu</label>
+    </div> 
+    <div class="drawer-side">
+      <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
+      <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+        <!-- Sidebar content here -->
+        <li><%= link_to 'My page', '#' %></li>
+        <li><%= link_to 'Edit user', '#' %></li>
+        <li><%= link_to 'Pronunciation test', '#' %></li>
+        <li><%= link_to 'Translate', '#' %></li>
+        <li><%= link_to 'Review my words', '#' %></li>
+        <li>
+          <!-- todo シャドーイングのボタン押せるように。余白調整 -->
+          <div class="collapse ">
+            <input type="checkbox" class="min-h-5"/> 
+            <div class="collapse-title p-0 min-h-0">
+              Shadowing
             </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+            <div class="collapse-content"> 
+              <ul>
+                <li><%= link_to 'Easy', '#' %></li>
+                <li><%= link_to 'Normal', '#' %></li>
+                <li><%= link_to 'Hard', '#' %></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
-</header>
+  </div>
+</div>
