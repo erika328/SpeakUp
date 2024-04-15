@@ -1,6 +1,7 @@
 module.exports = {
   daisyui: {
     darkTheme: false,
+    themes: ["pastel"],
   },
   content: [
     './app/views/**/*.html.erb',

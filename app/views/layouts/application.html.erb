@@ -8,12 +8,18 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <script src="https://kit.fontawesome.com/1c1f3980e3.js" crossorigin="anonymous"></script>
   </head>
 
-  <body>
-    <header>
+  <body class="flex flex-col h-screen">
+    <header class="rounded">
       <%= render 'shared/header' %>
     </header>
-    <%= yield %>
+    <main class="flex-grow">
+      <%= yield %>
+    </main>
+    <footer class="footer footer-center p-10 bg-neutral text-base-content rounded mt-auto">
+      <%= render 'shared/footer' %>
+    </footer>
   </body>
 </html>
