@@ -13,7 +13,13 @@
 
   <body class="flex flex-col h-screen bg-base-100">
     <header class="rounded">
-      <%= render 'shared/header' %>
+      <% if user_signed_in? %>
+        <%= render 'shared/header' %>
+      <% else %>
+        <%= render 'shared/before_login_header' %>
+      <% end %>
+
+      <%= render "shared/flash_messages" %>
     </header>
     <main class="flex-grow">
       <%= yield %>

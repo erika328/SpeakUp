@@ -6,7 +6,7 @@
     <div class="drawer drawer-end">
     <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content">
-      <label class="btn btn-ghost"><%= link_to 'Logout', '#' %></label>
+      <label class="btn btn-ghost"><%= link_to 'Logout', destroy_user_session_path, data: {turbo_method: :delete} %></label>
       <label for="my-drawer-4" class="drawer-button btn btn-ghost">Menu</label>
     </div> 
     <div class="drawer-side">
