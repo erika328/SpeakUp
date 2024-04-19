@@ -1,12 +1,12 @@
 <header>
-  <div class="navbar bg-base-300">
+  <div class="navbar bg-neutral">
     <div class="flex-1">
         <div class="btn btn-ghost text-xl"><%= link_to 'SpeakUp', '/' %></div>
     </div>
     <div class="flex-none">
       <div>
-        <label class="btn btn-ghost"><%= link_to 'Signup', '#' %></label>
-        <label class="btn btn-ghost"><%= link_to 'Login', '#' %></label>
+        <label class="btn btn-ghost"><%= link_to 'Signup', new_user_registration_path %></label>
+        <label class="btn btn-ghost"><%= link_to 'Login', new_user_session_path %></label>
       </div> 
     </div>
   </div>

@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  english_word: MyString
+  japanese_meaning: MyString
+
+two:
+  user: two
+  english_word: MyString
+  japanese_meaning: MyString
