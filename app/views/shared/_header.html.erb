@@ -1,41 +1,168 @@
-<div class="navbar bg-neutral">
-  <div class="flex-1">
-      <div class="btn btn-ghost text-xl"><%= link_to 'SpeakUp', '/' %></div>
-  </div>
-  <div class="flex-none">
-    <div class="drawer drawer-end">
-    <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-content">
-      <label class="btn btn-ghost"><%= link_to 'Logout', destroy_user_session_path, data: {turbo_method: :delete} %></label>
-      <label for="my-drawer-4" class="drawer-button btn btn-ghost">Menu</label>
-    </div> 
-    <div class="drawer-side">
-      <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
-      <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-        <!-- Sidebar content here -->
-        <li><%= link_to 'My page', '#' %></li>
-        <li><%= link_to 'Edit user', '#' %></li>
-        <li><%= link_to 'Pronunciation test', '#' %></li>
-        <li><%= link_to 'Translate', '#' %></li>
-        <li><%= link_to 'Review my words', '#' %></li>
+<!-- 大きな画面用のサイドバー -->
+<div class="hidden lg:block">
+  <div id="docs-sidebar" class="fixed top-0 start-0 bottom-0 z-[60] w-64 bg-white border-e border-gray-200 pt-7 pb-10 overflow-y-auto lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
+    <div class="px-6">
+      <%= link_to 'SpeakUp', '/', class: "flex-none text-xl font-semibold " %>
+    </div>
+    <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
+      <ul class="space-y-2.5">
         <li>
-          <!-- todo シャドーイングのボタン押せるように。余白調整 -->
-          <div class="collapse ">
-            <input type="checkbox" class="min-h-5"/> 
-            <div class="collapse-title p-0 min-h-0">
-              Shadowing
-            </div>
-            <div class="collapse-content"> 
-              <ul>
-                <li><%= link_to 'Easy', '#' %></li>
-                <li><%= link_to 'Normal', '#' %></li>
-                <li><%= link_to 'Hard', '#' %></li>
+          <%= link_to "#", class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+            <i class="fa-solid fa-house-chimney fa-xl"></i>
+            My Page
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "#", class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+            <i class="fa-solid fa-microphone fa-xl mx-1"></i>
+            Pronunciation Test
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "#", class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+            <i class="fa-brands fa-youtube fa-xl"></i>
+            Shadowing
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "#", class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+            <i class="fa-solid fa-font fa-xl mx-0.5"></i>
+            Review My Words
+          <% end %>
+        </li>
+        <li class="fixed bottom-2">
+          <div class="dropdown dropdown-top">
+              <div tabindex="0" role="button" class="flex items-center py-5 px-3 text-sm text-gray-700 rounded-lg hover:bg-gray-100">
+                <i class="fa-solid fa-bars fa-xl"></i>
+              </div>
+              <ul tabindex="0" class="dropdown-content z-[2] menu p-2 shadow bg-base-100 rounded-box w-52">
+                <li>
+                  <%= link_to destroy_user_session_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100", data: { turbo_method: :delete } do %>
+                    <i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i>
+                    Logout
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to "#", class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+                    <i class="fa-solid fa-gear fa-xl"></i>
+                    Edit User
+                  <% end %>
+                </li>
               </ul>
-            </div>
           </div>
         </li>
       </ul>
+    </nav>
+  </div>
+</div>
+
+<!-- 中くらいの画面用のサイドバー -->
+<div class="hidden md:block lg:hidden">
+  <div id="sidebar-mini" class="fixed top-0 start-0 bottom-0 z-[60] w-20 bg-white border-e border-gray-200 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 ">
+    <div class="flex flex-col justify-center items-center gap-y-2.5 py-4">
+      <div class="mb-4">
+        <%= link_to '/', class: "flex-none text-xl font-semibold" do %>
+          <i class="fa-solid fa-s fa-xl"></i>
+        <% end %>
+      </div>
+
+      <div class="hs-tooltip inline-block [--placement:right]">
+        <%= link_to "#", class:"flex items-center gap-x-3.5 py-4 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+          <i class="fa-solid fa-house-chimney fa-xl"></i>
+        <% end %>
+      </div>
+      <div class="hs-tooltip inline-block [--placement:right]">
+        <%= link_to "#", class:"flex items-center gap-x-3.5 py-4 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+          <i class="fa-solid fa-microphone fa-xl"></i>
+        <% end %>
+      </div>
+      <div class="hs-tooltip inline-block [--placement:right]">
+        <%= link_to "#", class:"flex items-center gap-x-3.5 py-4 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+          <i class="fa-brands fa-youtube fa-xl"></i>
+        <% end %>
+      </div>
+      <div class="hs-tooltip inline-block [--placement:right]">
+        <%= link_to "#", class:"flex items-center gap-x-3.5 py-4 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+          <i class="fa-solid fa-font fa-xl"></i>
+        <% end %>
+      </div>
+      <div class="dropdown dropdown-top fixed bottom-2">
+        <div tabindex="0" role="button" class="flex items-center py-5 px-3 text-sm text-gray-700 rounded-lg hover:bg-gray-100">
+          <i class="fa-solid fa-bars fa-xl"></i>
+        </div>
+        <ul tabindex="0" class="dropdown-content z-[2] menu p-2 shadow bg-base-100 rounded-box w-52">
+          <li>
+            <%= link_to destroy_user_session_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100", data: { turbo_method: :delete } do %>
+              <i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i>
+              Logout
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "#", class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+              <i class="fa-solid fa-gear fa-xl"></i>
+              Edit User
+            <% end %>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
+</div>
+
+<!-- スマホ用のヘッダー -->
+<div class="flex flex-wrap md:hidden sm:justify-start sm:flex-nowrap w-full bg-white text-sm py-2 border-b border-gray-200">
+  <nav class="max-w-[85rem] w-full mx-auto px-4" aria-label="Global">
+    <div class="flex items-center justify-between">
+      <div>
+        <%= link_to "SpeakUp", '/', class: "flex-none text-2xl font-semibold" %>
+      </div>
+      <div class="dropdown dropdown-end">
+      <div tabindex="0" role="button" class="flex items-center py-5 px-3 text-sm text-gray-700 rounded-lg hover:bg-gray-100">
+        <i class="fa-solid fa-bars fa-xl"></i>
+      </div>
+      <ul tabindex="0" class="dropdown-content z-[2] menu p-2 shadow bg-base-100 rounded-box w-52">
+        <li>
+          <%= link_to destroy_user_session_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100", data: { turbo_method: :delete } do %>
+            <i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i>
+            Logout
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "#", class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+            <i class="fa-solid fa-gear fa-xl"></i>
+            Edit User
+          <% end %>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </nav>
+</div>
+
+<!-- スマホ用のサイドバー -->
+<div class="fixed inset-x-0 bottom-0 z-10 bg-white shadow-md border-t border-gray-200 md:hidden">
+  <div class="flex flex-row justify-between items-center py-4">
+    <div class="grid"><!-- 左端の透明なスペース --></div>
+    <div class="hs-tooltip inline-block [--placement:right]">
+      <%= link_to "#", class:"flex items-center gap-x-3.5 py-2 px-3 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+        <i class="fa-solid fa-house-chimney fa-xl"></i>
+      <% end %>
+    </div>
+    <div class="hs-tooltip inline-block [--placement:right]">
+      <%= link_to "#", class:"flex items-center gap-x-3.5 py-2 px-3 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+        <i class="fa-solid fa-microphone fa-xl"></i>
+      <% end %>
+    </div>
+    <div class="hs-tooltip inline-block [--placement:right]">
+      <%= link_to "#", class:"flex items-center gap-x-3.5 py-2 px-3 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+        <i class="fa-brands fa-youtube fa-xl"></i>
+      <% end %>
+    </div>
+    <div class="hs-tooltip inline-block [--placement:right]">
+      <%= link_to "#", class:"flex items-center gap-x-3.5 py-2 px-3 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+        <i class="fa-solid fa-font fa-xl"></i>
+      <% end %>
+    </div>
+    <div class="grid"><!-- 左端の透明なスペース --></div>
   </div>
 </div>

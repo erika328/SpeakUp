@@ -22,10 +22,14 @@
       <%= render "shared/flash_messages" %>
     </header>
     <main class="flex-grow">
-      <%= yield %>
+      <div class="lg:ml-64 md:ml-20">
+        <%= yield %>
+      </div>
     </main>
-    <footer class="footer footer-center p-10 bg-neutral text-base-content rounded mt-auto">
-      <%= render 'shared/footer' %>
+    <footer class="footer footer-center p-10 base-100 text-base-300 rounded mt-auto gap-y-1">
+      <div class="lg:ml-64 md:ml-20 hidden md:block">
+        <%= render 'shared/footer' %>
+      </div>
     </footer>
   </body>
 </html>
