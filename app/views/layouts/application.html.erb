@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= javascript_include_tag "modal" %>
     <script src="https://kit.fontawesome.com/1c1f3980e3.js" crossorigin="anonymous"></script>
   </head>
 
@@ -19,10 +20,12 @@
         <%= render 'shared/before_login_header' %>
       <% end %>
 
-      <%= render "shared/flash_messages" %>
     </header>
     <main class="flex-grow">
       <div class="lg:ml-64 md:ml-20">
+        <div id="flash">
+          <%= render "shared/flash_messages" %>
+        </div>
         <%= yield %>
       </div>
     </main>
