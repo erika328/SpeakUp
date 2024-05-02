@@ -108,6 +108,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dockerfile-rails (1.6.10)
+      rails (>= 3.0.0)
     drb (2.2.1)
     erubi (1.12.0)
     globalid (1.2.1)
@@ -261,6 +263,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise (~> 4.9)
+  dockerfile-rails (>= 1.6)
   high_voltage
   jbuilder
   jsbundling-rails
