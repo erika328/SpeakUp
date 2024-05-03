@@ -16,7 +16,8 @@ class WordsController < ApplicationController
     @words = current_user.words
     
     if @word.update(word_params)
-      flash.now.notice = "Word has been updated."
+      flash.notice = "Word has been updated."
+      redirect_to words_path
     else
       # バリデーションエラー時にはedit.html.erbをrenderする
       render :edit, status: :unprocessable_entity
