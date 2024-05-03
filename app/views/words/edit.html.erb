@@ -1,7 +1,17 @@
-<div class="flex items-center justify-center h-screen">
-  <div class="bg-white py-6 rounded-md px-10 w-96 shadow-md space-y-5 text-gray-600 text-sm">
+<div class=" items-center px-5 py-12 lg:px-20">
+  <div class="flex flex-col w-full max-w-md p-10 mx-auto transition duration-500 ease-in-out transform bg-white rounded-lg md:mt-0">
+    <div class=" text-left sm:mt-5">
+              <div class="inline-flex items-center w-full">
+                <h3 class="font-bold text-neutral-600 l eading-6 text-4xl">Edit Word</h3>
+              </div>
+            </div>
     <div class="space-y-5">
     <%= render "form" %>
+    <div class="delete_button flex justify-end">
+      <%= link_to word_path(@word), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} do %>
+        <i class="fa-regular fa-trash-can fa-xl"></i>
+      <% end %>
+    </div>
     </div>
   </div>
 </div>
