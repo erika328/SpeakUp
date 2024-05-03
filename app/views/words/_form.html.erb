@@ -1,33 +1,22 @@
-
-  <% if @word.errors.any? %>
-    <div id="error_explanation" class="text-red-600">
-      <ul>
-      <% @word.errors.full_messages.each do |message| %>
-        <div class="flash text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 flex items-center p-4 mb-4  "><i class="fa-solid fa-circle-info"></i><%= message %></div>
-      <% end %>
-      </ul>
+<div id="error_messages">
+  <%= render 'words/error_messages'%>
+</div>
+<%= form_with(model: @word, local: true) do |f| %>
+  <div class="font-bold text-lg text-center">
+    <div>
+      <%= f.label :english_word, class: "px-1" %>
+      <%= f.text_field :english_word, autofocus: true, id: "english_word", class: "block w-full px-5 py-3 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
     </div>
-  <% end %>
-  <div class="">
-  <%= form_with(model: @word, local: true) do |f| %>
-    <div class="font-bold text-lg text-center">
-      <div>
-        <%= f.label :english, class: "px-1" %>
-        <%= f.text_field :english_word, autofocus: true, id: "english_word", class: "block w-full px-5 py-3 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
-      </div>
 
-      <div>
-        <%= f.label :japanese, class: "px-1" %>
-        <%= f.text_field :japanese_meaning, id: "japanese_meaning", class: "block w-full px-5 py-3 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
-      </div>
+    <div>
+      <%= f.label :japanese_meaning, class: "px-1" %>
+      <%= f.text_field :japanese_meaning, id: "japanese_meaning", class: "block w-full px-5 py-3 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
+    </div>
 
-      <div class="flex space-x-3 justify-center">
-        <div class="flex flex-col w-3/4 mt-3">
-          <%= f.submit class: "w-full text-xs rounded-lg drop-shadow-lg bg-primary text-secondary hover:bg-accent hover:drop-shadow-none py-3" %>
-        </div>
+    <div class="flex space-x-3 justify-center">
+      <div class="flex flex-col w-3/4 mt-3">
+        <%= f.submit class: "w-full text-xs rounded-lg drop-shadow-lg bg-primary text-secondary hover:bg-accent hover:drop-shadow-none py-3" %>
       </div>
     </div>
-  <% end %>
   </div>
-
-
+<% end %>
