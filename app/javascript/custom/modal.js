@@ -6,16 +6,16 @@ function showWordModal(element) {
   const wordJapanese = element.getAttribute('data-word-japanese')
 
   // モーダルの内容を更新する
-  const modalBox = document.querySelector('#my_modal_2 .modal-box');
+  const modalBox = document.querySelector(`#my_modal_${wordId} .modal-box`);
   modalBox.innerHTML = `
     <div class="font-bold text-lg text-center">
       <div>
-        <label for="english_word" class="px-1">English</label>
-        <p id="english_word" class="block w-full px-5 py-3 border border-transparent rounded-lg bg-gray-50">${wordEnglish}</p>
+        <label for="english_word_${wordId}" class="px-1">English</label>
+        <p id="english_word_${wordId}" class="block w-full px-5 py-3 border border-transparent rounded-lg bg-gray-50">${wordEnglish}</p>
       </div>
       <div>
-        <label for="japanese_meaning" class="px-1" >Japanese</label>
-        <p id="japanese_meaning", class="block w-full px-5 py-3  border border-transparent rounded-lg bg-gray-50">${wordJapanese}</p>
+        <label for="japanese_meaning_${wordId}" class="px-1" >Japanese</label>
+        <p id="japanese_meaning_${wordId}", class="block w-full px-5 py-3  border border-transparent rounded-lg bg-gray-50">${wordJapanese}</p>
       </div>
     </div>
     <div class="fixed bottom-5 right-5">
@@ -26,7 +26,7 @@ function showWordModal(element) {
   `;
 
   // モーダルを表示する
-  const modal = document.getElementById('my_modal_2');
+  const modal = document.getElementById(`my_modal_${wordId}`);
   modal.showModal();
 }
 
@@ -43,7 +43,7 @@ function setup() {
 }
 
 document.addEventListener("turbo:submit-end", function(event) {
-  const modal = document.getElementById('my_modal_2');
+  const modal = document.getElementById(`my_modal_${wordId}`);
   if (modal && event.detail.success) {
     modal.close(); // モーダルを閉じる
   }

@@ -18,7 +18,6 @@
       <% else %>
         <%= render 'shared/before_login_header' %>
       <% end %>
-
     </header>
     <main class="flex-grow">
       <div class="lg:ml-64 md:ml-20">
@@ -26,6 +25,13 @@
           <%= render "shared/flash_messages" %>
         </div>
         <%= yield %>
+        <input type="checkbox" id="my_modal_7" class="modal-toggle hidden"  />
+        <div class="modal" role="dialog">
+          <div class="modal-box w-96">
+            <%= render "words/new" %>
+          </div>
+          <label class="modal-backdrop" for="my_modal_7">Close</label>
+        </div>
       </div>
     </main>
     <footer class="footer footer-center p-10 base-100 text-base-300 rounded mt-auto gap-y-1">

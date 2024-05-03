@@ -3,6 +3,6 @@ Rails.application.routes.draw do
         sessions: 'users/sessions',
         registrations: 'users/registrations'
       }
-  resources :words, only: %i[index show edit update]
+  resources :words
   root "tops#index"
 end

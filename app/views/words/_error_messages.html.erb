@@ -1,0 +1,9 @@
+<% if @word.errors.any? %>
+  <div id="error_explanation" class="text-red-600">
+    <ul>
+    <% @word.errors.full_messages.each do |message| %>
+      <div class="flash text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 flex items-center p-4 mb-4  "><i class="fa-solid fa-circle-info"></i><%= message %></div>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
