@@ -72,7 +72,6 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
-
 gem "dockerfile-rails", ">= 1.6", :group => :development
-
 gem 'ransack'
+gem 'kaminari'
