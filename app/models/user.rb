@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :words, dependent: :destroy
   validates :username, presence: true, length: { minimum: 2 }
+  validates :password, presence: true, on: :create
 end
