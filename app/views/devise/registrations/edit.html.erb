@@ -1,43 +1,35 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<section>
+    <div class="items-center px-5 py-12 lg:px-20">
+        <div class="flex flex-col w-full max-w-md p-10 mx-auto transition duration-500 ease-in-out transform bg-white rounded-lg md:mt-0">
+          <div class="text-left sm:mt-5">
+              <div class="inline-flex items-center w-full">
+                <h3 class="font-bold text-neutral-600 l eading-6 text-4xl">Edit Account</h3>
+              </div>
+            </div>
+            <div class="mt-6">
+              <%= form_with model: @user, url: user_registration_path, class: "space-y-4" do |f| %>
+                <%= render "devise/shared/error_messages", resource: @user %>
+                <div>
+                  <%= f.label :name, class: "block text-sm font-medium text-neutral-600" %>
+                  <div class="mt-1">
+                  <%= f.text_field :username, autofocus: true, autocomplete: "name", class: "block w-full px-5 py-1 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
+                  </div>
+                </div>
+                <div>
+                  <%= f.label :email, class: "block text-sm font-medium text-neutral-600" %>
+                  <div class="mt-1">
+                  <%= f.email_field :email, autocomplete: "email", class: "block w-full px-5 py-1 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
+                  </div>
+                </div>
+                <div class="actions">
+                  <%= f.submit "Save", class: "flex items-center justify-center w-full px-10 py-3 mt-6 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+                </div>
+              <% end %>
+            </div>
+            <div class="mt-6">Unhappy? <%= link_to "Delete my account", registration_path(resource_name), data: { turbo_method: :delete, turbo_confirm: "Are you sure to delete your account?" }, class: "text-red-600" %></div>
+        </div>
+    </div>
+</section>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
