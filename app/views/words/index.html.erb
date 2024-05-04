@@ -16,3 +16,21 @@
         </div>
       <% end %>
 </div>
+<% if @words.total_count > 11 %>
+  <div class="flex justify-center mb-4 ">
+    <% if @words.prev_page %>
+      <%= link_to '«', words_path(page: @words.prev_page), class: 'join-item btn' %>
+    <% else %>
+      <button class="join-item btn" disabled>«</button>
+    <% end %>
+
+    <%#現在のページ番号 %>
+    <button class="join-item btn">Page <%= @words.current_page %></button>
+
+    <% if @words.next_page %>
+      <%= link_to '»', words_path(page: @words.next_page), class: 'join-item btn' %>
+    <% else %>
+      <button class="join-item btn" disabled>»</button>
+    <% end %>
+  </div>
+<% end %>

@@ -1,7 +1,7 @@
 class WordsController < ApplicationController
   def index
     @q = current_user.words.ransack(params[:q])
-    @words = @q.result(distinct: true).includes(:user).order(created_at: :desc)
+    @words = @q.result(distinct: true).includes(:user).page(params[:page]).per(12).order(created_at: :desc)
     @word = Word.new
   end
 
