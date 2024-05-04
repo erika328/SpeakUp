@@ -1,6 +1,7 @@
 class WordsController < ApplicationController
   def index
-    @words = current_user.words
+    @q = current_user.words.ransack(params[:q])
+    @words = @q.result(distinct: true).includes(:user).order(created_at: :desc)
     @word = Word.new
   end
 
