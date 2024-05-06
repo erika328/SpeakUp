@@ -1,6 +1,7 @@
 class VideosController < ApplicationController
   def index
-    @videos = Video.all.page(params[:page]).per(12)
+    @q = Video.ransack(params[:q])
+    @videos = @q.result(distinct: true).page(params[:page]).per(12)
   end
 
   def show
