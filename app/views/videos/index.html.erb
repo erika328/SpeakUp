@@ -7,18 +7,18 @@
   <%= link_to 'Intermediate', videos_index_path(q: { difficulty_eq: 'Intermediate' }), id:"tab2", role: 'tab', class: 'tab'%>
   <%= link_to 'Advanced', videos_index_path(q: { difficulty_eq: 'Advanced' }), id:"tab3", role: 'tab', class: 'tab'%>
 </div>
-<div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center m-10 videos-list">
+<div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center m-10">
   <% @videos.each do |video| %>
+    <%= link_to video_path(video) do %>
     <div class="card bg-base-100 shadow-xl">
       <figure>
         <%= image_tag "https://img.youtube.com/vi/#{video.video_id}/mqdefault.jpg", alt: video.title %>
       </figure>
-      <div class="card-body">
-        <h2 class="card-title text-neutral-600">
-          <%= link_to video.title, video_path(video) %>
-        </h2>
+      <div class="card-body lg:min-h-40 md:min-h-40 p-4">
+        <p class=" text-neutral-600 text-base font-bold lg:text-sm"><%= video.title %></p>
       </div>
     </div>
+    <% end %>
   <% end %>
 </div>
 <div class="flex justify-center mb-4 ">
