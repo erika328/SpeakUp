@@ -1,0 +1,33 @@
+<div class="flex justify-center mt-10">
+  <h1 class="text-3xl font-semibold text-neutral-600" >Shadowing Practice</h1>
+</div>
+<div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center m-10">
+  <% @videos.each do |video| %>
+    <div class="card bg-base-100 shadow-xl">
+      <figure>
+        <%= image_tag "https://img.youtube.com/vi/#{video.video_id}/mqdefault.jpg", alt: video.title %>
+      </figure>
+      <div class="card-body">
+        <h2 class="card-title text-neutral-600">
+          <%= link_to video.title, video_path(video) %>
+        </h2>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="flex justify-center mb-4 ">
+  <% if @videos.prev_page %>
+    <%= link_to '«', videos_index_path(page: @videos.prev_page), class: 'join-item btn' %>
+  <% else %>
+    <button class="join-item btn" disabled>«</button>
+  <% end %>
+
+  <%#現在のページ番号 %>
+  <button class="join-item btn">Page <%= @videos.current_page %></button>
+
+  <% if @videos.next_page %>
+    <%= link_to '»', videos_index_path(page: @videos.next_page), class: 'join-item btn' %>
+  <% else %>
+    <button class="join-item btn" disabled>»</button>
+  <% end %>
+</div>

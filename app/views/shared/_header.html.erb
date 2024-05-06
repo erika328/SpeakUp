@@ -4,7 +4,7 @@
     <div class="px-6">
       <%= link_to 'SpeakUp', '/', class: "flex-none text-xl font-semibold text-neutral-600" %>
     </div>
-    <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
+    <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap text-neutral-600" data-hs-accordion-always-open>
       <ul class="space-y-2.5">
         <li>
           <%= link_to words_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
@@ -25,7 +25,7 @@
           <% end %>
         </li>
         <li>
-          <%= link_to "#", class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+          <%= link_to videos_index_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
             <i class="fa-brands fa-youtube fa-xl"></i>
             Shadowing
           <% end %>
@@ -88,7 +88,7 @@
         <% end %>
       </div>
       <div class="hs-tooltip inline-block [--placement:right]">
-        <%= link_to "#", class:"flex items-center gap-x-3.5 py-4 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+        <%= link_to videos_index_path, class:"flex items-center gap-x-3.5 py-4 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
           <i class="fa-brands fa-youtube fa-xl"></i>
         <% end %>
       </div>
@@ -170,7 +170,7 @@
       </label>
     </div>
     <div class="hs-tooltip inline-block [--placement:right]">
-      <%= link_to "#", class:"flex items-center gap-x-3.5 py-2 px-3 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
+      <%= link_to videos_index_path, class:"flex items-center gap-x-3.5 py-2 px-3 text-sm text-gray-700 rounded-lg hover:bg-gray-100" do %>
         <i class="fa-brands fa-youtube fa-xl"></i>
       <% end %>
     </div>
