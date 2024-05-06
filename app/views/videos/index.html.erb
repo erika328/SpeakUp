@@ -1,7 +1,13 @@
 <div class="flex justify-center mt-10">
   <h1 class="text-3xl font-semibold text-neutral-600" >Shadowing Practice</h1>
 </div>
-<div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center m-10">
+<div role="tablist" class="tabs tabs-bordered mt-4">
+    <%= link_to 'All', videos_index_path, id:"tab0", role: 'tab', class: 'tab'%>
+  <%= link_to 'Beginner', videos_index_path(q: { difficulty_eq: 'Beginner' }), id:"tab1", role: 'tab', class: 'tab'%>
+  <%= link_to 'Intermediate', videos_index_path(q: { difficulty_eq: 'Intermediate' }), id:"tab2", role: 'tab', class: 'tab'%>
+  <%= link_to 'Advanced', videos_index_path(q: { difficulty_eq: 'Advanced' }), id:"tab3", role: 'tab', class: 'tab'%>
+</div>
+<div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center m-10 videos-list">
   <% @videos.each do |video| %>
     <div class="card bg-base-100 shadow-xl">
       <figure>
@@ -31,3 +37,4 @@
     <button class="join-item btn" disabled>»</button>
   <% end %>
 </div>
+
