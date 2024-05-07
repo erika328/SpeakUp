@@ -11,4 +11,8 @@ module ApplicationHelper
   def turbo_stream_flash
   turbo_stream.update "flash", partial: "shared/flash_messages"
   end
+
+  def clean_word(word)
+    word.gsub(/[!.,?]/, '')
+  end
 end
