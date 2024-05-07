@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_04_082932) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_07_021637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "transcript_words", force: :cascade do |t|
+    t.bigint "transcript_id", null: false
+    t.bigint "word_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["transcript_id", "word_id"], name: "index_transcript_words_on_transcript_id_and_word_id", unique: true
+    t.index ["transcript_id"], name: "index_transcript_words_on_transcript_id"
+    t.index ["word_id"], name: "index_transcript_words_on_word_id"
+  end
 
   create_table "transcripts", force: :cascade do |t|
     t.text "content"
@@ -55,6 +65,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_04_082932) do
     t.index ["user_id"], name: "index_words_on_user_id"
   end
 
+  add_foreign_key "transcript_words", "transcripts"
+  add_foreign_key "transcript_words", "words"
   add_foreign_key "transcripts", "videos"
   add_foreign_key "words", "users"
 end

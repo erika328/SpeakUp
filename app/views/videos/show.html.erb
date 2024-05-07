@@ -3,10 +3,18 @@
 </div>
 
 <div style="height: 300px; overflow-y: auto; background: whitesmoke;">
-  <% @video.transcript.content.split("\n").each do |line| %>
-    <% line.split(" ").each do |word| %>
-      <span class="translated-word" data-original="<%= word %>"><%= word %></span>
+<% @video.transcript.content.split("\n").each do |line| %>
+  <% line.split(" ").each do |word| %>
+    <% cleaned_word = clean_word(word) %>
+    <% if Word.where("LOWER(english_word) = ?", cleaned_word.downcase).exists? %>
+      <% word_record = Word.find_by("LOWER(english_word) = ?", cleaned_word.downcase) %>
+      <div class="tooltip tooltip-warning" data-tip="<%= word_record.japanese_meaning %>">
+        <span class="text-warning font-semibold"><%= word %></span>
+      </div>
+    <% else %>
+      <span><%= word %></span>
     <% end %>
-    <br>
   <% end %>
+  <br>
+<% end %>
 </div>
