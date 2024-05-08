@@ -14,7 +14,7 @@ function showWordModal(element) {
         <p id="english_word_${wordId}" class="block w-full px-5 py-3 border border-transparent rounded-lg bg-gray-50">${wordEnglish}</p>
       </div>
       <div>
-        <label for="japanese_meaning_${wordId}" class="px-1" >Japanese</label>
+        <label for="japanese_meaning_${wordId}" class="px-1" >Meaning</label>
         <p id="japanese_meaning_${wordId}", class="block w-full px-5 py-3  border border-transparent rounded-lg bg-gray-50">${wordJapanese}</p>
       </div>
     </div>
