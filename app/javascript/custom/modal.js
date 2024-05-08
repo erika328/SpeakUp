@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', setup);
 document.addEventListener('turbo:load', setup);
 
 function setup() {
-  const cards = document.querySelectorAll('.card');
+  const cards = document.querySelectorAll('.card-modal');
   cards.forEach(function(card) {
     card.addEventListener('click', function() {
       showWordModal(this);
