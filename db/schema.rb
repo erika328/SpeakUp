@@ -10,9 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_07_021637) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_10_051332) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "pronunciation_scores", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "pronunciation_text_id", null: false
+    t.decimal "accuracy_score", precision: 5, scale: 2, null: false
+    t.decimal "pronunciation_score", precision: 5, scale: 2, null: false
+    t.decimal "fluency_score", precision: 5, scale: 2, null: false
+    t.decimal "completeness_score", precision: 5, scale: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pronunciation_text_id"], name: "index_pronunciation_scores_on_pronunciation_text_id"
+    t.index ["user_id"], name: "index_pronunciation_scores_on_user_id"
+  end
+
+  create_table "pronunciation_texts", force: :cascade do |t|
+    t.text "english_text", null: false
+    t.text "japanese_text", null: false
+    t.string "difficulty", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["difficulty"], name: "index_pronunciation_texts_on_difficulty"
+  end
 
   create_table "transcript_words", force: :cascade do |t|
     t.bigint "transcript_id", null: false
@@ -65,6 +87,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_021637) do
     t.index ["user_id"], name: "index_words_on_user_id"
   end
 
+  add_foreign_key "pronunciation_scores", "pronunciation_texts"
+  add_foreign_key "pronunciation_scores", "users"
   add_foreign_key "transcript_words", "transcripts"
   add_foreign_key "transcript_words", "words"
   add_foreign_key "transcripts", "videos"

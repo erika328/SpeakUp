@@ -6,12 +6,15 @@
     "@hotwired/turbo-rails": "^8.0.4",
     "autoprefixer": "^10.4.19",
     "daisyui": "^4.10.1",
-    "esbuild": "^0.20.2",
+    "esbuild": "^0.21.1",
+    "microsoft-cognitiveservices-speech-sdk": "^1.36.0",
     "postcss": "^8.4.38",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "tailwindcss": "^3.4.3"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets --loader:.js=jsx",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
     "build:custom": "esbuild app/javascript/custom/*.js --bundle --sourcemap --outdir=app/assets/builds --public-path=assets"
   }
