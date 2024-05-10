@@ -1,5 +1,3 @@
-
-
 function showWordModal(element) {
   const wordId = element.getAttribute('data-word-id');
   const wordEnglish = element.getAttribute('data-word-english');

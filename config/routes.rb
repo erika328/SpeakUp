@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'pronunciation_texts/show'
   get 'videos/index'
   get 'videos/show'
   devise_for :users, controllers: {

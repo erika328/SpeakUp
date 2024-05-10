@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :words, dependent: :destroy
+  has_many :pronunciation_scores
+  has_many :pronunciation_texts, through: :pronunciation_scores
   validates :username, presence: true, length: { minimum: 2 }
   validates :password, presence: true, on: :create
 end
