@@ -46,5 +46,3 @@ document.addEventListener("turbo:submit-end", function(event) {
     modal.close(); // モーダルを閉じる
   }
 });
-
-export { showWordModal };
