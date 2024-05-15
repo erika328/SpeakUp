@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :pronunciation_scores, only: [:create]
-  get 'pronunciation_texts/show'
+  resources :pronunciation_texts, only: [:show]
   get 'videos/index'
   get 'videos/show'
   devise_for :users, controllers: {
