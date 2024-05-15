@@ -112,13 +112,19 @@ const pronunciationScoresPath = document.getElementById('pronunciation-scores-pa
 
 return (
         <div className='p-5 border-grey-200 md:min-h-96 md:border-2 md:w-auto md:rounded-2xl md:m-5 min-[320px]:border-t-2'>
-        <select onChange={(event) => setDifficulty(event.target.value)} value={difficulty}>
+        {/* <select onChange={(event) => setDifficulty(event.target.value)} value={difficulty}>
           <option value="Normal">Normal</option>
           <option value="Hard">Hard</option>
-        </select>
-          <div>
+        </select> */}
+        <label className="swap swap-flip text-xl">
+          <input type="checkbox" onChange={(event) => setDifficulty(event.target.checked ? "Hard" : "Normal")} checked={difficulty === "Hard"} hidden />
+          <div className="swap-on bg-slate-900 text-white rounded-3xl p-2">Hard Mode😈</div>
+          <div className="swap-off border-2 border-slate-800 rounded-3xl p-2">Normal Mode😇</div>
+        </label>
+
+          <div className='mt-5 space-y-3'>
             <p><strong>English:</strong><br/> {referenceTextContent}</p>
-            <p><strong>Japanese:</strong><br/> {referenceTextJapanese}</p>
+            <p className=''><strong>Japanese:</strong><br/> {referenceTextJapanese}</p>
           </div>
           <div className="">
             <div className='md:mt-60 min-[320px]:mt-28'>
