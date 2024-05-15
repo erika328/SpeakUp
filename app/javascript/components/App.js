@@ -1,28 +1,31 @@
-
-import React, { useState } from 'react'; 
-
+import React, { useState, useEffect } from 'react'; 
 import { ResultReason } from 'microsoft-cognitiveservices-speech-sdk'; 
 
 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 const speechsdk = require('microsoft-cognitiveservices-speech-sdk');
 
 export default function App() { 
-  const [displayText, setDisplayText] = useState('INITIALIZED: ready to test speech...');
-  const referenceTexts = gon.reference_text.map(text => {
-    return {
-      id: text.id, // テキストのID
-      text: text.english, // テキストの内容
-      difficulty: text.difficulty
-    };
-  });
+  const [displayText, setDisplayText] = useState('Ready to test speech...');
+  const [isLoading, setIsLoading] = useState(false);
+  const [difficulty, setDifficulty] = useState('Normal');
+  const [selectedTextIndex, setSelectedTextIndex] = useState(0);
+  const [referenceTexts, setReferenceTexts] = useState(gon.reference_text);
+  
+   useEffect(() => {
+    if (referenceTexts && referenceTexts.length > 0) {
+      const num = difficulty === 'Normal' ? gon.reference_text.length : gon.reference_text_hard.length;
+      setSelectedTextIndex(Math.floor(Math.random() * num));
+      setReferenceTexts(difficulty === 'Normal' ? gon.reference_text : gon.reference_text_hard);
+    }
+  }, [difficulty]);
 
-  const [selectedTextIndex, setSelectedTextIndex] = useState(Math.floor(Math.random() * referenceTexts.length));
-
-  const referenceText = referenceTexts[selectedTextIndex];
+  const referenceText = referenceTexts[selectedTextIndex == 0 ? 0  : selectedTextIndex-1];
   const referenceTextId = referenceText.id;
-  const referenceTextContent = referenceText.text; 
+  const referenceTextContent = referenceText.english;
+  const referenceTextJapanese = referenceText.japanese;
 
   async function sttFromMic() {
+    setIsLoading(true);
     const SPEECH_Key = gon.speech_api_key;
     const SPEECH_Region = gon.speech_region;
     const speechConfig = speechsdk.SpeechConfig.fromSubscription(SPEECH_Key, SPEECH_Region);
@@ -39,9 +42,10 @@ export default function App() {
     );
     pronunciationAssessmentConfig.applyTo(recognizer);
 
-    setDisplayText('speak into your microphone...');
+    setDisplayText('Speak into your microphone...');
 
     recognizer.recognizeOnceAsync(result => {
+      setIsLoading(false);
         if (result.reason === ResultReason.RecognizedSpeech) {
             // 発音評価の結果を取得
             const pronunciationResult = speechsdk.PronunciationAssessmentResult.fromResult(result);
@@ -51,7 +55,7 @@ export default function App() {
             const completenessScore = pronunciationResult.completenessScore;
 
             saveScoreToDatabase(accuracyScore, pronunciationScore, fluencyScore, completenessScore, referenceTextId);
-            setDisplayText(`RECOGNIZED: Text=${result.text}\nAccuracy Score: ${accuracyScore}, Pronunciation Score: ${pronunciationScore}
+            setDisplayText(`RECOGNIZED(認識した言葉): Text=${result.text}\nAccuracy Score: ${accuracyScore}, Pronunciation Score: ${pronunciationScore}
             , Fluency Score: ${fluencyScore}, Completeness Score: ${completenessScore}`);
         } else {
             setDisplayText('ERROR: Speech was cancelled or could not be recognized. Ensure your microphone is working properly.');
@@ -59,12 +63,10 @@ export default function App() {
     });
   }
 
-  // パスを取得する
 const pronunciationScoresPath = document.getElementById('pronunciation-scores-path').dataset.path;
 
   async function saveScoreToDatabase(accuracyScore, pronunciationScore, fluencyScore, completenessScore, referenceTextId)  {
     try {
-      // スコアのデータをサーバーに送信するためのリクエストを作成
       const response = await fetch(pronunciationScoresPath, {
         method: 'POST',
         headers: {
@@ -92,26 +94,47 @@ const pronunciationScoresPath = document.getElementById('pronunciation-scores-pa
     }
     } catch (error) {
         console.error('Error saving score:', error);
-        // エラーが発生した場合の処理
-        // 例えば、ユーザーにエラーが発生したことを通知するなど
     }
   }
 
+    // referenceTextsが空またはundefinedでないかチェック
+    if (!referenceTexts || referenceTexts.length === 0) {
+      return (
+        <div>
+          <select onChange={(event) => setDifficulty(event.target.value)} value={difficulty}>
+            <option value="Normal">Normal</option>
+            <option value="Hard">Hard</option>
+          </select>
+          <p>No texts available for the selected difficulty.</p>
+        </div>
+      );
+    }
+
 return (
-  <div className="app-container">
-      <div className="row main-container">
-          <div className="col-6">
-              <div className="fas fa-microphone fa-lg mr-2" onClick={() => sttFromMic()}>Convert speech to text from your mic.</div>
-          </div>
-          <div className="col-6 rounded">
-              <code>{displayText}</code>
-          </div>
+        <div className='p-5 border-grey-200 md:min-h-96 md:border-2 md:w-auto md:rounded-2xl md:m-5 min-[320px]:border-t-2'>
+        <select onChange={(event) => setDifficulty(event.target.value)} value={difficulty}>
+          <option value="Normal">Normal</option>
+          <option value="Hard">Hard</option>
+        </select>
           <div>
-          <p><strong>English:</strong> {referenceTexts[selectedTextIndex].text}</p>
-            <p><strong>Japanese:</strong> {gon.reference_text[selectedTextIndex].japanese}</p>
+            <p><strong>English:</strong><br/> {referenceTextContent}</p>
+            <p><strong>Japanese:</strong><br/> {referenceTextJapanese}</p>
           </div>
-      </div>
-  </div>
+          <div className="">
+            <div className='md:mt-60 min-[320px]:mt-28'>
+            <div className="text-blue-600 mb-3">
+                <code>{displayText}</code>
+            </div>
+              {isLoading ? (
+                <span className="loading loading-dots loading-lg text-blue-600"></span>
+              ) : (
+              <div onClick={() => sttFromMic()}>
+                <i className="fa-solid fa-microphone fa-2xl text-blue-600"></i>
+              </div>
+              )}
+            </div>
+          </div>
+        </div>
 );
 
 }
