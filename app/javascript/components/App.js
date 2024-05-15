@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'; 
 import { ResultReason } from 'microsoft-cognitiveservices-speech-sdk'; 
+import ShareButton from './ShareButton';
 
 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 const speechsdk = require('microsoft-cognitiveservices-speech-sdk');
@@ -163,6 +164,7 @@ return (
             </div>
             )}
           </div>
+          {displayAccuracyScore ? <ShareButton score={displayAverageScore} /> : null}
       </div>
 );
 
