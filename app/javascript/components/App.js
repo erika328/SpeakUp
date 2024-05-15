@@ -5,7 +5,13 @@ const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute
 const speechsdk = require('microsoft-cognitiveservices-speech-sdk');
 
 export default function App() { 
-  const [displayText, setDisplayText] = useState('Ready to test speech...');
+  const [recognizedText, setRecognizedText] = useState('')
+  const [displayAverageScore, setDisplayAverageScore] = useState('');
+  const [displayAccuracyScore, setDisplayAccuracyScore] = useState('');
+  const [displayPronunciationScore, setDisplayPronunciationScore] = useState('');
+  const [displayFluencyScore, setDisplayFluencyScore] = useState('');
+  const [displayCompletenessScore, setDisplayCompletenessScore] = useState('');
+
   const [isLoading, setIsLoading] = useState(false);
   const [difficulty, setDifficulty] = useState('Normal');
   const [selectedTextIndex, setSelectedTextIndex] = useState(0);
@@ -42,8 +48,6 @@ export default function App() {
     );
     pronunciationAssessmentConfig.applyTo(recognizer);
 
-    setDisplayText('Speak into your microphone...');
-
     recognizer.recognizeOnceAsync(result => {
       setIsLoading(false);
         if (result.reason === ResultReason.RecognizedSpeech) {
@@ -53,10 +57,15 @@ export default function App() {
             const pronunciationScore = pronunciationResult.pronunciationScore;
             const fluencyScore = pronunciationResult.fluencyScore;
             const completenessScore = pronunciationResult.completenessScore;
+            const averageScore = (accuracyScore + pronunciationScore + fluencyScore + completenessScore) / 4;
 
             saveScoreToDatabase(accuracyScore, pronunciationScore, fluencyScore, completenessScore, referenceTextId);
-            setDisplayText(`RECOGNIZED(認識した言葉): ${result.text}\nAccuracy Score: ${accuracyScore}, Pronunciation Score: ${pronunciationScore}
-            , Fluency Score: ${fluencyScore}, Completeness Score: ${completenessScore}`);
+            setRecognizedText(`RECOGNIZED(認識した言葉): \n ${result.text}`);
+            setDisplayAverageScore(`Average Score(平均): ${averageScore}%`);
+            setDisplayAccuracyScore(`Accuracy Score(精度): ${accuracyScore}%`);
+            setDisplayFluencyScore(`Fluency Score(流暢性): ${fluencyScore}%`);
+            setDisplayCompletenessScore(`Completeness Score(完全性): ${completenessScore}%`)
+            setDisplayPronunciationScore(`Pronunciation Score(発音): ${pronunciationScore}%`)
         } else {
             setDisplayText('ERROR: Speech was cancelled or could not be recognized. Ensure your microphone is working properly.');
         }
@@ -106,37 +115,55 @@ const pronunciationScoresPath = document.getElementById('pronunciation-scores-pa
       );
     }
 
+    function speakText(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      speechSynthesis.speak(utterance);
+  }
+
+    function handleSpeakEnglishClick() {
+      const englishText = referenceTextContent;
+      speakText(englishText);
+  }
+
+
 return (
-        <div className='p-5 border-grey-200 md:min-h-96 md:border-2 md:w-auto md:rounded-2xl md:m-5 min-[320px]:border-t-2'>
+      <div className='p-5 md:bg-base-200 border-grey-200 md:min-h-96 md:border-2 md:w-auto md:rounded-2xl md:m-5 min-[320px]:border-t-2'>
         {/* <select onChange={(event) => setDifficulty(event.target.value)} value={difficulty}>
           <option value="Normal">Normal</option>
           <option value="Hard">Hard</option>
         </select> */}
         <label className="swap swap-flip text-xl">
           <input type="checkbox" onChange={(event) => setDifficulty(event.target.checked ? "Hard" : "Normal")} checked={difficulty === "Hard"} hidden />
-          <div className="swap-on bg-slate-900 text-white rounded-3xl p-2">Hard Mode😈</div>
-          <div className="swap-off border-2 border-slate-800 rounded-3xl p-2">Normal Mode😇</div>
+          <div className="swap-on bg-slate-700 text-white rounded-3xl p-2 font-semibold"> Hard😈 </div>
+          <div className="swap-off border-2 border-slate-800 bg-white rounded-3xl p-2 font-semibold">Normal😇</div>
         </label>
 
           <div className='mt-5 space-y-3'>
-            <p><strong>English:</strong><br/> {referenceTextContent}</p>
-            <p className=''><strong>Japanese:</strong><br/> {referenceTextJapanese}</p>
-          </div>
-          <div className="">
-            <div className='md:mt-60 min-[320px]:mt-28'>
-            <div className="text-blue-600 mb-3">
-                <code>{displayText}</code>
-            </div>
-              {isLoading ? (
-                <span className="loading loading-dots loading-lg text-blue-600"></span>
-              ) : (
-              <div onClick={() => sttFromMic()}>
-                <i className="fa-solid fa-microphone fa-2xl text-blue-600"></i>
-              </div>
-              )}
+            <h3 className='font-semibold text-xl mb-2'>
+            {referenceTextContent}</h3>
+            <p className='text-sm'>「{referenceTextJapanese}」</p>
+            <div className='my-2'>
+              <i className="fa-solid fa-volume-high fa-xl" onClick={handleSpeakEnglishClick}></i>
             </div>
           </div>
-        </div>
+          <div className="my-3">
+              <p>{recognizedText}</p><br/>
+              <p>{displayAverageScore}</p>
+              <p>{displayAccuracyScore}</p>
+              <p>{displayFluencyScore}</p>
+              <p>{displayPronunciationScore}</p>
+              <p>{displayCompletenessScore}</p>
+          </div>
+          <div>
+            {isLoading ? (
+              <span className="loading loading-dots loading-lg text-blue-600"></span>
+            ) : (
+            <div onClick={() => sttFromMic()}>
+              <i className="fa-solid fa-microphone fa-2xl text-blue-400"></i>
+            </div>
+            )}
+          </div>
+      </div>
 );
 
 }
