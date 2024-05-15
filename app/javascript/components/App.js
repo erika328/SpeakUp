@@ -55,7 +55,7 @@ export default function App() {
             const completenessScore = pronunciationResult.completenessScore;
 
             saveScoreToDatabase(accuracyScore, pronunciationScore, fluencyScore, completenessScore, referenceTextId);
-            setDisplayText(`RECOGNIZED(認識した言葉): Text=${result.text}\nAccuracy Score: ${accuracyScore}, Pronunciation Score: ${pronunciationScore}
+            setDisplayText(`RECOGNIZED(認識した言葉): ${result.text}\nAccuracy Score: ${accuracyScore}, Pronunciation Score: ${pronunciationScore}
             , Fluency Score: ${fluencyScore}, Completeness Score: ${completenessScore}`);
         } else {
             setDisplayText('ERROR: Speech was cancelled or could not be recognized. Ensure your microphone is working properly.');
@@ -101,10 +101,6 @@ const pronunciationScoresPath = document.getElementById('pronunciation-scores-pa
     if (!referenceTexts || referenceTexts.length === 0) {
       return (
         <div>
-          <select onChange={(event) => setDifficulty(event.target.value)} value={difficulty}>
-            <option value="Normal">Normal</option>
-            <option value="Hard">Hard</option>
-          </select>
           <p>No texts available for the selected difficulty.</p>
         </div>
       );
