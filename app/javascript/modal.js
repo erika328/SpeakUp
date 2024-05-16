@@ -28,7 +28,7 @@ function showWordModal(element) {
   modal.showModal();
 }
 
-document.addEventListener('DOMContentLoaded', setup);
+// document.addEventListener('DOMContentLoaded', setup);
 document.addEventListener('turbo:load', setup);
 
 function setup() {
