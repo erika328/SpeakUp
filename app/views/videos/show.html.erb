@@ -3,14 +3,14 @@
 </div>
 
 
-  <div class="bg-yellow-100 border-2 border-amber-500 w-auto rounded-2xl m-5">
-    <div class="overflow-y-auto h-[460px] text-lg text-center p-10">
+  <div class="md:bg-base-200 border-grey-200 md:border-2 w-auto rounded-2xl m-5">
+    <div class="overflow-y-auto md:h-[460px] min-[320px]:h-[350px] text-lg text-center p-10 text-[#172c66]">
     <% @video.transcript.content.split("\n").each do |line| %>
       <% line.split(" ").each do |word| %>
         <% cleaned_word = clean_word(word) %>
         <% if Word.where("LOWER(english_word) = ?", cleaned_word.downcase).exists? %>
           <% word_record = Word.find_by("LOWER(english_word) = ?", cleaned_word.downcase) %>
-          <div class="tooltip tooltip-warning" data-tip="<%= word_record.japanese_meaning %>">
+          <div class="tooltip tooltip-warning text-[#172c66]" data-tip="<%= word_record.japanese_meaning %>">
             <span class="text-warning font-semibold"><%= word %></span>
           </div>
         <% else %>

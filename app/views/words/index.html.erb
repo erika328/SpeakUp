@@ -1,10 +1,12 @@
-<div class="flex justify-center">
-  <h1 class="text-3xl font-semibold" >Hello, <%= current_user.username %>!</h1>
+<div class="flex justify-center my-3">
+  <h1 class="text-3xl font-semibold text-[#001858]" >Hello, <%= current_user.username %>!</h1>
 </div>
 <!-- 検索フォーム -->
+<div class="mx-5">
 <%= render 'search_form', q: @q, url: words_path %>
+</div>
 <!-- 掲示板一覧 -->
-<div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center m-10">
+<div class="grid md:grid-cols-4 lg:grid-cols-5 min-[320px]:grid-cols-2 gap-4 place-items-center justify-center m-5">
       <% if @words.present? %>
         <% @words.each do |word| %>
           <%= render 'word', word: word %>
@@ -19,7 +21,7 @@
 <% if @words.total_count > 11 %>
   <div class="flex justify-center mb-4 ">
     <% if @words.prev_page %>
-      <%= link_to '«', words_path(page: @words.prev_page), class: 'join-item btn' %>
+      <%= link_to '«', words_path(page: @words.prev_page), class: 'join-item btn', data: {"turbo" => false} %>
     <% else %>
       <button class="join-item btn" disabled>«</button>
     <% end %>
@@ -28,7 +30,7 @@
     <button class="join-item btn">Page <%= @words.current_page %></button>
 
     <% if @words.next_page %>
-      <%= link_to '»', words_path(page: @words.next_page), class: 'join-item btn' %>
+      <%= link_to '»', words_path(page: @words.next_page), class: 'join-item btn', data: {"turbo" => false} %>
     <% else %>
       <button class="join-item btn" disabled>»</button>
     <% end %>

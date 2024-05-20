@@ -135,11 +135,11 @@ return (
         </select> */}
         <label className="swap swap-flip text-xl">
           <input type="checkbox" onChange={(event) => setDifficulty(event.target.checked ? "Hard" : "Normal")} checked={difficulty === "Hard"} hidden />
-          <div className="swap-on bg-slate-700 text-white rounded-3xl p-2 font-semibold"> Hard😈 </div>
-          <div className="swap-off border-2 border-slate-800 bg-white rounded-3xl p-2 font-semibold">Normal😇</div>
+          <div className="swap-on bg-[#001858] text-white rounded-3xl p-2 font-semibold"> Hard😈 </div>
+          <div className="swap-off border-2 border-[#172c66] bg-white rounded-3xl p-2 font-semibold text-[#172c66]">Normal😇</div>
         </label>
 
-          <div className='mt-5 space-y-3'>
+          <div className='mt-5 space-y-3 text-[#172c66]'>
             <h3 className='font-semibold text-xl mb-2'>
             {referenceTextContent}</h3>
             <p className='text-sm'>「{referenceTextJapanese}」</p>
@@ -147,7 +147,7 @@ return (
               <i className="fa-solid fa-volume-high fa-xl" onClick={handleSpeakEnglishClick}></i>
             </div>
           </div>
-          <div className="my-3">
+          <div className="my-3 text-[#172c66]">
               <p>{recognizedText}</p><br/>
               <p>{displayAverageScore}</p>
               <p>{displayAccuracyScore}</p>
@@ -155,12 +155,12 @@ return (
               <p>{displayPronunciationScore}</p>
               <p>{displayCompletenessScore}</p>
           </div>
-          <div>
+          <div className='mt-10'>
             {isLoading ? (
-              <span className="loading loading-dots loading-lg text-blue-600"></span>
+              <span className="loading loading-dots loading-lg text-[#5bcccc]"></span>
             ) : (
             <div onClick={() => sttFromMic()}>
-              <i className="fa-solid fa-microphone fa-2xl text-blue-400"></i>
+              <i className="fa-solid fa-microphone fa-2xl bg-[#5bcccc] px-5 py-7 rounded-full text-[#fffffe]"></i>
             </div>
             )}
           </div>
