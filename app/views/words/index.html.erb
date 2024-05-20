@@ -28,8 +28,8 @@
         </div>
       <% end %>
 </div>
-<% if @words.total_count > 11 %>
-  <div class="flex justify-center mb-4 ">
+<% if @words.total_count > 24 %>
+  <div class="flex justify-center mb-4 join mt-20 ">
     <% if @words.prev_page %>
       <%= link_to '«', words_path(page: @words.prev_page), class: 'join-item btn', data: {"turbo" => false} %>
     <% else %>

@@ -1,7 +1,57 @@
-<h1 class="text-5xl font-bold underline py-5">
-    Hello world!
-</h1>
+<div class="mb-5 md:mt-5 min-[320px]:mt-20">
+  <div class="flex justify-center items-center">
+    <div class="md:w-1/4 min-[320px]:w-1/2">
+    <%= image_tag("SpeakUp.png") %>
+    </div>
+  </div>
+  <div class="text-center md:text-lg min-[320px]:text-xs my-2 font-semibold">
+  <p class="text-[#172c66]">Speak Fluent, Speak Confident, SpeakUp.</p>
+  <p class="text-[#172c66]">流暢に、自信を持って、話し出そう。</p>
+  </div>
+</div>
 
-<button class="bg-gray-900 hover:bg-gray-800 text-white rounded px-4 py-2">tailwind</button>
+ <!-- Features Section -->
+  <section class="container mx-auto px-6 py-10">
+    <h2 class="text-3xl font-semibold text-center text-[#001858]">Features</h2>
+    <h2 class="text-lg font-semibold text-center mb-5 text-[#001858]">機能紹介</h2>
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
-<button class="btn btn-primary">daisyUI</button>
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center text-[#001858]">
+        <%= image_tag("pronunciation.png")%>
+        <h3 class="text-2xl font-semibold mb-2">Pronunciation Test</h3>
+        <h3 class="text-sm mb-2">発音採点</h3>
+        <p class="text-sm text-[#172c66]">英文を読み上げ、マイクに入力した声を採点し、4つの項目のスコアを表示します。<br>レベル切り替え機能やランキング登録機能も🌟</p>
+      </div>
+
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center text-[#001858]">
+        <%= image_tag("shadowing_practice.png")%>
+        <h3 class="text-2xl font-semibold mb-2">Shadowing Practice</h3>
+        <h3 class="text-sm mb-2">シャドーイング練習</h3>
+        <p class="text-sm text-[#172c66]">Youtubeの動画で、用意されたトランスクリプトを読みながらシャドーイングの練習ができます。単語帳に登録された単語と同じものがあったら認識して登録した単語の意味が見れちゃう👀</p>
+      </div>
+
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center text-[#001858]">
+        <%= image_tag("mypage1.png")%>
+        <h3 class="text-2xl font-semibold mb-2">Vocabulary<br>Book</h3>
+        <h3 class="text-sm mb-2">単語帳作成</h3>
+        <p class="text-sm text-[#172c66]">自分だけの単語帳を作り、復習ができます。登録した単語の合計数を自動的に数えたものを共有できるので、みんなに自慢できる✨</p>
+      </div>
+    </div>
+  </section>
+<section class="my-5">
+  <h2 class="text-3xl font-semibold text-center text-[#001858]">What is Shadowing?</h2>
+  <h2 class="text-lg font-semibold text-center mb-5 text-[#001858]">シャドーイングとは？</h2>
+  <div class="flex justify-center">
+    <div class="bg-white rounded-lg shadow-lg p-10 text-center w-3/4">
+      <p class="text-sm text-[#172c66]">「シャドーイング（Shadowing）」は、英語を聞きながらそれを真似して発音する通訳訓練法のことです。英文を聞き終えてから繰り返す「リピート」とは異なり、シャドーイングは、聞こえてくる英文のすぐ後ろを影（shadow）のように追いかけるのがポイントです。
+        何度も練習して、見本音声とピッタリ同じ速度で発音ができたときにはあなたのスピーキング力は大幅に伸びていることでしょう。
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="flex justify-center mt-10">
+<%= link_to new_user_registration_path, class:"flex items-center py-3 px-4 font-semibold text-sm text-[#172c66] rounded-3xl bg-[#ffd803] hover:bg-[#bae8e8]" do %>
+  <i class="fa-solid fa-user-plus fa-xl mr-2"></i> Study Now!
+<% end %>
+</div>
