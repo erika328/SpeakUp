@@ -1,29 +1,29 @@
 <div class="flex justify-center mt-10">
-  <h1 class="text-3xl font-semibold text-neutral-600" >Shadowing Practice</h1>
+  <h1 class="text-3xl font-semibold text-[#001858]" >Shadowing Practice</h1>
 </div>
-<div role="tablist" class="tabs tabs-bordered mt-4">
+<div role="tablist" class="tabs tabs-bordered mt-4 text-[#172c66]">
   <%= link_to 'All', videos_index_path(q: { difficulty_eq: '' }), id: "tab0", role: 'tab', class: 'tab', data: { difficulty: '' } %>
   <%= link_to 'Beginner', videos_index_path(q: { difficulty_eq: 'Beginner' }), id: "tab1", role: 'tab', class: 'tab', data: { difficulty: 'Beginner' } %>
   <%= link_to 'Intermediate', videos_index_path(q: { difficulty_eq: 'Intermediate' }), id: "tab2", role: 'tab', class: 'tab', data: { difficulty: 'Intermediate' } %>
   <%= link_to 'Advanced', videos_index_path(q: { difficulty_eq: 'Advanced' }), id: "tab3", role: 'tab', class: 'tab', data: { difficulty: 'Advanced' } %>
 </div>
-<div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center m-10">
+<div class="grid min-[320px]:grid-cols-2 min-[320px]:m-5 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center md:m-10">
   <% @videos.each do |video| %>
     <%= link_to video_path(video) do %>
     <div class="card bg-base-100 shadow-xl">
       <figure>
         <%= image_tag "https://img.youtube.com/vi/#{video.video_id}/mqdefault.jpg", alt: video.title %>
       </figure>
-      <div class="card-body lg:min-h-40 md:min-h-40 p-4">
-        <p class=" text-neutral-600 text-base font-bold lg:text-sm"><%= video.title %></p>
+      <div class="card-body p-2 min-h-16">
+        <p class=" text-[#172c66] font-semibold text-xs"><%= truncate_title(video.title) %></p>
       </div>
     </div>
     <% end %>
   <% end %>
 </div>
-<div class="flex justify-center mb-4 ">
+<div class="flex justify-center mb-4 join">
   <% if @videos.prev_page %>
-    <%= link_to '«', videos_index_path(page: @videos.prev_page), class: 'join-item btn' %>
+    <%= link_to '«', videos_index_path(page: @videos.prev_page), class: 'join-item btn', data: {"turbo" => false} %>
   <% else %>
     <button class="join-item btn" disabled>«</button>
   <% end %>
@@ -32,7 +32,7 @@
   <button class="join-item btn">Page <%= @videos.current_page %></button>
 
   <% if @videos.next_page %>
-    <%= link_to '»', videos_index_path(page: @videos.next_page), class: 'join-item btn' %>
+    <%= link_to '»', videos_index_path(page: @videos.next_page), class: 'join-item btn', data: {"turbo" => false} %>
   <% else %>
     <button class="join-item btn" disabled>»</button>
   <% end %>

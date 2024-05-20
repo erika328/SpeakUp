@@ -1,80 +1,47 @@
-<section class="">
-    <div class=" items-center px-5 py-12 lg:px-20">
-        <div class="flex flex-col w-full max-w-md p-10 mx-auto transition duration-500 ease-in-out transform bg-white rounded-lg md:mt-0">
-          <div class="text-left sm:mt-5">
-              <div class="inline-flex items-center w-full">
-                <h3 class="font-bold text-neutral-600 l eading-6 text-4xl">Sign Up</h3>
-              </div>
-            </div>
-            <div class="">
-                <div class="mt-6">
-                  <%= form_with model: @user, url: user_registration_path, class: "space-y-4" do |f| %>
-                    <%= render "devise/shared/error_messages", resource: @user %>
-                    <div>
-                      <%= f.label :name, class: "block text-sm font-medium text-neutral-600" %>
-                      <div class="mt-1">
-                      <%= f.text_field :username, autofocus: true, autocomplete: "name", class: "block w-full px-5 py-1 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
-                      </div>
-                    </div>
-                    <div>
-                      <%= f.label :email, class: "block text-sm font-medium text-neutral-600" %>
-                      <div class="mt-1">
-                      <%= f.email_field :email, autocomplete: "email", class: "block w-full px-5 py-1 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
-                      </div>
-                    </div>
-                    <div class="space-y-1">
-                      <%= f.label :password, class: "block text-sm font-medium text-neutral-600" %>
-                      <% if @minimum_password_length %>
-                      <em>(<%= @minimum_password_length %> characters minimum)</em>
-                      <% end %><br />
-                      <div class="mt-1">
-                        <%= f.password_field :password, autocomplete: "new-password", class: "block w-full px-5 py-1 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
-                      </div>
-                    </div>
-                    <div>
-                      <%= f.label :password_confirmation, class: "block text-sm font-medium text-neutral-600" %>
-                      <div class="mt-1">
-                        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block w-full px-5 py-1 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
-                      </div>
-                    </div>
-
-                    <div class="actions">
-                      <%= f.submit "Sign up", class: "flex items-center justify-center w-full px-10 py-3 mt-6 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
-                    </div>
-                  <% end %>
-
-                    <div class="relative my-4">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-300"></div>
-                        </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="px-2 text-neutral-600 bg-white"> Or continue with </span>
-                        </div>
-                    </div>
-                    <div>
-                        <button type="submit" class="w-full items-center block px-10 py-3.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                            <div class="flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="w-6 h-6" viewBox="0 0 48 48">
-                                    <defs>
-                                        <path id="a" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"></path>
-                                    </defs>
-                                    <clipPath id="b">
-                                        <use xlink:href="#a" overflow="visible"></use>
-                                    </clipPath>
-                                    <path clip-path="url(#b)" fill="#FBBC05" d="M0 37V11l17 13z"></path>
-                                    <path clip-path="url(#b)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z"></path>
-                                    <path clip-path="url(#b)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z"></path>
-                                    <path clip-path="url(#b)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z"></path>
-                                </svg>
-                                <span class="ml-4"> Log in with Google</span>
-                            </div>
-                        </button>
-                    </div>
+<div class="flex justify-center items-center p-5">
+    <div class="flex flex-col w-full max-w-md p-10 mx-auto transition duration-500 ease-in-out transform bg-[#fffffe] rounded-lg">
+      <div class="text-left sm:mt-5">
+          <div class="inline-flex items-center w-full">
+            <h3 class="font-bold text-[#001858] eading-6 text-4xl">Sign Up</h3>
+          </div>
+        </div>
+        <div>
+            <div class="mt-6">
+              <%= form_with model: @user, url: user_registration_path, class: "space-y-4" do |f| %>
+                <%= render "devise/shared/error_messages", resource: @user %>
+                <div class="text-[#172c66]">
+                  <%= f.label :name, class: "block text-sm font-medium" %>
+                  <div class="mt-1">
+                  <%= f.text_field :username, autofocus: true, autocomplete: "name", class: "block w-full px-5 py-1 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
+                  </div>
                 </div>
+                <div class="text-[#172c66]">
+                  <%= f.label :email, class: "block text-sm font-medium" %>
+                  <div class="mt-1">
+                  <%= f.email_field :email, autocomplete: "email", class: "block w-full px-5 py-1 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
+                  </div>
+                </div>
+                <div class="space-y-1 text-[#172c66]">
+                  <%= f.label :password, class: "block text-sm font-medium" %>
+                  <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em>
+                  <% end %><br />
+                  <div class="mt-1">
+                    <%= f.password_field :password, autocomplete: "new-password", class: "block w-full px-5 py-1 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
+                  </div>
+                </div>
+                <div class="text-[#172c66]">
+                  <%= f.label :password_confirmation, class: "block text-sm font-medium" %>
+                  <div class="mt-1">
+                    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block w-full px-5 py-1 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <%= f.submit "Sign up", class: "flex items-center justify-center w-full px-10 py-3 mt-6 font-medium text-center text-[#172c66] transition duration-500 ease-in-out transform bg-[#ffd803] rounded-xl hover:bg-[#bae8e8] focus:outline-none", data: {"turbo" => false} %>
+                </div>
+              <% end %>
             </div>
         </div>
     </div>
-</section>
-
-
-
+</div>
