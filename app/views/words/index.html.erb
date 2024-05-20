@@ -1,5 +1,15 @@
-<div class="flex justify-center my-3">
+<div class="text-[#172c66]">
+<div class="flex justify-center mt-3">
   <h1 class="text-3xl font-semibold text-[#001858]" >Hello, <%= current_user.username %>!</h1>
+</div>
+<div class="flex justify-center">
+  <p class="text-md">You have <span class="text-2xl text-warning font-bold"><%= current_user.words.count %></span> words in your vocabulary book!</p>
+</div>
+<div class="flex justify-center mb-3">
+  <%= link_to "https://twitter.com/intent/tweet?url=https://speakup.fly.dev&text=#{ERB::Util.url_encode("I have #{current_user.words.count} words in my vocabulary book! #SpeakUp \n")}", target: "_blank", rel: "noopener" do %>
+    Share on <i class="fa-brands fa-x-twitter font-bold"></i>
+  <% end %>
+</div>
 </div>
 <!-- 検索フォーム -->
 <div class="mx-5">
