@@ -11,33 +11,40 @@
 </div>
 
  <!-- Features Section -->
-  <section class="container mx-auto px-6 py-10">
-    <h2 class="text-3xl font-semibold text-center text-[#001858]">Features</h2>
-    <h2 class="text-lg font-semibold text-center mb-5 text-[#001858]">機能紹介</h2>
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+<section class="container mx-auto px-6 py-10">
+  <h2 class="text-3xl font-semibold text-center text-[#001858]">Features</h2>
+  <h2 class="text-lg font-semibold text-center mb-5 text-[#001858]">機能紹介</h2>
+  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
-      <div class="bg-white rounded-lg shadow-lg p-6 text-center text-[#001858]">
-        <%= image_tag("pronunciation.png")%>
-        <h3 class="text-2xl font-semibold mb-2">Pronunciation Test</h3>
-        <h3 class="text-sm mb-2">発音採点</h3>
-        <p class="text-sm text-[#172c66]">英文を読み上げ、マイクに入力した声を採点し、4つの項目のスコアを表示します。<br>レベル切り替え機能やランキング登録機能も🌟</p>
-      </div>
-
-      <div class="bg-white rounded-lg shadow-lg p-6 text-center text-[#001858]">
-        <%= image_tag("shadowing_practice.png")%>
-        <h3 class="text-2xl font-semibold mb-2">Shadowing Practice</h3>
-        <h3 class="text-sm mb-2">シャドーイング練習</h3>
-        <p class="text-sm text-[#172c66]">Youtubeの動画で、用意されたトランスクリプトを読みながらシャドーイングの練習ができます。単語帳に登録された単語と同じものがあったら認識して登録した単語の意味が見れちゃう👀</p>
-      </div>
-
-      <div class="bg-white rounded-lg shadow-lg p-6 text-center text-[#001858]">
-        <%= image_tag("mypage1.png")%>
-        <h3 class="text-2xl font-semibold mb-2">Vocabulary<br>Book</h3>
-        <h3 class="text-sm mb-2">単語帳作成</h3>
-        <p class="text-sm text-[#172c66]">自分だけの単語帳を作り、復習ができます。登録した単語の合計数を自動的に数えたものを共有できるので、みんなに自慢できる✨</p>
-      </div>
+    <div class="bg-white rounded-lg shadow-lg p-6 text-center text-[#001858]">
+      <%= image_tag("pronunciation.png")%>
+      <h3 class="text-2xl font-semibold mb-2">Pronunciation Test</h3>
+      <h3 class="text-sm mb-2">発音採点</h3>
+      <p class="text-sm text-[#172c66]">英文を読み上げ、マイクに入力した声を採点し、4つの項目のスコアを表示します。<br>レベル切り替え機能やランキング登録機能も🌟</p>
     </div>
-  </section>
+
+    <div class="bg-white rounded-lg shadow-lg p-6 text-center text-[#001858]">
+      <%= image_tag("shadowing_practice.png")%>
+      <h3 class="text-2xl font-semibold mb-2">Shadowing Practice</h3>
+      <h3 class="text-sm mb-2">シャドーイング練習</h3>
+      <p class="text-sm text-[#172c66]">Youtubeの動画で、用意されたトランスクリプトを読みながらシャドーイングの練習ができます。単語帳に登録された単語と同じものがあったら認識して登録した単語の意味が見れちゃう👀</p>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-lg p-6 text-center text-[#001858]">
+      <%= image_tag("mypage1.png")%>
+      <h3 class="text-2xl font-semibold mb-2">Vocabulary<br>Book</h3>
+      <h3 class="text-sm mb-2">単語帳作成</h3>
+      <p class="text-sm text-[#172c66]">自分だけの単語帳を作り、復習ができます。登録した単語の合計数を自動的に数えたものを共有できるので、みんなに自慢できる✨</p>
+    </div>
+  </div>
+</section>
+
+<div class="flex justify-center mb-10">
+  <%= link_to new_user_registration_path, class:"flex items-center py-3 px-4 font-semibold text-sm text-[#172c66] rounded-3xl bg-[#ffd803] hover:bg-[#bae8e8]" do %>
+    <i class="fa-solid fa-user-plus fa-xl mr-2"></i> Study Now!
+  <% end %>
+</div>
+
 <section class="my-5">
   <h2 class="text-3xl font-semibold text-center text-[#001858]">What is Shadowing?</h2>
   <h2 class="text-lg font-semibold text-center mb-5 text-[#001858]">シャドーイングとは？</h2>
@@ -50,8 +57,28 @@
   </div>
 </section>
 
-<div class="flex justify-center mt-10">
-<%= link_to new_user_registration_path, class:"flex items-center py-3 px-4 font-semibold text-sm text-[#172c66] rounded-3xl bg-[#ffd803] hover:bg-[#bae8e8]" do %>
-  <i class="fa-solid fa-user-plus fa-xl mr-2"></i> Study Now!
-<% end %>
+<section class="my-5">
+  <h2 class="text-3xl font-semibold text-center text-[#001858]">Let's try!</h2>
+  <h2 class="text-lg font-semibold text-center mb-5 text-[#001858]">やってみよう！</h2>
+  <div class="flex justify-center items-center md:mt-5">
+    <iframe class="min-[320px]:w-full md:w-[640px] aspect-video" src="https://www.youtube-nocookie.com/embed/<%= @video.video_id %>?autoplay=0&controls=1&cc_lang_pref=en&cc_load_policy=0&disablekb=1&modestbranding=1&rel=0&color=white&fs=0&iv_load_policy=3" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+  </div>
+  <div class="flex justify-center">
+    <div class="md:bg-base-200 border-grey-200 md:border-2 w-auto rounded-2xl m-5">
+      <div class="overflow-y-auto md:h-[460px] min-[320px]:h-[350px] text-lg text-center p-10 text-[#172c66]">
+        <% @video.transcript.content.split("\n").each do |line| %>
+          <% line.split(" ").each do |word| %>
+            <% cleaned_word = clean_word(word) %>
+              <span><%= word %></span>
+          <% end %>
+          <br>
+        <% end %>
+      </div>
+  </div>
+</section>
+
+<div class="flex justify-center my-10">
+  <%= link_to new_user_registration_path, class:"flex items-center text-center py-3 px-4 font-semibold text-sm text-[#172c66] rounded-3xl bg-[#ffd803] hover:bg-[#bae8e8]" do %>
+    <i class="fa-solid fa-user-plus fa-xl mr-2"></i> Explore More!<br>(他の動画にも挑戦！)
+  <% end %>
 </div>
