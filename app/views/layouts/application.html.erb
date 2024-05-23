@@ -10,6 +10,12 @@
     <link rel="icon" type="image/png" href="<%= asset_path('android-chrome-192x192.png') %>" sizes="192x192">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Erika_jpn_328" />
+    <meta property="og:url" content="https://speakup.fly.dev/" />
+    <meta property="og:title" content="SpeakUp" />
+    <meta property="og:description" content="SpeakUpで英語学習。スピーキング力を向上させよう!" />
+    <meta property="og:image" content="<%= image_url "Xcard.png" %>" />
     <%= include_gon %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
