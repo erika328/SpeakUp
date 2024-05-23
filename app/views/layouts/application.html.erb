@@ -3,6 +3,11 @@
   <head>
     <title>SpeakUp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= favicon_link_tag 'favicon.ico' %>
+    <!-- IOS用のファビコン -->
+    <link rel="apple-touch-icon" href="<%= asset_path('apple-touch-icon-180x180.png') %>" sizes="180x180">
+    <!-- Android用のファビコン -->
+    <link rel="icon" type="image/png" href="<%= asset_path('android-chrome-192x192.png') %>" sizes="192x192">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= include_gon %>
