@@ -1,0 +1,43 @@
+<div class="flex justify-center items-center p-5">
+    <div class="flex flex-col w-full max-w-md p-10 mx-auto transition duration-500 ease-in-out transform bg-[#fffffe] rounded-lg">
+      <div class="text-left sm:mt-5">
+          <div class="inline-flex items-center w-full">
+            <h3 class="font-bold text-[#001858] eading-6 text-4xl">Change Password</h3>
+          </div>
+        </div>
+        <div>
+          <div class="mt-6">
+            <%= form_with model: @user, url: user_password_path, method: :patch, class: 'registration-main', local: true do |f| %>
+              <%= render 'devise/shared/error_messages', model: f.object %>
+
+              <div class="space-y-1 text-[#172c66]">
+                <%= f.label :password, class: "block text-sm font-medium" %>
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br />
+                <div class="mt-1">
+                  <%= f.password_field :password, autocomplete: "new-password", class: "block w-full px-5 py-1 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
+                </div>
+              </div>
+              <div class="text-[#172c66]">
+                <%= f.label :password_confirmation, class: "block text-sm font-medium" %>
+                <div class="mt-1">
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block w-full px-5 py-1 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
+                </div>
+              </div>
+              <%= f.hidden_field :reset_password_token %>
+              <div class="form-group">
+                <h2 class='form-bottom-text'>
+                  よろしければ以下のボタンを押してください
+                </h2>
+              </div>
+              <div class="actions">
+                <%= f.submit "Change Password", class: "flex items-center justify-center w-full px-10 py-3 mt-6 font-medium text-center text-[#172c66] transition duration-500 ease-in-out transform bg-[#ffd803] rounded-xl hover:bg-[#bae8e8] focus:outline-none", data: {"turbo" => false} %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
