@@ -11,8 +11,8 @@ const ShareButton = ({ score }) => {
   };
 
   return (
-    <button onClick={shareScore}>
-      <i className="fa-brands fa-x-twitter"></i>Share</button>
+    <button onClick={shareScore} className='bg-[#ffd803] mt-5 p-3 rounded-3xl font-semibold text-[#172c66]'>
+      Share on <i className="fa-brands fa-x-twitter"></i></button>
   );
 };
 
