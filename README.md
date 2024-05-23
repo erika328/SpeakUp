@@ -33,7 +33,7 @@
 - 新規会員登録
 - ログイン・ログアウト
 - パスワードリセット
-- 単語・英文登録
+- 単語登録
 - シャドーイング動画・スクリプト
 - 発音採点
 - Xシェア
@@ -64,7 +64,7 @@
 - JavaScript
 - HotWire
 ### デプロイ
-- Render
+- fly.io
 
 ## 画面遷移図
 https://www.figma.com/file/EjuNvUqVm2o4K0gzmJQXDa/SpeakUp?type=design&node-id=0%3A1&mode=design&t=Xr7g2WWl6wiogAZH-1
