@@ -1,3 +1,6 @@
+<div class="flex justify-center text-[#172c66] font-semibold min-[320px]:my-2 md:mt-5 text-center">
+    <h1><%= @video.title %></h1>
+</div>
 <div class="flex justify-center items-center md:mt-5">
   <iframe class="min-[320px]:w-full md:w-[640px] aspect-video" src="https://www.youtube-nocookie.com/embed/<%= @video.video_id %>?autoplay=0&controls=1&cc_lang_pref=en&cc_load_policy=0&disablekb=1&modestbranding=1&rel=0&color=white&fs=0&iv_load_policy=3" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
 </div>
