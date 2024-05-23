@@ -40,7 +40,9 @@
 </section>
 
 <div class="flex justify-center mb-10">
-  <%= link_to new_user_registration_path, class:"flex items-center py-3 px-4 font-semibold text-sm text-[#172c66] rounded-3xl bg-[#ffd803] hover:bg-[#bae8e8]" do %>
+  <%= link_to new_user_registration_path, 
+      class: "flex items-center text-center py-3 px-4 font-semibold text-sm text-[#172c66] rounded-3xl bg-[#ffd803] hover:bg-[#bae8e8] #{'cursor-not-allowed opacity-50' if user_signed_in?}", 
+      onclick: ("return false;" if user_signed_in?) do %>
     <i class="fa-solid fa-user-plus fa-xl mr-2"></i> Study Now!
   <% end %>
 </div>
@@ -78,7 +80,9 @@
 </section>
 
 <div class="flex justify-center my-10">
-  <%= link_to new_user_registration_path, class:"flex items-center text-center py-3 px-4 font-semibold text-sm text-[#172c66] rounded-3xl bg-[#ffd803] hover:bg-[#bae8e8]" do %>
+  <%= link_to new_user_registration_path, 
+      class: "flex items-center text-center py-3 px-4 font-semibold text-sm text-[#172c66] rounded-3xl bg-[#ffd803] hover:bg-[#bae8e8] #{'cursor-not-allowed opacity-50' if user_signed_in?}", 
+      onclick: ("return false;" if user_signed_in?) do %>
     <i class="fa-solid fa-user-plus fa-xl mr-2"></i> Explore More!<br>(他の動画にも挑戦！)
   <% end %>
 </div>
