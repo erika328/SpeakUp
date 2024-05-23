@@ -1,0 +1,31 @@
+<div class="flex justify-center items-center p-5">
+    <div class="flex flex-col w-full max-w-md p-10 mx-auto transition duration-500 ease-in-out transform bg-[#fffffe] rounded-lg">
+      <div class="text-left sm:mt-5">
+          <div class="inline-flex items-center w-full">
+            <h3 class="font-bold text-[#001858] eading-6 text-4xl">Reset Password</h3>
+          </div>
+      </div>
+      <div class="mt-6">
+        <%= form_with model: @user, url: user_password_path, class: 'registration-main space-y-4', local: true do |f| %>
+          <%= render 'devise/shared/error_messages', model: f.object %>
+            <div class="text-[#172c66]">
+              <%= f.label :email, class: "block text-sm font-medium" %>
+              <div class="mt-1">
+              <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "block w-full px-5 py-1 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
+              </div>
+            </div>
+          <div class="form-group">
+            <p class='text-xs text-[#172c66]'>
+              入力されたメールアドレスにパスワード再設定メールを送信します。
+            </p>
+          </div>
+          <div class="actions">
+            <%= f.submit "Send", class: "flex items-center justify-center w-full px-10 py-3 mt-6 font-medium text-center text-[#172c66] transition duration-500 ease-in-out transform bg-[#ffd803] rounded-xl hover:bg-[#bae8e8] focus:outline-none" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+</div>
+
+
+
