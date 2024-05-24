@@ -5,7 +5,7 @@
 <div class="flex justify-center">
   <p class="text-md">You have <span class="text-2xl text-warning font-bold"><%= current_user.words.count %></span> words in your vocabulary book!</p>
 </div>
-<div class="flex justify-center mb-3">
+<div class="flex justify-center my-3">
   <div class="bg-gray-200 hover:bg-gray-300 p-2 rounded-3xl font-semibold text-[#172c66]">
   <%= link_to "https://twitter.com/intent/tweet?url=https://speakup.fly.dev&text=#{ERB::Util.url_encode("I have #{current_user.words.count} words in my vocabulary book!新しい単語を登録したよ! #SpeakUp \n")}", target: "_blank", rel: "noopener" do %>
     Share on <i class="fa-brands fa-x-twitter font-bold"></i>
