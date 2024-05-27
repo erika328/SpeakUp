@@ -46,7 +46,8 @@ class WordsController < ApplicationController
   def destroy
     @word = Word.find(params[:id])
     @word.destroy!
-    redirect_to words_path, success: "Word has been deleted", status: :see_other
+    redirect_to words_path, status: :see_other
+    flash.notice = "Word was successfully destroyed."
   end
 
   private
