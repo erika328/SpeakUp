@@ -2,6 +2,7 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
+  before_action :check_google_user, only: [:update]
   before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -23,11 +24,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def edit
+    session[:previous_page] = request.referer
     super
   end
 
   def update
-    super
+    @user = current_user
+  
+    # 許可するパラメータを制御する
+    if @user.provider == 'google_oauth2'
+      permitted_params = user_params.except(:email)
+    else
+      permitted_params = user_params
+    end
+  
+    if @user.update(permitted_params)
+      redirect_to session.delete(:previous_page) || root_path, notice: 'User was successfully updated.'
+    else
+      super
+    end
   end
 
   # DELETE /resource
@@ -70,6 +85,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   private
+
+    def check_google_user
+      @user = current_user
+      if @user.provider == 'google_oauth2' && user_params[:email].present?
+        flash[:alert] = "Google認証ユーザーはメールアドレスを変更できません。"
+      end
+    end
 
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation, :username)
