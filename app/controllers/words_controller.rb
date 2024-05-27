@@ -15,10 +15,8 @@ class WordsController < ApplicationController
       flash.notice = "New word has been saved."
       redirect_to request.referer || word_path
     else
-      respond_to do |format|
-        format.html { redirect_to request.referer }
-        format.turbo_stream  { render turbo_stream: turbo_stream.replace("error_messages", partial: "error_messages", locals: { word: @word }) }
-      end
+      flash[:alert] = @word.errors.full_messages.join(", ")
+      redirect_to request.referer
     end
   end
 
