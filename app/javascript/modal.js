@@ -1,3 +1,5 @@
+let wordId; // グローバルスコープでwordIdを定義
+
 function showWordModal(element) {
   const wordId = element.getAttribute('data-word-id');
   const wordEnglish = element.getAttribute('data-word-english');
@@ -42,7 +44,7 @@ function speakText(text) {
   speechSynthesis.speak(utterance);
 }
 
-// document.addEventListener('DOMContentLoaded', setup);
+document.addEventListener('DOMContentLoaded', setup);
 document.addEventListener('turbo:load', setup);
 
 function setup() {
