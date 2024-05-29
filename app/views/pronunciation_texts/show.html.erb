@@ -1,4 +1,4 @@
-<div class="justify-center text-center items-center mb-5 mt-10">
+<div class="justify-center text-center items-center mb-5 mt-5">
   <h1 class="text-3xl font-semibold text-[#001858]">Pronunciation Test</h1>
   <p class="text-sm text-[#172c66]">Read out loud the English sentence below.</p>
   <p class="text-sm text-[#172c66]">下記の英文を読み上げてください。</p>
@@ -8,8 +8,10 @@
   <div id="pronunciation-scores-path" data-path="<%= pronunciation_scores_path %>"></div>
   <%= javascript_include_tag 'reactInitializer', defer: true %>
 </div>
-<div class="bg-[#ffd803] w-36 rounded-3xl fixed right-5 min-[320px]:bottom-40 md:bottom-16">
+<div class="flex justify-center items-center mt-3">
+  <div class="bg-[#ffd803] rounded-3xl">
   <%= link_to rankings_path do %>
-    <p class="text-[#172c66] font-semibold p-2"><span class="text-xl">🏆</span> Top Rankings</p>
+    <p class="text-[#172c66] font-semibold p-2 text-center flex items-center"><span class="text-xl">🏆</span> Top Rankings</p>
   <% end %>
+  </div>
 </div>

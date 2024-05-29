@@ -11,7 +11,7 @@ const ShareButton = ({ score }) => {
   };
 
   return (
-    <button onClick={shareScore} className='bg-[#ffd803] mt-5 p-3 rounded-3xl font-semibold text-[#172c66]'>
+    <button onClick={shareScore} className='flex justify-center items-center text-center border-2 border-[#172c66] bg-white rounded-3xl mt-5 p-2 font-semibold text-[#172c66]'>
       Share on <i className="fa-brands fa-x-twitter"></i></button>
   );
 };
