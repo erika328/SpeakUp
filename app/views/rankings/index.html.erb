@@ -1,0 +1,80 @@
+<div class="text-center my-4 text-[#001858]">
+  <h1 class="text-2xl font-bold">Average Pronunciation Score Ranking</h1>
+  <h1 class="text-xl font-bold">(Difficulty: Normal 😇)</h1>
+  <p>発音採点結果平均点ランキング</p>
+</div>
+
+<div class="w-3/4 flex justify-center mx-auto text-[#172c66] font-semibold">
+  <table class="table mx-auto text-center">
+    <thead>
+      <tr class="text-[#001858]">
+        <th class="bg-[#ffd803] border">Rank</th>
+        <th class="bg-[#ffd803] border">User</th>
+        <th class="bg-[#ffd803] border">Average Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @normal_ranking.each do |entry| %>
+        <tr>
+          <td class="border px-4 py-2">
+            <%= entry[:rank] %>
+            <% if entry[:rank] == 1 %>🥇<% elsif entry[:rank] == 2 %>🥈<% elsif entry[:rank] == 3 %>🥉<% end %>
+          </td>
+          <td class="border px-4 py-2"><%= entry[:user]&.username || '-' %></td>
+          <td class="border px-4 py-2"><%= entry[:score]&.round(2) || '-' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="flex justify-center">
+  <% user_entry = @normal_ranking.find { |entry| entry[:user]&.id == @current_user.id && entry[:score].to_f > 0 } %>
+  <% if user_entry %>
+    <% formatted_score = user_entry[:score].round(2) %>
+    <div class="bg-[#bae8e8] p-2 rounded-3xl font-semibold text-[#172c66] mt-5 border-2 border-[#172c66]">
+      <%= link_to "https://twitter.com/intent/tweet?url=https://speakup.fly.dev&text=#{ERB::Util.url_encode("I am ranked #{user_entry[:rank]} in the Normal mode pronunciation scoring with an average score of #{formatted_score}! \nNormalモードの発音採点で平均スコア#{formatted_score}で#{user_entry[:rank]}位にランクインしたよ! #SpeakUp \n")}", target: "_blank", rel: "noopener" do %>
+        😇 Share on <i class="fa-brands fa-x-twitter font-bold fa-lg"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<div class="text-center my-4 text-[#001858]">
+  <h1 class="text-2xl font-bold">Average Pronunciation Score Ranking</h1>
+  <h1 class="text-xl font-bold">(Difficulty: Hard 👿)</h1>
+  <p>発音採点結果平均点ランキング</p>
+</div>
+
+<div class="w-3/4 flex justify-center mx-auto text-[#172c66] font-semibold">
+  <table class="table mx-auto text-center">
+    <thead>
+      <tr class="text-[#001858]">
+        <th class="bg-[#ffd803] border">Rank</th>
+        <th class="bg-[#ffd803] border">User</th>
+        <th class="bg-[#ffd803] border">Average Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @hard_ranking.each do |entry| %>
+        <tr>
+          <td class="border px-4 py-2">
+            <%= entry[:rank] %>
+            <% if entry[:rank] == 1 %>🥇<% elsif entry[:rank] == 2 %>🥈<% elsif entry[:rank] == 3 %>🥉<% end %>
+          </td>
+          <td class="border px-4 py-2"><%= entry[:user]&.username || '-' %></td>
+          <td class="border px-4 py-2"><%= entry[:score]&.round(2) || '-' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="flex justify-center">
+  <% user_entry = @hard_ranking.find { |entry| entry[:user]&.id == @current_user.id && entry[:score].to_f > 0 } %>
+  <% if user_entry %>
+    <% formatted_score = user_entry[:score].round(2) %>
+    <div class="bg-[#bae8e8] p-2 rounded-3xl font-semibold text-[#172c66] mt-5 border-2 border-[#172c66]">
+      <%= link_to "https://twitter.com/intent/tweet?url=https://speakup.fly.dev&text=#{ERB::Util.url_encode("I am ranked #{user_entry[:rank]} in the Hard mode pronunciation scoring with an average score of #{formatted_score}! \nHardモードの発音採点で平均スコア#{user_entry[:score]}で#{user_entry[:rank]}位にランクインしたよ! #SpeakUp \n")}", target: "_blank", rel: "noopener" do %>
+        👿 Share on <i class="fa-brands fa-x-twitter font-bold fa-lg"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>
