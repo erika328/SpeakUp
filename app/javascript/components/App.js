@@ -156,16 +156,18 @@ return (
               <p>{displayPronunciationScore}</p>
               <p>{displayCompletenessScore}</p>
           </div>
-          <div className='mt-10'>
+          <div className='mt-10 flex justify-center'>
             {isLoading ? (
               <span className="loading loading-dots loading-lg text-[#5bcccc]"></span>
             ) : (
-            <div onClick={() => sttFromMic()}>
-              <i className="fa-solid fa-microphone fa-2xl bg-[#5bcccc] px-5 py-7 rounded-full text-[#fffffe]"></i>
+            <div className='bg-[#5bcccc] w-14 h-14 flex items-center justify-center rounded-full text-[#fffffe]' onClick={() => sttFromMic()}>
+              <i className="fa-solid fa-microphone fa-2xl"></i>
             </div>
             )}
           </div>
-          {displayAccuracyScore ? <ShareButton score={displayAverageScore} /> : null}
+          <div className='flex justify-center'>
+            {displayAccuracyScore ? <ShareButton score={displayAverageScore} /> : null}
+          </div>
       </div>
 );
 
