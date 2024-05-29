@@ -18,4 +18,19 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end
   end
+
+  def self.top_ranking_for_level(level, limit = 15)
+    select('users.id, users.username, 
+               AVG(pronunciation_scores.accuracy_score) AS avg_accuracy_score,
+               AVG(pronunciation_scores.pronunciation_score) AS avg_pronunciation_score,
+               AVG(pronunciation_scores.fluency_score) AS avg_fluency_score,
+               AVG(pronunciation_scores.completeness_score) AS avg_completeness_score,
+               (AVG(pronunciation_scores.accuracy_score) + AVG(pronunciation_scores.pronunciation_score) +
+                AVG(pronunciation_scores.fluency_score) + AVG(pronunciation_scores.completeness_score)) / 4 AS overall_average')
+      .joins(pronunciation_scores: :pronunciation_text)
+      .where(pronunciation_texts: { difficulty: level })
+      .group('users.id, users.username')
+      .order('overall_average DESC')
+      .limit(limit)
+  end
 end

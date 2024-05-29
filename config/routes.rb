@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rankings, only: [:index]
   resources :pronunciation_scores, only: [:create]
   resources :pronunciation_texts, only: [:show]
   get 'videos/index'
