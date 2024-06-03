@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react'; 
 import { ResultReason } from 'microsoft-cognitiveservices-speech-sdk'; 
 import ShareButton from './ShareButton';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
 
 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 const speechsdk = require('microsoft-cognitiveservices-speech-sdk');
@@ -8,10 +13,80 @@ const speechsdk = require('microsoft-cognitiveservices-speech-sdk');
 export default function App() { 
   const [recognizedText, setRecognizedText] = useState('')
   const [displayAverageScore, setDisplayAverageScore] = useState('');
-  const [displayAccuracyScore, setDisplayAccuracyScore] = useState('');
-  const [displayPronunciationScore, setDisplayPronunciationScore] = useState('');
-  const [displayFluencyScore, setDisplayFluencyScore] = useState('');
-  const [displayCompletenessScore, setDisplayCompletenessScore] = useState('');
+
+  const [scores, setScores] = useState({
+    averageScore: 0,
+    accuracyScore: 0,
+    pronunciationScore: 0,
+    fluencyScore: 0,
+    completenessScore: 0
+  });
+
+  const data = {
+    labels: ['Average(平均)','Accuracy(精度)', 'Pronunciation(発音)', 'Fluency(流暢性)', 'Completeness(完全性)'],
+    datasets: [{
+        label: '',
+        data: [
+            scores.averageScore,
+            scores.accuracyScore,
+            scores.pronunciationScore,
+            scores.fluencyScore,
+            scores.completenessScore
+        ],
+        backgroundColor: [
+          'rgba(75, 192, 192, 0.2)', // Average
+          'rgba(54, 162, 235, 0.2)', // Accuracy
+          'rgba(255, 206, 86, 0.2)', // Pronunciation
+          'rgba(153, 102, 255, 0.2)', // Fluency
+          'rgba(255, 99, 132, 0.2)'  // Completeness
+      ],
+      borderColor: [
+          'rgba(75, 192, 192, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 99, 132, 1)'
+      ],
+        borderWidth: 1
+    }]
+  };
+  
+  const options = {
+    indexAxis: 'y', // 横向きバーに設定
+    aspectRatio: 2, // チャートのアスペクト比を調整
+    scales: {
+        x: {
+            beginAtZero: true,
+            max: 100
+        }
+    },
+    plugins: {
+      legend: {
+          display: false // 凡例を非表示に設定
+      },
+      tooltip: {
+          callbacks: {
+              label: function(context) {
+                  return context.raw.toFixed(1) + '%'; // ツールチップの値を小数点第一位まで表示
+              }
+          }
+      },
+      datalabels: {
+        anchor: 'end',
+        align: function(context) {
+            var value = context.dataset.data[context.dataIndex];
+            return value > 90 ? 'start' : 'end'; // スコアが高い場合はラベルを内側に表示
+        },
+        color: function(context) {
+            var value = context.dataset.data[context.dataIndex];
+            return value > 90 ? 'black' : 'black'; // ラベルの色を調整
+        },
+        formatter: function(value) {
+            return value.toFixed(1) + '%'; // バー上のラベルを小数点第一位まで表示
+        }
+    }
+  }
+  };
 
   const [isLoading, setIsLoading] = useState(false);
   const [difficulty, setDifficulty] = useState('Normal');
@@ -63,10 +138,13 @@ export default function App() {
             saveScoreToDatabase(accuracyScore, pronunciationScore, fluencyScore, completenessScore, referenceTextId);
             setRecognizedText(`RECOGNIZED(認識した言葉): \n ${result.text}`);
             setDisplayAverageScore(`Average Score(平均): ${averageScore}%`);
-            setDisplayAccuracyScore(`Accuracy Score(精度): ${accuracyScore}%`);
-            setDisplayFluencyScore(`Fluency Score(流暢性): ${fluencyScore}%`);
-            setDisplayCompletenessScore(`Completeness Score(完全性): ${completenessScore}%`)
-            setDisplayPronunciationScore(`Pronunciation Score(発音): ${pronunciationScore}%`)
+            setScores({
+              averageScore,
+              accuracyScore,
+              pronunciationScore,
+              fluencyScore,
+              completenessScore
+            });
         } else {
             setDisplayText('ERROR: Speech was cancelled or could not be recognized. Ensure your microphone is working properly.');
         }
@@ -130,10 +208,6 @@ const pronunciationScoresPath = document.getElementById('pronunciation-scores-pa
 
 return (
       <div className='p-5 md:bg-base-200 border-grey-200 md:min-h-96 md:border-2 md:w-auto md:rounded-2xl md:m-5 min-[320px]:border-t-2'>
-        {/* <select onChange={(event) => setDifficulty(event.target.value)} value={difficulty}>
-          <option value="Normal">Normal</option>
-          <option value="Hard">Hard</option>
-        </select> */}
         <label className="swap swap-flip text-xl">
           <input type="checkbox" onChange={(event) => setDifficulty(event.target.checked ? "Hard" : "Normal")} checked={difficulty === "Hard"} hidden />
           <div className="swap-on bg-[#001858] text-white rounded-3xl p-2 font-semibold"> Hard😈 </div>
@@ -148,13 +222,11 @@ return (
               <i className="fa-solid fa-volume-high fa-xl" onClick={handleSpeakEnglishClick}></i>
             </div>
           </div>
-          <div className="my-3 text-[#172c66]">
+          <div className="mt-5 text-[#172c66]">
               <p>{recognizedText}</p><br/>
-              <p>{displayAverageScore}</p>
-              <p>{displayAccuracyScore}</p>
-              <p>{displayFluencyScore}</p>
-              <p>{displayPronunciationScore}</p>
-              <p>{displayCompletenessScore}</p>
+              {!isLoading && scores.averageScore !== 0 && (
+                <Bar data={data} options={options} />
+              )}
           </div>
           <div className='mt-10 flex justify-center'>
             {isLoading ? (
@@ -166,7 +238,7 @@ return (
             )}
           </div>
           <div className='flex justify-center'>
-            {displayAccuracyScore ? <ShareButton score={displayAverageScore} /> : null}
+            {recognizedText ? <ShareButton score={displayAverageScore} /> : null}
           </div>
       </div>
 );
