@@ -5,6 +5,10 @@ import App from './components/App';
 
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('react-root');
-  const root = createRoot(container);
-  root.render(<App />);
+  if (container) {
+    const root = createRoot(container);
+    root.render(<App />);
+  } else {
+    console.warn("react-root element not found on this page.");
+  }
 });
