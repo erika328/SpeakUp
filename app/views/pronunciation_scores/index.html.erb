@@ -1,0 +1,52 @@
+<div class="text-center text-[#001858] mx-2 my-4">
+  <h1 class="text-3xl font-semibold">Your Pronunciation Scores</h1>
+  <p>発音採点スコア一覧</p>
+</div>
+
+<div class="mx-5">
+  <h1 class="text-[#001858] text-center text-2xl font-semibold mb-4">Normal Difficulty Sentences😇</h1>
+  <% if @normal_texts.empty? %>
+    <p class="text-center text-[#172c66]">No normal difficulty sentences found.</p>
+    <p class="text-center text-[#172c66] mb-8">データがありません。</p>
+  <% else %>
+    <div class="overflow-x-auto mb-8">
+      <table class="table w-full bg-[#fffffe] shadow-md rounded-lg text-xs md:text-sm">
+        <thead class="bg-[#bae8e8]">
+          <tr>
+            <th class="px-1 py-1 md:px-2 text-[#172c66]">English Sentence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @normal_texts.each do |text| %>
+            <tr class="hover:bg-[#ffd803]/20">
+              <td class="border px-1 py-1 md:px-2 text-[#172c66]"><%= link_to text.english_text, pronunciation_score_path(text) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+
+  <h1 class="text-center text-2xl font-semibold text-[#001858] mb-4">Hard Difficulty Sentences👿</h1>
+  <% if @hard_texts.empty? %>
+    <p class="text-center text-[#172c66]">No hard difficulty sentences found.</p>
+    <p class="text-center text-[#172c66]">データがありません。</p>
+  <% else %>
+    <div class="overflow-x-auto">
+      <table class="table w-full bg-[#fffffe] shadow-md rounded-lg text-xs md:text-sm">
+        <thead class="bg-[#bae8e8]">
+          <tr>
+            <th class="px-1 py-1 md:px-2 text-[#172c66]">English Sentence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @hard_texts.each do |text| %>
+            <tr class="hover:bg-[#ffd803]/20">
+              <td class="border px-1 py-1 md:px-2 text-[#172c66]"><%= link_to text.english_text, pronunciation_score_path(text) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>

@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
   before_action :set_word
-  before_action :set_pronunciation_text
 
   protected
 
@@ -22,9 +21,5 @@ class ApplicationController < ActionController::Base
 
  def set_word
   @word = Word.new
- end
-
- def set_pronunciation_text
-  @random_pronunciation_text = PronunciationText.order("RANDOM()").first
  end
 end
