@@ -1,5 +1,5 @@
 class PronunciationTextsController < ApplicationController
-  def show
+  def index
     gon.speech_api_key = ENV['SPEECH_KEY']
     gon.speech_region = ENV['SPEECH_REGION']
     @reference_text = PronunciationText.where(difficulty: 'Normal').order("RANDOM()")

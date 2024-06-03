@@ -8,6 +8,20 @@ class PronunciationScoresController < ApplicationController
     end
   end
 
+  def index
+    @normal_texts = PronunciationText.joins(:pronunciation_scores)
+                                     .where(pronunciation_scores: { user_id: current_user.id }, difficulty: 'Normal')
+                                     .distinct
+    @hard_texts = PronunciationText.joins(:pronunciation_scores)
+                                   .where(pronunciation_scores: { user_id: current_user.id }, difficulty: 'Hard')
+                                   .distinct
+  end
+
+  def show
+    @pronunciation_text = PronunciationText.find(params[:id])
+    @pronunciation_scores = @pronunciation_text.pronunciation_scores.where(user_id: current_user.id).page(params[:page]).per(20)
+  end
+
   private
 
   def pronunciation_score_params

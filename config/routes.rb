@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :rankings, only: [:index]
-  resources :pronunciation_scores, only: [:create]
-  resources :pronunciation_texts, only: [:show]
+  resources :pronunciation_scores, only: [:create, :index, :show]
+  resources :pronunciation_texts, only: [:index]
   get 'videos/index'
   get 'videos/show'
   devise_for :users, controllers: {

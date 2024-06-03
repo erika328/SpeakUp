@@ -1,0 +1,52 @@
+<div class="font-semibold text-[#001858] my-4 mx-5 text-center">
+  <h1>"<%= @pronunciation_text.english_text %>"</h1>
+  <p class="text-sm font-normal">「<%= @pronunciation_text.japanese_text %>」</p>
+</div>
+
+<div class="overflow-x-auto m-5">
+  <table class="table w-full bg-[#fffffe] shadow-md rounded-lg text-xs md:text-sm text-center">
+    <thead class="bg-[#bae8e8]">
+      <tr>
+        <th class="px-1 py-1 md:px-2 text-[#172c66]">Accuracy</th>
+        <th class="px-1 py-1 md:px-2 text-[#172c66]">Pronunciation</th>
+        <th class="px-1 py-1 md:px-2 text-[#172c66]">Fluency</th>
+        <th class="px-1 py-1 md:px-2 text-[#172c66]">Completeness</th>
+        <th class="px-1 py-1 md:px-2 text-[#172c66]">Tested At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pronunciation_scores.each do |score| %>
+        <tr class="hover:bg-[#ffd803]/20">
+          <td class="border px-1 py-1 md:px-2 text-[#172c66]"><%= score.accuracy_score %></td>
+          <td class="border px-1 py-1 md:px-2 text-[#172c66]"><%= score.pronunciation_score %></td>
+          <td class="border px-1 py-1 md:px-2 text-[#172c66]"><%= score.fluency_score %></td>
+          <td class="border px-1 py-1 md:px-2 text-[#172c66]"><%= score.completeness_score %></td>
+          <td class="border px-1 py-1 md:px-2 text-[#172c66]"><%= score.created_at.strftime('%Y-%m-%d') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<% if @pronunciation_scores.total_count > 20 %>
+  <div class="flex justify-center mb-4 join mt-20">
+    <% if @pronunciation_scores.prev_page %>
+      <%= link_to '«', pronunciation_score_path(@pronunciation_text, page: @pronunciation_scores.prev_page), class: 'join-item btn' %>
+    <% else %>
+      <button class="join-item btn" disabled>«</button>
+    <% end %>
+
+    <%# 現在のページ番号 %>
+    <button class="join-item btn">Page <%= @pronunciation_scores.current_page %></button>
+
+    <% if @pronunciation_scores.next_page %>
+      <%= link_to '»', pronunciation_score_path(@pronunciation_text, page: @pronunciation_scores.next_page), class: 'join-item btn' %>
+    <% else %>
+      <button class="join-item btn" disabled>»</button>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="flex justify-center mt-4">
+  <%= link_to '<<Back', pronunciation_scores_path, class: 'btn bg-[#ffd803]' %>
+</div>

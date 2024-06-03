@@ -7,10 +7,17 @@
   <div id="react-root" class="md:w-9/12 min-[320px]:w-full min-height: 100vh;"></div>
   <div id="pronunciation-scores-path" data-path="<%= pronunciation_scores_path %>"></div>
 </div>
-<div class="flex justify-center items-center mt-3">
+<div class="flex justify-center items-center mt-3 space-x-3">
   <div class="bg-[#ffd803] rounded-3xl">
   <%= link_to rankings_path do %>
     <p class="text-[#172c66] font-semibold p-2 text-center flex items-center"><span class="text-xl">🏆</span> Top Rankings</p>
   <% end %>
+  </div>
+  <div class="bg-[#ffd803] rounded-3xl">
+    <%= link_to pronunciation_scores_path do %>
+      <p class="text-[#172c66] font-semibold p-2 text-center flex items-center">
+        <span class="text-xl">📊</span> My Scores
+      </p>
+    <% end %>
   </div>
 </div>
