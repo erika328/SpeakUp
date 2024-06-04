@@ -223,7 +223,7 @@ return (
             {referenceTextContent}</h3>
             <p className='text-sm'>「{referenceTextJapanese}」</p>
             <div className='my-2'>
-              <i className="fa-solid fa-volume-high fa-xl" onClick={handleSpeakEnglishClick}></i>
+              <i className="fa-solid fa-volume-high fa-xl hover:cursor-pointer" onClick={handleSpeakEnglishClick}></i>
             </div>
           </div>
           <div className="mt-5 text-[#172c66]">
@@ -236,7 +236,7 @@ return (
             {isLoading ? (
               <span className="loading loading-dots loading-lg text-[#5bcccc]"></span>
             ) : (
-            <div className='bg-[#5bcccc] w-14 h-14 flex items-center justify-center rounded-full text-[#fffffe]' onClick={() => sttFromMic()}>
+            <div className='bg-[#5bcccc] hover:cursor-pointer w-14 h-14 flex items-center justify-center rounded-full text-[#fffffe]' onClick={() => sttFromMic()}>
               <i className="fa-solid fa-microphone fa-2xl"></i>
             </div>
             )}
