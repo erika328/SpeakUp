@@ -5,13 +5,15 @@
 <div class="flex justify-center">
   <p class="text-md">You have <span class="text-2xl text-warning font-bold"><%= current_user.words.count %></span> words in your vocabulary book!</p>
 </div>
-<div class="flex justify-center my-3 gap-3">
-  <div class="border-2 border-[#172c66] bg-white rounded-3xl p-2 font-semibold text-[#172c66]">
-    <%= link_to "Review Words", random_words_path, data: {"turbo" => false} %>
+<div class="flex items-center justify-center my-3 gap-3">
+  <div class="flex items-center justify-center bg-[#ffd803] rounded-3xl font-semibold text-[#172c66]">
+    <%= link_to random_words_path, data: {"turbo" => false} do %>
+      <p class="text-[#172c66] font-semibold p-2 text-center flex items-center"><span class="text-xl">📖</span> Review Words</p>
+    <% end %>
   </div>
-  <div class="border-2 border-[#172c66] bg-white rounded-3xl p-2 font-semibold text-[#172c66]">
+  <div class=" bg-[#172c66] p-2 font-semibold text-white w-10 h-10 flex items-center justify-center rounded-full">
     <%= link_to "https://twitter.com/intent/tweet?url=https://speakup.fly.dev&text=#{ERB::Util.url_encode("I have #{current_user.words.count} words in my vocabulary book!新しい単語を登録したよ! #SpeakUp \n")}", target: "_blank", rel: "noopener" do %>
-      Share on <i class="fa-brands fa-x-twitter font-bold"></i>
+      <i class="fa-brands fa-x-twitter font-bold"></i>
     <% end %>
   </div>
 </div>

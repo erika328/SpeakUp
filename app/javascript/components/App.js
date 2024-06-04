@@ -176,7 +176,11 @@ const pronunciationScoresPath = document.getElementById('pronunciation-scores-pa
       if (response.ok) {
         // データが正常に保存された場合の処理
         console.log('Score saved successfully');
-        // フラッシュメッセージを表示するなどの処理を追加
+        const flashMessage = document.getElementById('flash-message');
+        flashMessage.classList.remove('hidden');
+        setTimeout(() => {
+          flashMessage.classList.add('hidden');
+        }, 3000); 
     } else {
         throw new Error('Failed to save score');
     }
