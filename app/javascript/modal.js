@@ -11,7 +11,7 @@ function showWordModal(element) {
     <div class="font-bold text-lg text-center">
       <div>
         <label for="english_word_${wordId}" class="px-1">English</label>
-        <i class="fa-solid fa-volume-high fa-lg" id="speak_english_${wordId}"></i>
+        <i class="hover:cursor-pointer fa-solid fa-volume-high fa-lg" id="speak_english_${wordId}"></i>
         <p id="english_word_${wordId}" class="block w-full px-5 py-3 border border-transparent rounded-lg bg-gray-50">${wordEnglish}</p>
       </div>
       <div>

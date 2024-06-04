@@ -39,8 +39,6 @@
 - Xシェア
 
 ### 本リリース
-- 単語翻訳
-- 単語翻訳検索時のオートコンプリート
 - 発音点数ランキング
 - 保存した単語・英文の振り返り（暗記カードのように振り返りできる機能）
 
@@ -51,11 +49,14 @@
   Youtube IFrame Player API
 - 発音採点
   Azure Cognitive Services Speech SDK
+  Web Speech API
+- 単語学習
+  Web Speech API
 
 ## 主な使用技術
 ### サーバーサイド
-- Ruby3.2.2
-- Rails7.0.8
+- Ruby 3.2.2
+- Rails 7.1.3.3
 ### データベース
 - postgres
 ### 描画関係

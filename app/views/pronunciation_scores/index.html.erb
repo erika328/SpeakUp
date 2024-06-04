@@ -18,8 +18,8 @@
         </thead>
         <tbody>
           <% @normal_texts.each do |text| %>
-            <tr class="hover:bg-[#ffd803]/20">
-              <td class="border px-1 py-1 md:px-2 text-[#172c66]"><%= link_to text.english_text, pronunciation_score_path(text) %></td>
+            <tr class="hover:bg-[#ffd803]/20 hover:cursor-pointer" onclick="window.location='<%= pronunciation_score_path(text) %>';">
+              <td class="border px-1 py-1 md:px-2 text-[#172c66]"><%= text.english_text %></td>
             </tr>
           <% end %>
         </tbody>
@@ -41,8 +41,8 @@
         </thead>
         <tbody>
           <% @hard_texts.each do |text| %>
-            <tr class="hover:bg-[#ffd803]/20">
-              <td class="border px-1 py-1 md:px-2 text-[#172c66]"><%= link_to text.english_text, pronunciation_score_path(text) %></td>
+            <tr class="hover:bg-[#ffd803]/20 hover:cursor-pointer" onclick="window.location='<%= pronunciation_score_path(text) %>';">
+              <td class="border px-1 py-1 md:px-2 text-[#172c66]"><%= text.english_text %></td>
             </tr>
           <% end %>
         </tbody>
