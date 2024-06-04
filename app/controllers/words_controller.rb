@@ -48,6 +48,30 @@ class WordsController < ApplicationController
     flash.notice = "Word was successfully destroyed."
   end
 
+  def random
+    @word = current_user.words.where('next_review_date IS NULL OR next_review_date <= ?', Date.today).order('RANDOM()').first
+  
+    if @word.nil?
+      flash[:notice] = 'Review completed!今日の振り返りは完了したよ!'
+      redirect_to words_path
+    end
+    @words_due_today = current_user.words.due_today
+    @words_count_due_today = @words_due_today.count
+  end
+
+  def update_review_status
+    @word = current_user.words.find(params[:id])
+    case params[:status]
+    when 'easy'
+      @word.update(review_status: 'easy', next_review_date: 5.days.from_now)
+    when 'normal'
+      @word.update(review_status: 'normal', next_review_date: 1.day.from_now)
+    when 'hard'
+      @word.update(review_status: 'hard', next_review_date: Date.today) # 何度も表示
+    end
+    redirect_to random_words_path
+  end
+
   private
 
   def word_params

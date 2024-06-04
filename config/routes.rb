@@ -10,7 +10,15 @@ Rails.application.routes.draw do
         omniauth_callbacks: "users/omniauth_callbacks",
         passwords: 'users/passwords'
       }
-  resources :words
+  resources :words do
+    collection do
+      get 'random'
+    end
+    member do
+      patch 'update_review_status'
+    end
+  end
+
   root "tops#index"
   resources :videos, only: [:index, :show]
 end
