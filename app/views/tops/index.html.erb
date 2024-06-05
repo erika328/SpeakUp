@@ -65,10 +65,14 @@
   <div class="flex justify-center items-center md:mt-5">
     <iframe class="min-[320px]:w-full md:w-[640px] aspect-video" src="https://www.youtube-nocookie.com/embed/<%= @video.video_id %>?autoplay=0&controls=1&cc_lang_pref=en&cc_load_policy=0&disablekb=1&modestbranding=1&rel=0&color=white&fs=0&iv_load_policy=3" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
   </div>
-  <div class="flex justify-center items-center mt-3 mb-1 text-[#172c66]">
+  <div class="flex justify-center items-center mt-3 text-[#172c66]">
     <button class="mr-3 w-12 h-12 border-2 border-[#172c66] rounded-full flex items-center justify-center" id="recordButton" style="display: block;"><i class="fa-solid fa-microphone fa-lg"></i></button>
     <button class="mr-3 w-12 h-12 border-2 border-[#172c66] rounded-full flex items-center justify-center" id="stopButton" style="display: none;"><i class="fa-regular fa-circle-stop fa-lg"></i></button>
     <audio controls id="audioPlayer"></audio>
+  </div>
+  <div class="text-center text-[#172c66]">
+    <p class="text-sm font-semibold">☝️ You can record yourself here!</p>
+    <p class="text-xs">(録音して自分の英語を聞いてみよう!)</p>
   </div>
   <div class="flex justify-center">
     <div class="md:bg-base-200 border-grey-200 md:border-2 w-auto rounded-2xl m-5">
