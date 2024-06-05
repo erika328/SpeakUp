@@ -7,7 +7,10 @@
 <% if @word %>
   <div class="word-card">
     <h2 class="text-3xl font-semibold my-5"><%= @word.english_word %></h2>
-    <p class="text-2xl font-semibold mb-5" id="meaning" style="display: none;"><%= @word.japanese_meaning %></p>
+    <div class="text-2xl font-semibold mb-5" id="meaning" style="display: none;">
+      <p><%= @word.meaning %></p>
+      <p class="text-sm mt-2"><%= @word.example%></p>
+    </div>
     <i class="hover:cursor-pointer fa-solid fa-volume-high fa-xl" id="speak-button"></i>
     <div class="flex items-center justify-center mt-5">
       <button id="show-buttons" class="border-2 border-[#172c66] bg-white rounded-3xl p-2" onclick="document.getElementById('meaning').style.display = 'block'">Meaning</button>

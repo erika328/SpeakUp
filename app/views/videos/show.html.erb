@@ -18,7 +18,7 @@
         <% cleaned_word = clean_word(word) %>
         <% if Word.where("LOWER(english_word) = ?", cleaned_word.downcase).exists? %>
           <% word_record = Word.find_by("LOWER(english_word) = ?", cleaned_word.downcase) %>
-          <div class="tooltip tooltip-warning text-[#172c66]" data-tip="<%= word_record.japanese_meaning %>">
+          <div class="tooltip tooltip-warning text-[#172c66]" data-tip="<%= word_record.meaning %>">
             <span class="text-warning font-semibold"><%= word %></span>
           </div>
         <% else %>
