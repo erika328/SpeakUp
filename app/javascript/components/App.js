@@ -209,6 +209,10 @@ const pronunciationScoresPath = document.getElementById('pronunciation-scores-pa
       speakText(englishText);
   }
 
+  const handleReload = () => {
+    window.location.reload();
+  };
+
 
 return (
       <div className='p-5 md:bg-base-200 border-grey-200 md:min-h-96 md:border-2 md:w-auto md:rounded-2xl md:m-5 min-[320px]:border-t-2'>
@@ -234,7 +238,13 @@ return (
           </div>
           <div className='mt-10 flex justify-center'>
             {isLoading ? (
-              <span className="loading loading-dots loading-lg text-[#5bcccc]"></span>
+              <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50">
+                <div className="loader text-white lg:ml-64 md:ml-20">
+                  <span className="loading loading-dots loading-lg text-[#5bcccc]"></span>
+                  <p className='text-sm'>Please wait a moment after inputting your voice...</p>
+                  <p className='text-xs'>(音声入力後は採点をお待ちください)...</p>
+                </div>
+              </div>
             ) : (
             <div className='bg-[#5bcccc] hover:cursor-pointer w-14 h-14 flex items-center justify-center rounded-full text-[#fffffe]' onClick={() => sttFromMic()}>
               <i className="fa-solid fa-microphone fa-2xl"></i>
@@ -243,6 +253,9 @@ return (
           </div>
           <div className='flex justify-center'>
             {recognizedText ? <ShareButton score={displayAverageScore} /> : null}
+          </div>
+          <div className="flex justify-center mt-3">
+            {recognizedText ? <button onClick={handleReload} className="flex justify-center items-center text-center border-2 border-[#172c66] bg-white rounded-3xl p-2 font-semibold text-[#172c66]">Try Again</button>  : null}
           </div>
       </div>
 );
