@@ -52,7 +52,7 @@ class WordsController < ApplicationController
     @word = current_user.words.where('next_review_date IS NULL OR next_review_date <= ?', Date.today).order('RANDOM()').first
   
     if @word.nil?
-      flash[:notice] = 'Review completed!今日の振り返りは完了したよ!'
+      flash[:notice] = "There's nothing to review!振り返る単語がありません。"
       redirect_to words_path
     end
     @words_due_today = current_user.words.due_today
