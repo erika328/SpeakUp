@@ -5,6 +5,7 @@ function showWordModal(element) {
   const wordEnglish = element.getAttribute('data-word-english');
   const wordJapanese = element.getAttribute('data-word-japanese');
   const wordExample = element.getAttribute('data-word-example');
+  const wordPartOfSpeech = element.getAttribute('data-word-part-of-speech');
 
   // Example sentenceがあるかどうかチェック
   let exampleSection = wordExample ? `
@@ -26,6 +27,10 @@ function showWordModal(element) {
       <div>
         <label for="meaning_${wordId}" class="px-1" >Meaning</label>
         <p id="meaning_${wordId}", class="text-base block w-full px-5 py-3  border border-transparent rounded-lg bg-gray-50">${wordJapanese}</p>
+      </div>
+      <div>
+        <label for="meaning_${wordId}" class="px-1" >Part Of Speech</label>
+        <p id="meaning_${wordId}", class="text-base block w-full px-5 py-3  border border-transparent rounded-lg bg-gray-50">${wordPartOfSpeech}</p>
       </div>
       ${exampleSection}
     </div>

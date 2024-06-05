@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_05_020509) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_05_082112) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,7 +88,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_020509) do
     t.string "review_status", default: "hard"
     t.date "next_review_date"
     t.string "example"
-    t.index ["user_id", "english_word"], name: "index_words_on_user_id_and_english_word", unique: true
+    t.string "part_of_speech"
+    t.index ["user_id", "english_word", "part_of_speech"], name: "index_words_on_user_id_and_english_word_and_part_of_speech", unique: true
     t.index ["user_id"], name: "index_words_on_user_id"
   end
 

@@ -16,6 +16,15 @@
     </div>
 
     <div>
+      <span class="text-red-400 text-xl">*</span>
+      <%= f.label :part_of_speech %><br>
+      <div class="text-sm text-center block w-full px-5 py-3 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300">
+      <%= f.select :part_of_speech,
+          options_for_select(["noun (名詞)", "pronoun (代名詞)", "verb (動詞)", "adjective (形容詞)", "adverb (副詞)", "preposition (前置詞)", "conjunction (接続詞)", "interjection (間投詞)"]) %>
+      </div>
+    </div>
+
+    <div>
       <%= f.label :example, "Example Sentence", class: "px-1" %>
       <%= f.text_area :example, id: "example", class: "text-sm block w-full px-5 py-3 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
     </div>
