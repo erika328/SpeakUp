@@ -32,7 +32,7 @@
 
     <div class="bg-white rounded-lg shadow-lg p-6 text-center text-[#001858]">
       <%= image_tag("mypage1.png")%>
-      <h3 class="text-2xl font-semibold mb-2">Vocabulary<br>Book</h3>
+      <h3 class="text-2xl font-semibold mb-2">Vocabulary Book</h3>
       <h3 class="text-sm mb-2">単語帳作成</h3>
       <p class="text-sm text-[#172c66]">自分だけの単語帳を作り、復習ができます。登録した単語の発音も聞くことができて、単語登録数をみんなに共有することもできる✨</p>
     </div>
@@ -90,5 +90,10 @@
       onclick: ("return false;" if user_signed_in?) do %>
     <i class="fa-solid fa-user-plus fa-xl mr-2"></i> Explore More!<br>(他の動画にも挑戦！)
   <% end %>
+</div>
+
+<div class="w-32 fixed right-3 bottom-8 hidden md:block">
+  <p class="text-[#172c66] text-center text-sm font-semibold">Easy access from your phone!</p>
+  <%= image_tag('QR.png') %>
 </div>
 <%= javascript_include_tag 'voice_recording', defer: true %>
