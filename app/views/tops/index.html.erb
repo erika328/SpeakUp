@@ -75,8 +75,8 @@
     <p class="text-xs">(録音して自分の英語を聞いてみよう!)</p>
   </div>
   <div class="flex justify-center">
-    <div class="md:bg-base-200 border-grey-200 md:border-2 w-auto rounded-2xl m-5">
-      <div class="overflow-y-auto md:h-[460px] min-[320px]:h-[350px] text-lg text-center p-10 text-[#172c66]">
+    <div class="md:bg-base-200 border-grey-200 md:border-2 md:w-2/3 min-[320px]:w-full rounded-2xl m-5">
+      <div class="overflow-y-auto md:h-[460px] min-[320px]:h-[350px] md:text-lg min-[320px]:text-sm text-center p-10 text-[#172c66]">
         <% @video.transcript.content.split("\n").each do |line| %>
           <% line.split(" ").each do |word| %>
             <% cleaned_word = clean_word(word) %>
