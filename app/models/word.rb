@@ -1,6 +1,7 @@
 class Word < ApplicationRecord
-  validates :english_word, presence: true, length: { maximum: 20 }, uniqueness: { scope: :user_id }
+  validates :english_word, presence: true, length: { maximum: 20 }, uniqueness: { scope: [:user_id, :part_of_speech] }
   validates :meaning, presence: true, length: { maximum: 300 }
+  validates :part_of_speech, presence: true
   validates :example, length: { maximum: 500 }
   validates :review_status, presence: true
 
