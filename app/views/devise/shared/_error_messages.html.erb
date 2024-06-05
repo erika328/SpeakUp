@@ -2,7 +2,7 @@
   <div id="error_explanation" class="text-red-600">
     <ul>
     <% resource.errors.full_messages.each do |message| %>
-      <div class="flash text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 flex items-center p-4 mb-4">
+      <div class="animate-slide-out-top flash text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 flex items-center p-4 mb-4">
         <i class="fa-solid fa-circle-info"></i><%= message %>
       </div>
     <% end %>
