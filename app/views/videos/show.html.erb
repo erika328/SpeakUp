@@ -16,8 +16,8 @@
     <% @video.transcript.content.split("\n").each do |line| %>
       <% line.split(" ").each do |word| %>
         <% cleaned_word = clean_word(word) %>
-        <% if Word.where("LOWER(english_word) = ?", cleaned_word.downcase).exists? %>
-          <% word_record = Word.find_by("LOWER(english_word) = ?", cleaned_word.downcase) %>
+        <% if current_user.words.where("LOWER(english_word) = ?", cleaned_word.downcase).exists? %>
+          <% word_record = current_user.words.find_by("LOWER(english_word) = ?", cleaned_word.downcase) %>
           <div class="tooltip tooltip-warning text-[#172c66]" data-tip="<%= word_record.meaning %>">
             <span class="text-warning font-semibold"><%= word %></span>
           </div>
