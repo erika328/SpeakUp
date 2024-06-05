@@ -180,7 +180,7 @@ const pronunciationScoresPath = document.getElementById('pronunciation-scores-pa
         flashMessage.classList.remove('hidden');
         setTimeout(() => {
           flashMessage.classList.add('hidden');
-        }, 3000); 
+        }, 6000); 
     } else {
         throw new Error('Failed to save score');
     }
