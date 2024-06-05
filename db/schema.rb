@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_04_011529) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_05_020509) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -82,11 +82,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_04_011529) do
   create_table "words", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "english_word", null: false
-    t.string "japanese_meaning", null: false
+    t.string "meaning", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "review_status", default: "hard"
     t.date "next_review_date"
+    t.string "example"
     t.index ["user_id", "english_word"], name: "index_words_on_user_id_and_english_word", unique: true
     t.index ["user_id"], name: "index_words_on_user_id"
   end

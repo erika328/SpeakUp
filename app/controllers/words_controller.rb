@@ -75,6 +75,6 @@ class WordsController < ApplicationController
   private
 
   def word_params
-    params.require(:word).permit(:english_word, :japanese_meaning)
+    params.require(:word).permit(:english_word, :meaning, :example)
   end
 end

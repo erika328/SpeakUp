@@ -1,6 +1,7 @@
 class Word < ApplicationRecord
-  validates :english_word, presence: true, length: { maximum: 30 }, uniqueness: { scope: :user_id }
-  validates :japanese_meaning, presence: true, length: { maximum: 50 }
+  validates :english_word, presence: true, length: { maximum: 20 }, uniqueness: { scope: :user_id }
+  validates :meaning, presence: true, length: { maximum: 100 }
+  validates :example, length: { maximum: 500 }
   validates :review_status, presence: true
 
   belongs_to :user
@@ -11,7 +12,7 @@ class Word < ApplicationRecord
   before_create :set_default_values
 
   def self.ransackable_attributes(auth_object = nil)
-    ["english_word", "japanese_meaning"]
+    ["english_word", "meaning"]
   end
 
   def self.ransackable_associations(auth_object = nil)
