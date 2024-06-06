@@ -99,5 +99,6 @@
 <div class="w-32 fixed right-3 bottom-8 hidden md:block">
   <p class="text-[#172c66] text-center text-sm font-semibold">Easy access from your phone!</p>
   <%= image_tag('QR.png') %>
+  <p class="text-[#172c66] text-center text-xs font-semibold"><span class="text-[#ffd803] text-sm font-bold"><%= @user_count %></span> people are studying!</p>
 </div>
 <%= javascript_include_tag 'voice_recording', defer: true %>
