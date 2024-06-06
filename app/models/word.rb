@@ -13,7 +13,7 @@ class Word < ApplicationRecord
   before_create :set_default_values
 
   def self.ransackable_attributes(auth_object = nil)
-    ["english_word", "meaning"]
+    ["english_word", "meaning", "part_of_speech"]
   end
 
   def self.ransackable_associations(auth_object = nil)
