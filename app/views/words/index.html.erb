@@ -22,19 +22,19 @@
 <div class="mx-5">
 <%= render 'search_form', q: @q, url: words_path %>
 </div>
-<!-- 掲示板一覧 -->
-      <% if @words.present? %>
-        <div class="grid md:grid-cols-4 lg:grid-cols-5 min-[320px]:grid-cols-2 gap-4 place-items-center justify-center m-5">
-          <% @words.each do |word| %>
-            <%= render 'word', word: word %>
-          <% end %>
-        </div>
-      <% else %>
-        <div class="mt-5 text-center text-[#172c66]">
-          登録されている単語がありません。<br>
-          There are no words.
-        </div>
-      <% end %>
+<!-- 単語一覧 -->
+<% if @words.present? %>
+  <div class="grid md:grid-cols-4 lg:grid-cols-5 min-[320px]:grid-cols-2 gap-4 place-items-center justify-center m-5">
+    <% @words.each do |word| %>
+      <%= render 'word', word: word %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="mt-5 text-center text-[#172c66]">
+    登録されている単語がありません。<br>
+    There are no words.
+  </div>
+<% end %>
 
 <% if @words.total_count > 24 %>
   <div class="flex justify-center mb-4 join mt-20 ">

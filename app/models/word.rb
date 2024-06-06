@@ -23,7 +23,7 @@ class Word < ApplicationRecord
   private
 
   def set_default_values
-    self.review_status ||= 'Hard'  # デフォルトでHardに設定
-    self.next_review_date ||= Date.today  # デフォルトで今日の日付に設定
+    self.review_status ||= 'Hard'
+    self.next_review_date ||= Date.today
   end
 end
