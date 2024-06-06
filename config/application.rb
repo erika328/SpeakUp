@@ -16,6 +16,11 @@ module App
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
 
+    config.to_prepare do
+      HighVoltage::PagesController.class_eval do
+        skip_before_action :authenticate_user!, only: [:show], if: -> { ['privacy_policy', 'terms_of_use'].include?(params[:id]) }
+      end
+    end
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
