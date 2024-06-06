@@ -34,4 +34,25 @@
     </div>
   </div>
 </div>
+
+<div class="fixed right-5 md:bottom-8 min-[320px]:bottom-14">
+  <button class="btn bg-[#ffd803]" onclick="how_to_shadow.showModal()">
+    <i class="fa-solid fa-question fa-xl"></i>
+  </button>
+</div>
+<dialog id="how_to_shadow" class="modal">
+  <div class="modal-box">
+    <h2 class="text-2xl font-semibold text-center text-[#001858]">How to do Shadowing?</h2>
+    <h2 class="text-lg font-bold text-center mb-5 text-[#001858]">シャドーイング方法</h2>
+    <div class="flex justify-center">
+      <p class="text-sm text-[#172c66]">
+        動画を再生し、話し手の話す速度に置いていかれないように用意されたトランスクリプトを読み上げてみよう!動画の再生速度を変えたり、止めたりして何度も練習して、話してと同じ速度で話せるように頑張って!
+        自信が持てたら、自分の声を録音して動画の音声と聴き比べてみて👂話し方、発音も真似てみてね! You've got this!
+      </p>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
 <%= javascript_include_tag 'voice_recording', defer: true %>

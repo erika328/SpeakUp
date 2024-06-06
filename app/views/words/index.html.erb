@@ -54,3 +54,24 @@
     <% end %>
   </div>
 <% end %>
+<div class="fixed right-5 md:bottom-8 min-[320px]:bottom-14">
+  <button class="btn bg-[#ffd803]" onclick="how_to_word.showModal()">
+    <i class="fa-solid fa-question fa-xl"></i>
+  </button>
+</div>
+<dialog id="how_to_word" class="modal">
+  <div class="modal-box">
+    <h2 class="text-2xl font-semibold text-center text-[#001858]">How to use?</h2>
+    <h2 class="text-lg font-bold text-center mb-5 text-[#001858]">使い方</h2>
+    <div class="flex justify-center">
+      <p class="text-sm text-[#172c66]">
+        メニューの＋マーク(Add New Words)から単語を登録して、自分だけの単語帳を作ろう!登録した単語はこのページに一覧で表示されるよ。
+        登録した単語やその意味、品詞で検索がかけられてスピーカーボタンで発音を聞くこともできるよ!
+        📖Review Wordsボタンでは、登録した単語をテストできるから1日1回を目標に復習しよう! Let's go!
+      </p>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
