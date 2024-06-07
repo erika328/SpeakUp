@@ -200,7 +200,7 @@ const pronunciationScoresPath = document.getElementById('pronunciation-scores-pa
 
     function speakText(text) {
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'en-UK';
+      utterance.lang = 'en-GB';
       speechSynthesis.speak(utterance);
   }
 

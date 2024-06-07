@@ -9,22 +9,12 @@ class RankingsController < ApplicationController
 
   def fetch_ranking(level)
     ranked_users = User.top_ranking_for_level(level)
-
+  
     ranked_users_with_rank = []
-    previous_score = nil
-    current_rank = 0
-
     ranked_users.each_with_index do |user, index|
-      score = user.overall_average
-
-      if score != previous_score
-        current_rank = index + 1
-      end
-
-      ranked_users_with_rank << { rank: current_rank, user: user, score: score }
-      previous_score = score
+      ranked_users_with_rank << { rank: index + 1, user: user, score: user.overall_average }
     end
-
+  
     fill_ranking(ranked_users_with_rank)
   end
 
