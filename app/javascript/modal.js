@@ -55,7 +55,7 @@ function showWordModal(element) {
 // テキストを読み上げる関数
 function speakText(text) {
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'en-UK'; // 読み上げる言語を設定
+  utterance.lang = 'en-GB';
   speechSynthesis.speak(utterance);
 }
 

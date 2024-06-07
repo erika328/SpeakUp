@@ -39,15 +39,15 @@
               </div>
               <ul tabindex="0" class="dropdown-content z-[2] menu p-2 shadow bg-base-100 rounded-box w-52 text-[#172c66]">
                 <li>
-                  <%= link_to destroy_user_session_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo_method: :delete } do %>
-                    <i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i>
-                    Logout
-                  <% end %>
-                </li>
-                <li>
                   <%= link_to edit_user_registration_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100" do %>
                     <i class="fa-solid fa-gear fa-xl"></i>
                     Edit Account
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to destroy_user_session_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo_method: :delete } do %>
+                    <i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i>
+                    Logout
                   <% end %>
                 </li>
               </ul>
@@ -94,15 +94,15 @@
         </div>
         <ul tabindex="0" class="dropdown-content z-[2] menu p-2 shadow bg-base-100 rounded-box w-52">
           <li>
-            <%= link_to destroy_user_session_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo_method: :delete } do %>
-              <i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i>
-              Logout
-            <% end %>
-          </li>
-          <li>
             <%= link_to edit_user_registration_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100" do %>
               <i class="fa-solid fa-gear fa-xl"></i>
               Edit Account
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo_method: :delete } do %>
+              <i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i>
+              Logout
             <% end %>
           </li>
         </ul>
@@ -126,15 +126,15 @@
       </div>
       <ul tabindex="0" class="dropdown-content z-[2] menu p-2 shadow bg-base-100 rounded-box w-52">
         <li>
-          <%= link_to destroy_user_session_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo_method: :delete } do %>
-            <i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i>
-            Logout
-          <% end %>
-        </li>
-        <li>
           <%= link_to edit_user_registration_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100" do %>
             <i class="fa-solid fa-gear fa-xl"></i>
             Edit Account
+          <% end %>
+        </li>
+        <li>
+          <%= link_to destroy_user_session_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo_method: :delete } do %>
+            <i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i>
+            Logout
           <% end %>
         </li>
       </ul>
