@@ -19,7 +19,7 @@ class User < ApplicationRecord
     end
   end
 
-  def self.top_ranking_for_level(level, limit = 15)
+  def self.top_ranking_for_week(level, start_date, end_date, limit = 15)
     select('users.id, users.username, 
                AVG(pronunciation_scores.accuracy_score) AS avg_accuracy_score,
                AVG(pronunciation_scores.pronunciation_score) AS avg_pronunciation_score,
@@ -29,6 +29,7 @@ class User < ApplicationRecord
                 AVG(pronunciation_scores.fluency_score) + AVG(pronunciation_scores.completeness_score)) / 4 AS overall_average')
       .joins(pronunciation_scores: :pronunciation_text)
       .where(pronunciation_texts: { difficulty: level })
+      .where(pronunciation_scores: { created_at: start_date..end_date })
       .group('users.id, users.username')
       .order('overall_average DESC')
       .limit(limit)
