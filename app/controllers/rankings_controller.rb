@@ -1,14 +1,17 @@
 class RankingsController < ApplicationController
   def index
-    @normal_ranking = fetch_ranking('Normal')
-    @hard_ranking = fetch_ranking('Hard')
+    start_date = Date.current.beginning_of_week
+    end_date = Date.current.end_of_week
+
+    @normal_ranking = fetch_ranking('Normal', start_date, end_date)
+    @hard_ranking = fetch_ranking('Hard', start_date, end_date)
     @user_name = current_user.username
   end
 
   private
 
-  def fetch_ranking(level)
-    ranked_users = User.top_ranking_for_level(level)
+  def fetch_ranking(level, start_date, end_date)
+    ranked_users = User.top_ranking_for_week(level, start_date, end_date)
   
     ranked_users_with_rank = []
     ranked_users.each_with_index do |user, index|
