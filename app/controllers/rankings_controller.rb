@@ -22,7 +22,7 @@ class RankingsController < ApplicationController
   end
 
   def fill_ranking(ranking)
-    (1..15).map do |rank|
+    (1..10).map do |rank|
       entry = ranking.find { |e| e[:rank] == rank }
       entry || { rank: rank, user: nil, score: nil }
     end
