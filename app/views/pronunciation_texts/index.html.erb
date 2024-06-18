@@ -25,3 +25,22 @@
     <% end %>
   </div>
 </div>
+<div class="fixed right-5 md:bottom-8 min-[320px]:bottom-14">
+  <button class="btn bg-[#ffd803]" onclick="how_to_test.showModal()">
+    <i class="fa-solid fa-question fa-xl"></i>
+  </button>
+</div>
+<dialog id="how_to_test" class="modal">
+  <div class="modal-box">
+    <h2 class="text-2xl font-semibold text-center text-[#001858]">How to use?</h2>
+    <h2 class="text-lg font-bold text-center mb-5 text-[#001858]">使い方</h2>
+    <div class="flex justify-center">
+      <p class="text-sm text-[#172c66]">
+        マイクボタンを押すとすぐに発音採点が始まるよ。音声入力後しばらくすると採点結果が表示されるよ!スピーカーボタンを押して問題文の発音を確認することも可能!Normal😇ボタンを押すと、Hard👿モードに切り替えられて難しい英文にチャレンジできるからやってみてね!スコアは自動的に保存されて、🏆Top Rankingsボタンからは週間平均点ランキング、📊My Scoresボタンからは過去の自分のスコアを英文ごとに振り返ることができるよ!Have fun!
+      </p>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
