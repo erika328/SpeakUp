@@ -6,12 +6,15 @@ function showWordModal(element) {
   const wordJapanese = element.getAttribute('data-word-japanese');
   const wordExample = element.getAttribute('data-word-example');
   const wordPartOfSpeech = element.getAttribute('data-word-part-of-speech');
+  function formatText(text) {
+    return text.replace(/\n/g, '<br>');
+  }
 
   // Example sentenceがあるかどうかチェック
   let exampleSection = wordExample ? `
   <div>
     <label for="example_${wordId}" class="px-1">Example Sentence</label>
-    <p id="example_${wordId}" class="font-semibold text-base block w-full px-5 py-3 border border-transparent rounded-lg bg-gray-50">${wordExample}</p>
+    <p id="example_${wordId}" class="font-semibold text-base block w-full px-5 py-3 border border-transparent rounded-lg bg-gray-50">${formatText(wordExample)}</p>
   </div>
   ` : '';
 
@@ -26,7 +29,7 @@ function showWordModal(element) {
       </div>
       <div>
         <label for="meaning_${wordId}" class="px-1" >Meaning</label>
-        <p id="meaning_${wordId}", class="font-semibold text-base block w-full px-5 py-3  border border-transparent rounded-lg bg-gray-50">${wordJapanese}</p>
+        <p id="meaning_${wordId}", class="font-semibold text-base block w-full px-5 py-3  border border-transparent rounded-lg bg-gray-50">${formatText(wordJapanese)}</p>
       </div>
       <div>
         <label for="part_of_speech_${wordId}" class="px-1" >Part Of Speech</label>
