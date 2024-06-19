@@ -11,30 +11,30 @@ function showWordModal(element) {
   let exampleSection = wordExample ? `
   <div>
     <label for="example_${wordId}" class="px-1">Example Sentence</label>
-    <p id="example_${wordId}" class="text-sm block w-full px-5 py-3 border border-transparent rounded-lg bg-gray-50">${wordExample}</p>
+    <p id="example_${wordId}" class="font-semibold text-base block w-full px-5 py-3 border border-transparent rounded-lg bg-gray-50">${wordExample}</p>
   </div>
   ` : '';
 
   // モーダルの内容を更新する
   const modalBox = document.querySelector(`#my_modal_${wordId} .modal-box`);
   modalBox.innerHTML = `
-    <div class="font-bold text-lg text-center">
+    <div class="font-bold text-lg text-center text-[#172c66]">
       <div>
         <label for="english_word_${wordId}" class="px-1">English</label>
         <i class="hover:cursor-pointer fa-solid fa-volume-high fa-lg" id="speak_english_${wordId}"></i>
-        <p id="english_word_${wordId}" class="text-base block w-full px-5 py-3 border border-transparent rounded-lg bg-gray-50">${wordEnglish}</p>
+        <p id="english_word_${wordId}" class="font-semibold text-base block w-full px-5 py-3 border border-transparent rounded-lg bg-gray-50">${wordEnglish}</p>
       </div>
       <div>
         <label for="meaning_${wordId}" class="px-1" >Meaning</label>
-        <p id="meaning_${wordId}", class="text-base block w-full px-5 py-3  border border-transparent rounded-lg bg-gray-50">${wordJapanese}</p>
+        <p id="meaning_${wordId}", class="font-semibold text-base block w-full px-5 py-3  border border-transparent rounded-lg bg-gray-50">${wordJapanese}</p>
       </div>
       <div>
-        <label for="meaning_${wordId}" class="px-1" >Part Of Speech</label>
-        <p id="meaning_${wordId}", class="text-base block w-full px-5 py-3  border border-transparent rounded-lg bg-gray-50">${wordPartOfSpeech}</p>
+        <label for="part_of_speech_${wordId}" class="px-1" >Part Of Speech</label>
+        <p id="part_of_speech_${wordId}", class="font-semibold text-base block w-full px-5 py-3  border border-transparent rounded-lg bg-gray-50">${wordPartOfSpeech}</p>
       </div>
       ${exampleSection}
     </div>
-    <div class="fixed bottom-5 right-5">
+    <div class="fixed bottom-5 right-5 text-[#172c66]">
         <a href="/words/${wordId}/edit">
           <i class="fa-solid fa-pencil fa-xl"></i>
         </a>
