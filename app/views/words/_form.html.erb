@@ -1,7 +1,7 @@
 <div id="error_messages">
-  <%= render 'words/error_messages'%>
+  <%= render 'words/error_messages', word: word %>
 </div>
-<%= form_with(model: @word, local: true) do |f| %>
+<%= form_with(model: word, local: true) do |f| %>
   <div class="font-bold text-lg text-center text-[#172c66]">
     <div>
       <span class="text-red-400 text-xl">*</span>
