@@ -46,7 +46,13 @@ videos = [
   { video_id: 'YSCH9v9hJIg', title: "How Do You Find the Moments that Define You? | Peter Dinklage | Goalcast", difficulty: 'Advanced', transcript_path: 'public/transcripts/peter_dinklage.txt' },
   { video_id: 'K4_1XN8XwN0', title: "When Life Tells You No | Russell Wilson | Goalcast", difficulty: 'Advanced', transcript_path: 'public/transcripts/russell_wilson.txt' },
   { video_id: 'ij84DoCEmdI', title: "For those waiting for life to happen", difficulty: 'Advanced', transcript_path: 'public/transcripts/riza.txt' },
-  
+  { video_id: '221F55VPp2M', title: "Friends: Joey's Bad Birthday Gift (Season 4 Clip)", difficulty: 'Beginner', transcript_path: 'public/transcripts/friends.txt' },
+  { video_id: '6l6HSzwjRoo', title: "Friends: Rachel Admits She Loves Ross (Season 4 Clip)", difficulty: 'Beginner', transcript_path: 'public/transcripts/friends2.txt' },
+  { video_id: 'kIraDqpZr5M', title: "Friends: The Mr. Beaumont (Clip)", difficulty: 'Beginner', transcript_path: 'public/transcripts/friends3.txt' },
+  { video_id: 's0OORxpYLbw', title: "Friends: Marriage (Clip)", difficulty: 'Beginner', transcript_path: 'public/transcripts/friends4.txt' },
+  { video_id: 'nwujZ8M_tDo', title: "Christmas Preparations at Hogwarts | Harry Potter and the Philosopher's Stone", difficulty: 'Beginner', transcript_path: 'public/transcripts/christmas_at_hogwarts.txt' },
+  { video_id: '8DTb-lseCdQ', title: "Dobby is a Free Elf | Harry Potter and the Chamber of Secrets", difficulty: 'Beginner', transcript_path: 'public/transcripts/dobby.txt' },
+
   # 他にも追加していく
 ]
 
