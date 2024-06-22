@@ -2,14 +2,19 @@ class VideosController < ApplicationController
   before_action :permit_search_params, only: :index
   def index
     @q = Video.ransack(params[:q])
+    @videos = @q.result(distinct: true)
+
     if params[:q] && params[:q][:liked_by_user] == 'true'
-      @videos = @q.result(distinct: true).liked_by_user(current_user).page(params[:page]).per(12)
+      @saved_videos_exist = current_user.likes.exists?(video_id: @videos.pluck(:id))
+      @videos = @videos.liked_by_user(current_user)
     else
-      @videos = @q.result(distinct: true).page(params[:page]).per(12)
+      @saved_videos_exist = false
     end
 
-    if @videos.out_of_range?
-      redirect_to videos_index_path(page: @videos.total_pages, q: params[:q])
+    @videos = @videos.page(params[:page]).per(12)
+
+    if @videos.out_of_range? && params[:page].to_i != 1
+      redirect_to videos_index_path(page: 1, q: params[:q]) and return
     end
   end
 
