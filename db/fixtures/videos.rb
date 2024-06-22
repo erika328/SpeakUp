@@ -52,6 +52,10 @@ videos = [
   { video_id: 's0OORxpYLbw', title: "Friends: Marriage (Clip)", difficulty: 'Beginner', transcript_path: 'public/transcripts/friends4.txt' },
   { video_id: 'nwujZ8M_tDo', title: "Christmas Preparations at Hogwarts | Harry Potter and the Philosopher's Stone", difficulty: 'Beginner', transcript_path: 'public/transcripts/christmas_at_hogwarts.txt' },
   { video_id: '8DTb-lseCdQ', title: "Dobby is a Free Elf | Harry Potter and the Chamber of Secrets", difficulty: 'Beginner', transcript_path: 'public/transcripts/dobby.txt' },
+  { video_id: 'fyPQBZ3GdqA', title: "The Secret Life of Pets 2 - Captain Snowball", difficulty: 'Beginner', transcript_path: 'public/transcripts/pets.txt' },
+  { video_id: 'wvUrT4DRA70', title: "The Secret Life of Pets 2 - Max Goes to the Vet", difficulty: 'Beginner', transcript_path: 'public/transcripts/pets2.txt' },
+  { video_id: 'Ok21i83492k', title: "The Secret Life of Pets - Gidget Interrogates Ozone", difficulty: 'Beginner', transcript_path: 'public/transcripts/pets3.txt' },
+  { video_id: 'exu61pb5X68', title: "The Secret Life of Pets 2 - Chloe on Catnip Scene", difficulty: 'Beginner', transcript_path: 'public/transcripts/pets4.txt' },
 
   # 他にも追加していく
 ]
