@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_05_082112) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_22_053004) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "video_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_likes_on_user_id"
+    t.index ["video_id"], name: "index_likes_on_video_id"
+  end
 
   create_table "pronunciation_scores", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -93,6 +102,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_082112) do
     t.index ["user_id"], name: "index_words_on_user_id"
   end
 
+  add_foreign_key "likes", "users"
+  add_foreign_key "likes", "videos"
   add_foreign_key "pronunciation_scores", "pronunciation_texts"
   add_foreign_key "pronunciation_scores", "users"
   add_foreign_key "transcript_words", "transcripts"

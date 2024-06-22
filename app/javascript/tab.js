@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const tabs = document.querySelectorAll('.tab');
   const urlParams = new URLSearchParams(window.location.search);
   const difficulty = urlParams.get('q[difficulty_eq]');
+  const likedByUser = urlParams.get('q[liked_by_user]');
 
   // ページロード時にタブの状態を復元
   if (difficulty) {
@@ -9,8 +10,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (activeTab) {
       activeTab.classList.add('tab-active');
     }
+  } else if (likedByUser) {
+    const activeTab = document.querySelector(`.tab[data-liked-by-user="${likedByUser}"]`);
+    if (activeTab) {
+      activeTab.classList.add('tab-active');
+    }
   } else {
-    document.querySelector('.tab[data-difficulty=""]').classList.add('tab-active');
+    document.querySelector('.tab[data-difficulty="Beginner"]').classList.add('tab-active');
   }
 
   tabs.forEach(tab => {
@@ -24,9 +30,17 @@ document.addEventListener('DOMContentLoaded', function() {
       this.classList.add('tab-active');
 
       // クリックされたタブに対応するクエリパラメーターを取得し、URLを更新する
-      const queryParam = this.dataset.difficulty;
-      const updatedUrl = queryParam ? `?q[difficulty_eq]=${queryParam}` : '';
-      window.location.href = `${window.location.pathname}${updatedUrl}`;
+      const difficultyQueryParam = this.dataset.difficulty ? `q[difficulty_eq]=${this.dataset.difficulty}` : '';
+      const likedByUserQueryParam = this.dataset.likedByUser ? `q[liked_by_user]=${this.dataset.likedByUser}` : '';
+
+      let updatedUrl = `${window.location.pathname}?`;
+      if (difficultyQueryParam) {
+        updatedUrl += difficultyQueryParam;
+      } else if (likedByUserQueryParam) {
+        updatedUrl += likedByUserQueryParam;
+      }
+
+      window.location.href = updatedUrl;
     });
   });
 });
