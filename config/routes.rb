@@ -20,5 +20,7 @@ Rails.application.routes.draw do
   end
 
   root "tops#index"
-  resources :videos, only: [:index, :show]
+  resources :videos, only: [:index, :show] do
+    resource :like, only: [:create, :destroy]
+  end
 end

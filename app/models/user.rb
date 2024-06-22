@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :words, dependent: :destroy
   has_many :pronunciation_scores, dependent: :destroy
   has_many :pronunciation_texts, through: :pronunciation_scores, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_videos, through: :likes, source: :video
   validates :username, presence: true, length: { minimum: 2 }
   validates :password, presence: true, on: :create
 
