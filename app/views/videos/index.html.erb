@@ -9,6 +9,7 @@
     <i class="fa-solid fa-bookmark fa-sm mr-1 text-[#172c66]"></i> Saved
   <% end %>
 </div>
+<% if @videos.present? %>
 <div class="grid min-[320px]:grid-cols-2 min-[320px]:m-5 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center md:m-10">
   <% @videos.each do |video| %>
   <div class="card bg-base-100 shadow-xl">
@@ -40,6 +41,12 @@
   </div>
 <% end %>
 </div>
+<% else %>
+  <div class="my-5 text-center text-[#172c66]">
+    保存されているビデオはありません。<br>
+    There are no saved videos.
+  </div>
+<% end %>
 <div class="flex justify-center mb-4 join">
   <% if @videos.prev_page %>
     <% link_params = { page: @videos.prev_page } %>
