@@ -4,7 +4,7 @@ class VideosController < ApplicationController
     @q = Video.ransack(params[:q])
     @videos = @q.result(distinct: true)
 
-    if params[:q] && params[:q][:liked_by_user] == 'true'
+    if params[:q][:liked_by_user] == 'true'
       @saved_videos_exist = current_user.likes.exists?(video_id: @videos.pluck(:id))
       @videos = @videos.liked_by_user(current_user)
     else
@@ -25,6 +25,7 @@ class VideosController < ApplicationController
   private
 
   def permit_search_params
+    params[:q] ||= { difficulty_eq: 'Beginner' }
     params[:q] = params.require(:q).permit(:difficulty_eq, :liked_by_user) if params[:q].present?
   end
 end
