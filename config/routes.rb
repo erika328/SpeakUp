@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
+root "tops#index"
+
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+    omniauth_callbacks: "users/omniauth_callbacks",
+    passwords: 'users/passwords'
+  }
+
   resources :rankings, only: [:index]
   resources :pronunciation_scores, only: [:create, :index, :show]
   resources :pronunciation_texts, only: [:index]
-  get 'videos/index'
-  get 'videos/show'
-  devise_for :users, controllers: {
-        sessions: 'users/sessions',
-        registrations: 'users/registrations',
-        omniauth_callbacks: "users/omniauth_callbacks",
-        passwords: 'users/passwords'
-      }
   resources :words do
     collection do
       get 'random'
@@ -19,8 +20,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root "tops#index"
   resources :videos, only: [:index, :show] do
-    resource :like, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy]
   end
 end
