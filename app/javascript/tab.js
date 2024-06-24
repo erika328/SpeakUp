@@ -30,14 +30,13 @@ document.addEventListener('DOMContentLoaded', function() {
       this.classList.add('tab-active');
 
       // クリックされたタブに対応するクエリパラメーターを取得し、URLを更新する
-      const difficultyQueryParam = this.dataset.difficulty ? `q[difficulty_eq]=${this.dataset.difficulty}` : '';
-      const likedByUserQueryParam = this.dataset.likedByUser ? `q[liked_by_user]=${this.dataset.likedByUser}` : '';
-
-      let updatedUrl = `${window.location.pathname}?`;
-      if (difficultyQueryParam) {
-        updatedUrl += difficultyQueryParam;
-      } else if (likedByUserQueryParam) {
-        updatedUrl += likedByUserQueryParam;
+      let updatedUrl = new URL(window.location);
+      if (this.dataset.difficulty) {
+        updatedUrl.searchParams.set('q[difficulty_eq]', this.dataset.difficulty);
+        updatedUrl.searchParams.delete('q[liked_by_user]');
+      } else if (this.dataset.likedByUser) {
+        updatedUrl.searchParams.set('q[liked_by_user]', this.dataset.likedByUser);
+        updatedUrl.searchParams.delete('q[difficulty_eq]');
       }
 
       window.location.href = updatedUrl;

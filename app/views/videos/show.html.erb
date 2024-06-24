@@ -27,8 +27,8 @@
       <% @video.transcript.content.split("\n").each do |line| %>
         <% line.split(" ").each do |word| %>
           <% cleaned_word = clean_word(word) %>
-          <% if current_user.words.where("LOWER(english_word) = ?", cleaned_word.downcase).exists? %>
-            <% word_record = current_user.words.find_by("LOWER(english_word) = ?", cleaned_word.downcase) %>
+          <% word_record = @user_words.find { |w| w.english_word.downcase == cleaned_word.downcase } %>
+          <% if word_record %>
             <div class="tooltip tooltip-warning text-[#172c66]" data-tip="<%= word_record.meaning %>">
               <span class="text-warning font-semibold"><%= word %></span>
             </div>
@@ -41,20 +41,10 @@
     </div>
   </div>
 </div>
-<div class="fixed right-5 md:bottom-8 min-[320px]:bottom-14">
-<% if current_user.likes.exists?(video: @video) %>
-  <%= form_with url: video_like_path(@video), method: :delete, data: { turbo: false }, class: "inline-form" do %>
-    <button type="submit" class="bookmark-button btn bg-[#bae8e8] border-2 border-[#172c66] text-[#172c66]">
-      <i class="fa-solid fa-bookmark fa-lg"></i>
-    </button>
-  <% end %>
-<% else %>
-  <%= form_with url: video_like_path(@video), method: :post, data: { turbo: false }, class: "inline-form" do %>
-    <button type="submit" class="bookmark-button btn bg-[#fffffe] border-2 border-[#172c66] text-[#172c66]">
-      <i class="fa-regular fa-bookmark fa-lg"></i>
-    </button>
-  <% end %>
-<% end %>
+<div class="fixed right-5 md:bottom-8 min-[320px]:bottom-14 bookmark-button rounded-full w-12 h-12 text-center items-center bg-[#bae8e8] border-2 border-[#172c66] text-[#172c66] flex justify-center">
+  <turbo-frame id="like_button_<%= @video.id %>">
+      <%= render "videos/like_button", video: @video %>
+  </turbo-frame>
 </div>
 
 <dialog id="how_to_shadow" class="modal">

@@ -2,44 +2,34 @@
   <h1 class="text-3xl font-semibold text-[#001858]" >Shadowing Practice</h1>
 </div>
 <div role="tablist" class="tabs tabs-bordered mt-4 text-[#172c66]">
-  <%= link_to 'Beginner', videos_index_path(q: { difficulty_eq: 'Beginner' }), id: "tab1", role: 'tab', class: 'tab', data: { difficulty: 'Beginner' } %>
-  <%= link_to 'Intermediate', videos_index_path(q: { difficulty_eq: 'Intermediate' }), id: "tab2", role: 'tab', class: 'tab', data: { difficulty: 'Intermediate' } %>
-  <%= link_to 'Advanced', videos_index_path(q: { difficulty_eq: 'Advanced' }), id: "tab3", role: 'tab', class: 'tab', data: { difficulty: 'Advanced' } %>
-  <%= link_to videos_index_path(q: { liked_by_user: true }), id: "tab4", role: 'tab', class: 'tab', data: { liked_by_user: true } do %>
+  <%= link_to 'Beginner', videos_path(q: { difficulty_eq: 'Beginner' }), id: "tab1", role: 'tab', class: 'tab', data: { difficulty: 'Beginner' } %>
+  <%= link_to 'Intermediate', videos_path(q: { difficulty_eq: 'Intermediate' }), id: "tab2", role: 'tab', class: 'tab', data: { difficulty: 'Intermediate' } %>
+  <%= link_to 'Advanced', videos_path(q: { difficulty_eq: 'Advanced' }), id: "tab3", role: 'tab', class: 'tab', data: { difficulty: 'Advanced' } %>
+  <%= link_to videos_path(q: { liked_by_user: true }), id: "tab4", role: 'tab', class: 'tab', data: { liked_by_user: true } do %>
     <i class="fa-solid fa-bookmark fa-sm mr-1 text-[#172c66]"></i> Saved
   <% end %>
 </div>
 <% if @videos.present? %>
 <div class="grid min-[320px]:grid-cols-2 min-[320px]:m-5 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center md:m-10">
   <% @videos.each do |video| %>
-  <div class="card bg-base-100 shadow-xl">
-    <figure>
-      <%= link_to video_path(video) do %>
-        <%= image_tag "https://img.youtube.com/vi/#{video.video_id}/mqdefault.jpg", alt: video.title %>
-      <% end %>
-    </figure>
-    <div class="card-body p-2 min-h-16">
-      <%= link_to video_path(video) do %>
-        <p class=" text-[#172c66] font-semibold text-xs"><%= truncate_title(video.title) %></p>
-      <% end %>
-    </div>
-      <div class="text-right mr-3 mb-2 text-[#172c66]">
-        <% if current_user.likes.exists?(video: video) %>
-          <%= form_with url: video_like_path(video), method: :delete, data: { turbo: false }, class: "inline-form" do %>
-            <button type="submit" class="bookmark-button">
-              <i class="fa-solid fa-bookmark fa-lg"></i>
-            </button>
-          <% end %>
-        <% else %>
-          <%= form_with url: video_like_path(video), method: :post, data: { turbo: false }, class: "inline-form" do %>
-            <button type="submit" class="bookmark-button">
-              <i class="fa-regular fa-bookmark fa-lg"></i>
-            </button>
-          <% end %>
+    <div class="card bg-base-100 shadow-xl">
+      <figure>
+        <%= link_to video_path(video) do %>
+          <%= image_tag "https://img.youtube.com/vi/#{video.video_id}/mqdefault.jpg", alt: video.title %>
+        <% end %>
+      </figure>
+      <div class="card-body p-2 min-h-16">
+        <%= link_to video_path(video) do %>
+          <p class=" text-[#172c66] font-semibold text-xs"><%= truncate_title(video.title) %></p>
         <% end %>
       </div>
-  </div>
-<% end %>
+        <div class="text-right mr-3 mb-2 text-[#172c66]">
+          <turbo-frame id="like_button_<%= video.id %>">
+            <%= render "videos/like_button", video: video %>
+          </turbo-frame>
+        </div>
+    </div>
+  <% end %>
 </div>
 <% else %>
   <div class="my-5 text-center text-[#172c66]">
@@ -51,7 +41,7 @@
   <% if @videos.prev_page %>
     <% link_params = { page: @videos.prev_page } %>
     <% link_params[:q] = params[:q] if params[:q].present? %>
-    <%= link_to '«', videos_index_path(link_params), class: 'join-item btn pagination-button', data: {"turbo" => false} %>
+    <%= link_to '«', videos_path(link_params), class: 'join-item btn pagination-button', data: {"turbo" => false} %>
   <% else %>
     <button class="join-item btn" disabled>«</button>
   <% end %>
@@ -62,10 +52,10 @@
   <% if @videos.next_page %>
     <% link_params = { page: @videos.next_page } %>
     <% link_params[:q] = params[:q] if params[:q].present? %>
-    <%= link_to '»', videos_index_path(link_params), class: 'join-item btn pagination-button', data: {"turbo" => false} %>
+    <%= link_to '»', videos_path(link_params), class: 'join-item btn pagination-button', data: {"turbo" => false} %>
   <% else %>
     <button class="join-item btn" disabled>»</button>
   <% end %>
 </div>
-<%= javascript_include_tag 'scroll_position', defer: true %>
+
 <%= javascript_include_tag 'tab', defer: true %>

@@ -1,0 +1,16 @@
+<div id="like_button_<%= video.id %>">
+  <% liked = current_user.likes.find_by(video_id: video.id) %>
+  <% if liked %>
+    <%= form_with url: video_like_path(video_id: video.id, id: liked.id), method: :delete, class: "inline-form" do %>
+      <button type="submit" class="button">
+        <i class="fa-solid fa-bookmark fa-lg"></i>
+      </button>
+    <% end %>
+  <% else %>
+    <%= form_with url: video_likes_path(video_id: video.id), method: :post, class: "inline-form" do %>
+      <button type="submit" class="button">
+        <i class="fa-regular fa-bookmark fa-lg"></i>
+      </button>
+    <% end %>
+  <% end %>
+</div>
