@@ -2,12 +2,12 @@
 <html>
   <head>
     <title>SpeakUp</title>
+    <link rel="manifest" href="/manifest.json">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <%= favicon_link_tag 'favicon.ico' %>
     <!-- IOS用のファビコン -->
     <link rel="apple-touch-icon" href="<%= asset_path('apple-touch-icon-180x180.png') %>" sizes="180x180">
-    <!-- Android用のファビコン -->
-    <link rel="icon" type="image/png" href="<%= asset_path('android-chrome-192x192.png') %>" sizes="192x192">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="twitter:card" content="summary_large_image" />
@@ -60,4 +60,17 @@
       </div>
     </footer>
   </body>
+  <script>
+     if ('serviceWorker' in navigator) {
+       window.addEventListener('load', () => {
+         navigator.serviceWorker.register('/service_worker.js')
+           .then((registration) => {
+             console.log('Service Worker registered:', registration);
+           })
+           .catch((error) => {
+             console.error('Service Worker registration failed:', error);
+           });
+       });
+    }
+  </script>
 </html>
