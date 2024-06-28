@@ -1,3 +1,8 @@
+<div class="fixed lg:left-64 md:left-20 md:top-2 min-[320px]:bottom-20">
+  <%= button_to "javascript:history.back()", method: :get, data: {turbo: false}, class: "rounded-full h-11 w-11 bg-transparent border border-gray-300 text-[#172c66] hover:bg-gray-100 ml-2" do %>
+    <i class="fa-solid fa-angles-left"></i>
+  <% end %>
+</div>
 <div class="flex justify-center text-[#172c66] font-semibold min-[320px]:my-2 md:mt-5 text-center">
     <h1><%= @video.title %></h1>
 </div>
