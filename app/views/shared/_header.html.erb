@@ -9,48 +9,48 @@
     <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap text-[#172c66]" data-hs-accordion-always-open>
       <ul class="space-y-2.5 font-semibold">
         <li>
-          <%= link_to words_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
-            <i class="fa-solid fa-book fa-xl mr-1"></i>
-            Vocabulary Book
+          <%= link_to videos_path, class:"flex items-center gap-x-2.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
+            <i class="fa-brands fa-youtube fa-xl" style="min-width: 1.5em; text-align: center;"></i>
+            <span>Shadowing</span>
           <% end %>
         </li>
         <li>
-          <label for="my_modal" class="hover:cursor-pointer flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100">
-            <i class="fa-regular fa-square-plus fa-xl mx-0.5"></i>
-            Add New Words
+          <%= link_to words_path, class:"flex items-center gap-x-2.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
+            <i class="fa-solid fa-book fa-xl" style="min-width: 1.5em; text-align: center;"></i>
+            <span>Vocabulary Book</span>
+          <% end %>
+        </li>
+        <li>
+          <label for="my_modal" class="hover:cursor-pointer flex items-center gap-x-2.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100">
+            <i class="fa-regular fa-square-plus fa-xl" style="min-width: 1.5em; text-align: center;"></i>
+            <span>Add New Words</span>
           </label>
         </li>
         <li>
-          <%= link_to pronunciation_texts_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
-            <i class="fa-solid fa-microphone fa-xl mx-1"></i>
-            Pronunciation Test
-          <% end %>
-        </li>
-        <li>
-          <%= link_to videos_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
-            <i class="fa-brands fa-youtube fa-xl"></i>
-            Shadowing
+          <%= link_to pronunciation_texts_path, class:"flex items-center gap-x-2.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
+            <i class="fa-solid fa-microphone fa-xl" style="min-width: 1.5em; text-align: center;"></i>
+            <span>Pronunciation Test</span>
           <% end %>
         </li>
         <li class="fixed bottom-2">
           <div class="dropdown dropdown-top">
-              <div tabindex="0" role="button" class="flex items-center py-5 px-3 text-sm rounded-lg hover:bg-gray-100">
-                <i class="fa-solid fa-bars fa-xl"></i>
-              </div>
-              <ul tabindex="0" class="dropdown-content z-[2] menu p-2 shadow bg-base-100 rounded-box w-52 text-[#172c66]">
-                <li>
-                  <%= link_to edit_user_registration_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100" do %>
-                    <i class="fa-solid fa-gear fa-xl"></i>
-                    Edit Account
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to destroy_user_session_path, class:"flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo_method: :delete } do %>
-                    <i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i>
-                    Logout
-                  <% end %>
-                </li>
-              </ul>
+            <div tabindex="0" role="button" class="flex items-center py-5 px-3 text-sm rounded-lg hover:bg-gray-100">
+              <i class="fa-solid fa-bars fa-xl"></i>
+            </div>
+            <ul tabindex="0" class="dropdown-content z-[2] menu p-2 shadow bg-base-100 rounded-box w-52 text-[#172c66]">
+              <li>
+                <%= link_to edit_user_registration_path, class:"flex items-center gap-x-2.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100" do %>
+                  <i class="fa-solid fa-gear fa-xl"></i>
+                  <span>Edit Account</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, class:"flex items-center gap-x-2.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo_method: :delete } do %>
+                  <i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i>
+                  <span>Logout</span>
+                <% end %>
+              </li>
+            </ul>
           </div>
         </li>
       </ul>
@@ -67,7 +67,11 @@
           <i class="fa-solid fa-s fa-xl"></i>
         <% end %>
       </div>
-
+      <div class="hs-tooltip inline-block [--placement:right]">
+        <%= link_to videos_path, class:"flex items-center gap-x-3.5 py-4 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
+          <i class="fa-brands fa-youtube fa-xl"></i>
+        <% end %>
+      </div>
       <div class="hs-tooltip inline-block [--placement:right]">
         <%= link_to words_path, class:"flex items-center gap-x-3.5 py-4 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
           <i class="fa-solid fa-book fa-xl"></i>
@@ -81,11 +85,6 @@
       <div class="hs-tooltip inline-block [--placement:right]">
         <%= link_to pronunciation_texts_path, class:"flex items-center gap-x-3.5 py-4 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
           <i class="fa-solid fa-microphone fa-xl"></i>
-        <% end %>
-      </div>
-      <div class="hs-tooltip inline-block [--placement:right]">
-        <%= link_to videos_path, class:"flex items-center gap-x-3.5 py-4 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
-          <i class="fa-brands fa-youtube fa-xl"></i>
         <% end %>
       </div>
       <div class="dropdown dropdown-top fixed bottom-2">
@@ -148,6 +147,11 @@
   <div class="flex flex-row justify-between items-center py-4 text-[#172c66] mb-5">
     <div class="grid"><!-- 左端の透明なスペース --></div>
     <div class="hs-tooltip inline-block [--placement:right]">
+      <%= link_to videos_path, class:"flex items-center gap-x-3.5 py-2 px-3 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
+        <i class="fa-brands fa-youtube fa-xl"></i>
+      <% end %>
+    </div>
+    <div class="hs-tooltip inline-block [--placement:right]">
       <%= link_to words_path, class:"flex items-center gap-x-3.5 py-2 px-3 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
         <i class="fa-solid fa-book fa-xl"></i>
       <% end %>
@@ -160,11 +164,6 @@
     <div class="hs-tooltip inline-block [--placement:right]">
       <%= link_to pronunciation_texts_path, class:"flex items-center gap-x-3.5 py-2 px-3 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
         <i class="fa-solid fa-microphone fa-xl"></i>
-      <% end %>
-    </div>
-    <div class="hs-tooltip inline-block [--placement:right]">
-      <%= link_to videos_path, class:"flex items-center gap-x-3.5 py-2 px-3 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
-        <i class="fa-brands fa-youtube fa-xl"></i>
       <% end %>
     </div>
     <div class="grid"><!-- 左端の透明なスペース --></div>
