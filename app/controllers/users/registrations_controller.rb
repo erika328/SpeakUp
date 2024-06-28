@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if @user.save
       sign_in(@user) # ユーザーをログインさせる
       flash[:success] = "User successfully created."
-      redirect_to words_path
+      redirect_to videos_path
     else
       flash.now[:alert] = "User registration failed."
       render :new, status: :unprocessable_entity
