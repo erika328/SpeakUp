@@ -1,0 +1,177 @@
+inherit_from: .rubocop_todo.yml # .rubocop_todo.yml が空になったら、この行は削除しましょう。
+
+# The behavior of RuboCop can be controlled via the .rubocop.yml
+# configuration file. It makes it possible to enable/disable
+# certain cops (checks) and to alter their behavior if they accept
+# any parameters. The file can be placed either in your home
+# directory or in some project directory.
+#
+# RuboCop will start looking for the configuration file in the directory
+# where the inspected file is and continue its way up to the root directory.
+#
+# See https://github.com/rubocop-hq/rubocop/blob/master/manual/configuration.md
+## rubocop 関連の gem を require します。
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
+## 全体に適応する項目を定義します。ここで Exclude に設定したファイルは、チェック対象外になります。
+AllCops:
+  TargetRubyVersion: 3.2.2
+  TargetRailsVersion: 7.1.3.2
+  Exclude:
+    - 'vendor/**/*'
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'tmp/**/*'
+    - 'node_modules/**/*'
+    - 'lib/tasks/auto_annotate_models.rake'
+
+Rails:
+  Enabled: true
+
+Rails/FilePath:
+  Exclude:
+    - 'lib/tasks/dev.rake'
+    - 'spec/rails_helper.rb'
+
+## `and return` の形式を利用できるようにします。基本的には、&& と || を使います。
+Style/AndOr:
+  Enabled: false
+
+## 日本語コメントを許可します。
+Style/AsciiComments:
+  Enabled: false
+
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
+Layout/CommentIndentation:
+  Enabled: false
+
+# https://rubocop.readthedocs.io/en/stable/cops_layout/#layoutemptylinesaroundattributeaccessor
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+# https://rubocop.readthedocs.io/en/stable/cops_layout/#layoutspacearoundmethodcalloperator
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop/cops_lint.html#lintdeprecatedopensslconstant
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+# https://rubocop.readthedocs.io/en/stable/cops_lint/#lintraiseexception
+Lint/RaiseException:
+  Enabled: true
+
+# https://rubocop.readthedocs.io/en/stable/cops_lint/#lintstructnewoverride
+Lint/StructNewOverride:
+  Enabled: true
+
+Layout/LineLength:
+  Max: 150
+
+Metrics/AbcSize:
+  Exclude:
+    - 'lib/tasks/dev.rake'
+
+Metrics/BlockLength:
+  CountComments: false
+  Exclude:
+    - 'Guardfile'
+    - 'config/routes.rb'
+    - 'spec/**/*'
+    - 'app/views/**/*.jbuilder'
+    - 'lib/tasks/dev.rake'
+
+Metrics/ClassLength:
+  CountComments: false
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 15
+  Exclude:
+    - 'lib/tasks/dev.rake'
+
+Metrics/ModuleLength:
+  CountComments: false
+
+Naming/FileName:
+  Exclude:
+    - 'Gemfile'
+    - 'Guardfile'
+
+Naming/MethodParameterName:
+  AllowedNames: [e]
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/DescribedClass:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/ExpectInHook:
+  Enabled: false
+
+# An instance variable can be used when needed, but use let when possible.
+RSpec/InstanceVariable:
+  Enabled: false
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 5
+
+Style/BlockComments:
+  Exclude:
+    - 'spec/spec_helper.rb'
+
+# https://rubocop.readthedocs.io/en/stable/cops_style/#styleblockdelimiters
+Style/BlockDelimiters:
+  EnforcedStyle: braces_for_chaining
+  Exclude:
+    - 'spec/**/*'
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+# https://rubocop.readthedocs.io/en/stable/cops_style/#styleexponentialnotation
+Style/ExponentialNotation:
+  Enabled: true
+
+# https://rubocop.readthedocs.io/en/stable/cops_style/#stylehasheachmethods
+Style/HashEachMethods:
+  Enabled: true
+
+# https://rubocop.readthedocs.io/en/stable/cops_style/#stylehashtransformkeys
+Style/HashTransformKeys:
+  Enabled: true
+
+# https://rubocop.readthedocs.io/en/stable/cops_style/#stylehashtransformvalues
+Style/HashTransformValues:
+  Enabled: true
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/Lambda:
+  EnforcedStyle: literal
+
+Style/RegexpLiteral:
+  Enabled: false
+
+# https://rubocop.readthedocs.io/en/stable/cops_style/#styleslicingwithrange
+Style/SlicingWithRange:
+  Enabled: true

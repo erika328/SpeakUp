@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-root "tops#index"
+  root "tops#index"
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',

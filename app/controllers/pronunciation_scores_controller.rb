@@ -20,7 +20,7 @@ class PronunciationScoresController < ApplicationController
 
   private
 
-  def pronunciation_score_params
-    params.require(:pronunciation_score).permit(:accuracy_score, :pronunciation_score, :fluency_score, :completeness_score, :pronunciation_text_id)
-  end
+    def pronunciation_score_params
+      params.require(:pronunciation_score).permit(:accuracy_score, :pronunciation_score, :fluency_score, :completeness_score, :pronunciation_text_id)
+    end
 end

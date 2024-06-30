@@ -57,7 +57,7 @@ Rails.application.configure do
     .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # "info" includes generic and useful information about system operation, but avoids logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII). If you
@@ -72,7 +72,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "app_production"
 
   config.action_mailer.perform_caching = false
-  
+
   config.action_mailer.default_url_options = { host: 'https://speakup-app.com/' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -82,7 +82,7 @@ Rails.application.configure do
     user_name:            ENV['SMTP_USERNAME'],
     password:             ENV['SMTP_PASSWORD'],
     authentication:       'plain',
-    enable_starttls_auto: true 
+    enable_starttls_auto: true
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.

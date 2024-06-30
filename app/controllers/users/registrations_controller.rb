@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.new(user_params)
-  
+
     if @user.save
       sign_in(@user) # ユーザーをログインさせる
       flash[:success] = "User successfully created."
@@ -30,14 +30,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update
     @user = current_user
-  
+
     # 許可するパラメータを制御する
     if @user.provider == 'google_oauth2'
       permitted_params = user_params.except(:email)
     else
       permitted_params = user_params
     end
-  
+
     if @user.update(permitted_params)
       redirect_to session.delete(:previous_page) || root_path, notice: 'User was successfully updated.'
     else
@@ -67,18 +67,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username])
-  end
+    def configure_account_update_params
+      devise_parameter_sanitizer.permit(:account_update, keys: [:username])
+    end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
   #   words_path(resource)
   # end
 
-  def update_resource(resource, params)
-    resource.update_without_password(params)
-  end
+    def update_resource(resource, params)
+      resource.update_without_password(params)
+    end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

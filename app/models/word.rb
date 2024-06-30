@@ -6,10 +6,10 @@ class Word < ApplicationRecord
   validates :review_status, presence: true
 
   belongs_to :user
-  has_many :transcript_words
+  has_many :transcript_words, dependent: :destroy
   has_many :transcripts, through: :transcript_words
 
-  scope :due_today, -> { where('next_review_date <= ?', Date.today) }
+  scope :due_today, -> { where('next_review_date <= ?', Time.zone.today) }
   before_create :set_default_values
 
   def self.ransackable_attributes(auth_object = nil)
@@ -22,8 +22,8 @@ class Word < ApplicationRecord
 
   private
 
-  def set_default_values
-    self.review_status ||= 'Hard'
-    self.next_review_date ||= Date.today
-  end
+    def set_default_values
+      self.review_status ||= 'Hard'
+      self.next_review_date ||= Time.zone.today
+    end
 end

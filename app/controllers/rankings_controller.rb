@@ -10,21 +10,21 @@ class RankingsController < ApplicationController
 
   private
 
-  def fetch_ranking(level, start_date, end_date)
-    ranked_users = User.top_ranking_for_week(level, start_date, end_date)
-  
-    ranked_users_with_rank = []
-    ranked_users.each_with_index do |user, index|
-      ranked_users_with_rank << { rank: index + 1, user: user, score: user.overall_average }
-    end
-  
-    fill_ranking(ranked_users_with_rank)
-  end
+    def fetch_ranking(level, start_date, end_date)
+      ranked_users = User.top_ranking_for_week(level, start_date, end_date)
 
-  def fill_ranking(ranking)
-    (1..10).map do |rank|
-      entry = ranking.find { |e| e[:rank] == rank }
-      entry || { rank: rank, user: nil, score: nil }
+      ranked_users_with_rank = []
+      ranked_users.each_with_index do |user, index|
+        ranked_users_with_rank << { rank: index + 1, user: user, score: user.overall_average }
+      end
+
+      fill_ranking(ranked_users_with_rank)
     end
-  end
+
+    def fill_ranking(ranking)
+      (1..10).map do |rank|
+        entry = ranking.find { |e| e[:rank] == rank }
+        entry || { rank: rank, user: nil, score: nil }
+      end
+    end
 end
