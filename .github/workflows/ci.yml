@@ -1,18 +1,22 @@
-name: CI
+name: Continuous Integration
 
 on:
   push:
-    branches:
-      - main
-      - 'feat/**'
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  build:
+  rspec:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: .
+    services:
+      mysql:
+        image: mysql:8.0.32
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -21,14 +25,49 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2.2
+          bundler-cache: true
 
-      - name: Install dependencies
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-  # 部分一致する最新のキャッシュを探します。
+
+      - name: Bundler and gem install
         run: |
           gem install bundler
           bundle install
 
-      - name: Run RuboCop
-        run: bundle exec rubocop
+      - name: Database create and migrate
+        run: |
+          cp config/database.yml.ci config/database.yml
+          bundle exec rails db:create RAILS_ENV=test
+          bundle exec rails db:migrate RAILS_ENV=test
 
-      - name: Run RSpec
+      - name: Run rspec
         run: bundle exec rspec
+        
+  rubocop:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
+
+      - name: Bundler and gem install
+        run: |
+          gem install bundler
+          bundle install 
+
+      - name: Run rubocop
+        run: bundle exec rubocop
