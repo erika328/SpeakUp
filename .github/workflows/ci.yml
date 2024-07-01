@@ -45,8 +45,11 @@ jobs:
       - name: Database create and migrate
         run: |
           cp config/database.yml.ci config/database.yml
-          bundle exec rails db:create RAILS_ENV=test
-          bundle exec rails db:migrate RAILS_ENV=test
+          if ! bundle exec rails db:exists RAILS_ENV=test; then
+            bundle exec rails db:create db:migrate RAILS_ENV=test
+          else
+            echo "Database already exists, skipping create."
+          fi
 
       - name: Run rspec
         run: bundle exec rspec
