@@ -10,12 +10,14 @@ jobs:
       run:
         working-directory: .
     services:
-      mysql:
-        image: mysql:8.0.32
+      db:
+        image: postgres:latest
         ports:
-          - 3306:3306
+          - 5432:5432
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: app_test
           
     steps:
       - name: Checkout code
