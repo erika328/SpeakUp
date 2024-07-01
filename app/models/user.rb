@@ -17,12 +17,12 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.username = auth.info.name
       user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+      user.password = Devise.friendly_token[0, 20]
     end
   end
 
   def self.top_ranking_for_week(level, start_date, end_date, limit = 10)
-    select('users.id, users.username, 
+    select('users.id, users.username,
                AVG(pronunciation_scores.accuracy_score) AS avg_accuracy_score,
                AVG(pronunciation_scores.pronunciation_score) AS avg_pronunciation_score,
                AVG(pronunciation_scores.fluency_score) AS avg_fluency_score,

@@ -25,8 +25,8 @@ class VideosController < ApplicationController
 
   private
 
-  def permit_search_params
-    params[:q] ||= { difficulty_eq: 'Beginner' }
-    params[:q] = params.require(:q).permit(:difficulty_eq, :liked_by_user) if params[:q].present?
-  end
+    def permit_search_params
+      params[:q] ||= { difficulty_eq: 'Beginner' }
+      params[:q] = params.require(:q).permit(:difficulty_eq, :liked_by_user) if params[:q].present?
+    end
 end

@@ -4,8 +4,7 @@ class WordsController < ApplicationController
     @words = @q.result(distinct: true).includes(:user).page(params[:page]).per(20).order(created_at: :desc)
   end
 
-  def new
-  end
+  def new; end
 
   def create
     @word = current_user.words.build(word_params)
@@ -18,8 +17,7 @@ class WordsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def edit
     @word = Word.find(params[:id])
@@ -29,7 +27,7 @@ class WordsController < ApplicationController
   def update
     @word = Word.find(params[:id])
     @words = current_user.words
-    
+
     if @word.update(word_params)
       flash.notice = "Word has been updated."
       redirect_to words_path
@@ -47,8 +45,8 @@ class WordsController < ApplicationController
   end
 
   def random
-    @word = current_user.words.where('next_review_date IS NULL OR next_review_date <= ?', Date.today).order('RANDOM()').first
-  
+    @word = current_user.words.where('next_review_date IS NULL OR next_review_date <= ?', Time.zone.today).order('RANDOM()').first
+
     if @word.nil?
       flash[:notice] = "There's nothing to review!振り返る単語がありません。"
       redirect_to words_path
@@ -65,14 +63,14 @@ class WordsController < ApplicationController
     when 'normal'
       @word.update(review_status: 'normal', next_review_date: 1.day.from_now)
     when 'hard'
-      @word.update(review_status: 'hard', next_review_date: Date.today) # 何度も表示
+      @word.update(review_status: 'hard', next_review_date: Time.zone.today) # 何度も表示
     end
     redirect_to random_words_path
   end
 
   private
 
-  def word_params
-    params.require(:word).permit(:english_word, :meaning, :example, :part_of_speech)
-  end
+    def word_params
+      params.require(:word).permit(:english_word, :meaning, :example, :part_of_speech)
+    end
 end
