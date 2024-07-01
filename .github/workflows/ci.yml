@@ -35,7 +35,7 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-node-  # 部分一致する最新のキャッシュを探します。
+            ${{ runner.os }}-node-
 
       - name: Bundler and gem install
         run: |
@@ -45,11 +45,7 @@ jobs:
       - name: Database create and migrate
         run: |
           cp config/database.yml.ci config/database.yml
-          if ! bundle exec rails db:exists RAILS_ENV=test; then
-            bundle exec rails db:create db:migrate RAILS_ENV=test
-          else
-            echo "Database already exists, skipping create."
-          fi
+          bundle exec rails db:drop db:create db:migrate RAILS_ENV=test
 
       - name: Run rspec
         run: bundle exec rspec
