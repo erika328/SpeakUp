@@ -41,6 +41,9 @@ jobs:
         run: |
           gem install bundler
           bundle install
+      
+      - name: Precompile assets
+        run: bundle exec rails assets:precompile RAILS_ENV=test
 
       - name: Database create and migrate
         run: |
