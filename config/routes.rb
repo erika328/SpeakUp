@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :words do
     collection do
       get 'random'
+      get 'translate_text'
     end
     member do
       patch 'update_review_status'

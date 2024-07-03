@@ -1,3 +1,5 @@
+require_relative '../services/deep_l_translator'
+
 class WordsController < ApplicationController
   def index
     @q = current_user.words.ransack(params[:q])
@@ -66,6 +68,19 @@ class WordsController < ApplicationController
       @word.update(review_status: 'hard', next_review_date: Time.zone.today) # 何度も表示
     end
     redirect_to random_words_path
+  end
+
+  def translate_text
+    api_key = ENV['DEEP_L_KEY']
+    translator = DeepLTranslator.new(api_key)
+
+    response = translator.translate(params[:text], 'JA') # params[:text] は選択した英単語
+    if response.success?
+      translated_text = response.parsed_response['translations'][0]['text']
+      render json: { translated_text: }
+    else
+      render json: { error: "#{response.code} - #{response.message}" }, status: :unprocessable_entity
+    end
   end
 
   private
