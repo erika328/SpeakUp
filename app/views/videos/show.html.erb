@@ -20,25 +20,28 @@
       <p class="text-sm font-semibold">☝️ You can record yourself here!</p>
       <p class="text-xs">(録音して自分の英語を聞いてみよう!)</p>
     </div>
-    <div>
+    <div class="flex">
       <button class="rounded-full h-9 w-9 bg-[#ffd803] ml-2" onclick="how_to_shadow.showModal()">
         <i class="fa-solid fa-question fa-lg"></i>
       </button>
+      <div class="text-[#172c66] ml-2 border-2 border-[#172c66] rounded-full h-9 w-9 text-center justify-center items-center flex hover:cursor-pointer">
+        <label for="hint"><i class="fa-regular fa-lightbulb fa-lg hover:cursor-pointer"></i></label>
+      </div>
     </div>
   </div>
 <div class="flex justify-center">
   <div class="md:bg-base-200 border-grey-200 md:border-2 md:w-2/3 min-[320px]:w-full rounded-2xl m-5">
-    <div class="overflow-y-auto md:h-[460px] min-[320px]:h-[350px] md:text-lg min-[320px]:text-sm text-center p-10 text-[#172c66]">
+    <div class="transcript overflow-y-auto md:h-[460px] min-[320px]:h-[350px] md:text-lg min-[320px]:text-sm text-center p-10 text-[#172c66]">
       <% @video.transcript.content.split("\n").each do |line| %>
         <% line.split(" ").each do |word| %>
           <% cleaned_word = clean_word(word) %>
           <% word_record = @user_words.find { |w| w.english_word.downcase == cleaned_word.downcase } %>
           <% if word_record %>
             <div class="tooltip tooltip-warning text-[#172c66]" data-tip="<%= word_record.meaning %>">
-              <span class="text-warning font-semibold"><%= word %></span>
+              <span class="text-warning font-semibold" data-word="<%= word %>"><%= word %></span>
             </div>
           <% else %>
-            <span><%= word %></span>
+            <span data-word="<%= word %>"><%= word %></span>
           <% end %>
         <% end %>
         <br>
@@ -69,4 +72,16 @@
     <button>close</button>
   </form>
 </dialog>
+<input type="checkbox" id="hint" class="modal-toggle" />
+    <div class="modal" role="dialog">
+        <div class="modal-box">
+            <h2 class="text-2xl font-semibold text-center text-[#001858]">Automatic translation function!</h2>
+            <h2 class="text-lg font-bold text-center mb-5 text-[#001858]">自動翻訳機能紹介</h2>
+            <div class="flex justify-center">
+              <p class="text-sm text-[#172c66]">知らない単語があったら、ドラッグまたは長押しで選択してみて!自動的に翻訳されて、単語帳にスムーズに登録できるよ♩</p>
+            </div>
+        </div>
+        <label class="modal-backdrop" for="hint">Close</label>
+    </div>
 <%= javascript_include_tag 'voice_recording', defer: true %>
+<%= javascript_include_tag 'translator', defer: true %>

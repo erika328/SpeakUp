@@ -80,6 +80,7 @@ gem "devise", "~> 4.9"
 gem "dockerfile-rails", ">= 1.6", :group => :development
 gem 'dotenv-rails'
 gem 'gon'
+gem 'httparty'
 gem 'kaminari'
 gem 'omniauth', '1.9.1'
 gem 'omniauth-google-oauth2'
