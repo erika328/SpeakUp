@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
               alert('Translation failed: ' + data.error);
             }
           });
-      } else {
+      } else if (selectedText) {
         alert('Please select only one word.');
       }
     }, 500); // 500msの遅延を設定して、ドラッグが完了するのを待つ
