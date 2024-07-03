@@ -1,4 +1,4 @@
-require_relative '../services/deepl_translator'
+require_relative '../services/deep_l_translator'
 
 class WordsController < ApplicationController
   def index
