@@ -14,12 +14,12 @@
   <% @videos.each do |video| %>
     <div class="card bg-base-100 shadow-xl">
       <figure>
-        <%= link_to video_path(video) do %>
+        <%= link_to video_path(video), data: {turbo: false} do %>
           <%= image_tag "https://img.youtube.com/vi/#{video.video_id}/mqdefault.jpg", alt: video.title %>
         <% end %>
       </figure>
       <div class="card-body p-2 min-h-16">
-        <%= link_to video_path(video) do %>
+        <%= link_to video_path(video), data: {turbo: false} do %>
           <p class=" text-[#172c66] font-semibold text-xs"><%= truncate_title(video.title) %></p>
         <% end %>
       </div>
