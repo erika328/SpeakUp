@@ -49,6 +49,9 @@
     </div>
   </div>
 </div>
+<div id="translate-button" class="animate-bounce fixed right-5 md:bottom-[85px] min-[320px]:bottom-[130px] rounded-full w-12 h-12 text-center items-center bg-[#ffd803] text-[#172c66] flex justify-center hidden hover:cursor-pointer">
+  <i class="fa-solid fa-book fa-lg"></i>
+</div>
 <div class="fixed right-5 md:bottom-8 min-[320px]:bottom-20 bookmark-button rounded-full w-12 h-12 text-center items-center bg-[#bae8e8] border-2 border-[#172c66] text-[#172c66] flex justify-center">
   <turbo-frame id="like_button_<%= @video.id %>">
       <%= render "videos/like_button", video: @video %>
@@ -78,7 +81,7 @@
             <h2 class="text-2xl font-semibold text-center text-[#001858]">Automatic translation function!</h2>
             <h2 class="text-lg font-bold text-center mb-5 text-[#001858]">自動翻訳機能紹介</h2>
             <div class="flex justify-center">
-              <p class="text-sm text-[#172c66]">知らない単語があったら、ドラッグまたは長押しで選択してみて!自動的に翻訳されて、単語帳にスムーズに登録できるよ♩</p>
+              <p class="text-sm text-[#172c66]">知らない単語があったら、ドラッグ（PC)または長押し(スマホ)で選択してみて!表示された📕ボタンを押すと、選択した単語が自動的に翻訳されて、単語帳にスムーズに登録できるよ♩</p>
             </div>
         </div>
         <label class="modal-backdrop" for="hint">Close</label>
