@@ -49,8 +49,10 @@
     </div>
   </div>
 </div>
-<div id="translate-button" class="animate-bounce fixed right-5 md:bottom-[85px] min-[320px]:bottom-[130px] rounded-full w-12 h-12 text-center items-center bg-[#ffd803] text-[#172c66] flex justify-center hidden hover:cursor-pointer">
-  <i class="fa-solid fa-book fa-lg"></i>
+<div id="translate-button" class="hidden">
+  <div class="animate-bounce fixed right-5 md:bottom-[85px] min-[320px]:bottom-[130px] rounded-full w-12 h-12 text-center items-center bg-[#ffd803] text-[#172c66] flex justify-center hover:cursor-pointer">
+    <i class="fa-solid fa-book fa-lg"></i>
+  </div>
 </div>
 <div class="fixed right-5 md:bottom-8 min-[320px]:bottom-20 bookmark-button rounded-full w-12 h-12 text-center items-center bg-[#bae8e8] border-2 border-[#172c66] text-[#172c66] flex justify-center">
   <turbo-frame id="like_button_<%= @video.id %>">
