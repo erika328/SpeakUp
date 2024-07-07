@@ -13,10 +13,10 @@ RSpec.describe "Words", type: :system do
     visit words_path
     all('label[for="my_modal"]').first.click
 
-    fill_in "english_word", with: "test"
-    fill_in "meaning", with: "a procedure intended to establish the quality, performance, or reliability of something"
+    fill_in "English word", with: "test"
+    fill_in "Meaning", with: "a procedure intended to establish the quality, performance, or reliability of something"
     select "noun (名詞)", from: "Part of speech"
-    fill_in "example", with: "This is a test sentence."
+    fill_in "Example", with: "This is a test sentence."
 
     click_button "Save Word"
 
@@ -29,7 +29,7 @@ RSpec.describe "Words", type: :system do
       visit edit_word_path(word)
       expect(page).to have_current_path(edit_word_path(word))
       within("[data-form-type='edit']") do
-        fill_in "english_word", with: "Updated Word"
+        fill_in "English word", with: "Updated Word"
         click_button "Save Word"
       end
 
@@ -40,7 +40,7 @@ RSpec.describe "Words", type: :system do
     it "shows validation errors" do
       visit edit_word_path(word)
       within("[data-form-type='edit']") do
-        fill_in "english_word", with: ""
+        fill_in "English word", with: ""
         click_button "Save Word"
       end
       expect(page).to have_content("can't be blank")
