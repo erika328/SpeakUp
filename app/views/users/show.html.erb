@@ -1,0 +1,43 @@
+<div class="fixed lg:left-64 md:left-20 md:top-2 min-[320px]:bottom-20">
+  <%= button_to "javascript:history.back()", method: :get, data: {turbo: false}, class: "rounded-full h-11 w-11 bg-transparent border border-gray-300 text-[#172c66] hover:bg-gray-100 ml-2" do %>
+    <i class="fa-solid fa-angles-left"></i>
+  <% end %>
+</div>
+<div class="flex justify-center mt-5">
+  <h1 class="text-3xl font-semibold text-[#001858]"><%= @user.username %>'s Profile</h1>
+</div>
+
+<div class="my-5 mx-10 text-[#001858] flex justify-between items-center">
+  <div class="text-left">
+    <h1 class="text-2xl font-semibold" ><%= @user.username %></h1>
+    <p class="text-sm">Joined <%= @user.created_at.strftime("%B %Y") %></p>
+  </div>
+</div>
+
+<div class="border-t-2 border-grey-200">
+  <h2 class="text-2xl font-semibold text-[#001858] mx-10 mt-5">Learning Record</h2>
+  <h2 class="text-[#001858] mx-10 mb-3">学習記録</h2>
+</div>
+
+<div class="grid md:grid-cols-2 min-[320px]:grid-cols-1 my-3 mx-10 gap-4 justify-center">
+  <div class="text-center border border-grey-200 rounded-2xl px-5 py-3 text-[#001858]">
+    <h2 class="font-semibold">Consecutive study days</h2>
+    <h2 class="mb-3 text-xs">連続学習日数</h2>
+    <div class="flex items-center text-center justify-center space-x-8">
+      <i class="fa-solid fa-fire fa-2xl text-[#ff8906]"></i>
+      <p class="font-semibold">
+        <span class="text-2xl"><%= @user.continuous_days %></span> day(s)
+      </p>
+    </div>
+  </div>
+  <div class="text-center border border-grey-200 rounded-2xl px-5 py-3 text-[#001858]">
+    <h2 class="font-semibold">Registered word count</h2>
+    <h2 class="mb-3 text-xs">単語登録数</h2>
+    <div class="flex items-center text-center justify-center space-x-5">
+      <i class="fa-solid fa-graduation-cap fa-2xl text-[#078080]"></i>
+      <p class="font-semibold">
+        <span class="text-2xl"><%= @user.words.count %></span> word(s)
+      </p>
+    </div>
+  </div>
+</div>

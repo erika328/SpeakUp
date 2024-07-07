@@ -2,6 +2,7 @@ class PronunciationScoresController < ApplicationController
   def create
     @pronunciation_score = current_user.pronunciation_scores.new(pronunciation_score_params)
     if @pronunciation_score.save
+      Activity.create(user: current_user, action_type: 'pronunciation_check')
       render json: @pronunciation_score, status: :created
     else
       render json: @pronunciation_score.errors, status: :unprocessable_entity

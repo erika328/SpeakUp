@@ -1,5 +1,7 @@
 class VideosController < ApplicationController
   before_action :permit_search_params, only: :index
+  protect_from_forgery except: :track_shadowing
+
   def index
     @q = Video.ransack(params[:q])
     @videos = @q.result(distinct: true)
@@ -21,6 +23,21 @@ class VideosController < ApplicationController
   def show
     @video = Video.includes(:likes).find(params[:id])
     @user_words = current_user.words.where("LOWER(english_word) IN (?)", @video.transcript.content.split(/\W+/).map(&:downcase))
+  end
+
+  def track_shadowing
+    if params[:event] == 'video_played'
+      today = Date.current
+      activity_exists = Activity.exists?(user: current_user, action_type: 'shadowing_practice', created_at: today.beginning_of_day..today.end_of_day)
+
+      unless activity_exists
+        Activity.create(user: current_user, action_type: 'shadowing_practice')
+      end
+
+      render json: { status: 'success' }
+    else
+      render json: { status: 'invalid event' }, status: :unprocessable_entity
+    end
   end
 
   private

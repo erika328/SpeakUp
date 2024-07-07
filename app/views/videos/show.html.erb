@@ -7,7 +7,7 @@
     <h1><%= @video.title %></h1>
 </div>
 <div class="flex justify-center items-center md:mt-5">
-  <iframe class="min-[320px]:w-full md:w-[640px] aspect-video" src="https://www.youtube-nocookie.com/embed/<%= @video.video_id %>?autoplay=0&controls=1&cc_lang_pref=en&cc_load_policy=0&disablekb=1&modestbranding=1&rel=0&color=white&fs=0&iv_load_policy=3" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+  <iframe id="player" class="min-[320px]:w-full md:w-[640px] aspect-video" src="https://www.youtube-nocookie.com/embed/<%= @video.video_id %>?enablejsapi=1&autoplay=0&controls=1&cc_lang_pref=en&cc_load_policy=0&disablekb=1&modestbranding=1&rel=0&color=white&fs=0&iv_load_policy=3" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
 </div>
 
   <div class="flex justify-center items-center mt-3 mb-1 text-[#172c66]">
@@ -90,3 +90,38 @@
     </div>
 <%= javascript_include_tag 'voice_recording', defer: true %>
 <%= javascript_include_tag 'translator', defer: true %>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  let player;
+  function onYouTubeIframeAPIReady() {
+    console.log("YouTube IFrame API is ready");
+    player = new YT.Player('player', {
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    console.log("Player is ready");
+  }
+
+  function onPlayerStateChange(event) {
+    console.log("Player state changed:", event.data);
+    if (event.data === YT.PlayerState.PLAYING) {
+      console.log("video started");
+      // 動画が再生されたときの処理
+      fetch('/track_shadowing', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': '<%= form_authenticity_token %>'
+        },
+        body: JSON.stringify({ event: 'video_played' })
+      })
+      .then(response => response.json())
+      .then(data => console.log(data));
+    }
+  }
+</script>

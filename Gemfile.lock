@@ -128,6 +128,8 @@ GEM
       faraday-net_http (>= 2.0, < 3.2)
     faraday-net_http (3.1.0)
       net-http
+    friendly_id (5.4.2)
+      activerecord (>= 4.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     gon (6.4.0)
@@ -389,6 +391,7 @@ DEPENDENCIES
   dockerfile-rails (>= 1.6)
   dotenv-rails
   factory_bot_rails
+  friendly_id (~> 5.4.0)
   gon
   high_voltage
   httparty
