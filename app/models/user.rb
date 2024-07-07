@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :pronunciation_texts, through: :pronunciation_scores, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_videos, through: :likes, source: :video
+  has_many :activities, dependent: :destroy
   validates :username, presence: true, length: { minimum: 2 }
   validates :password, presence: true, on: :create
 
@@ -35,5 +36,23 @@ class User < ApplicationRecord
       .group('users.id, users.username')
       .order('overall_average DESC')
       .limit(limit)
+  end
+
+  def continuous_days
+    return 0 if activities.empty?
+
+    days_with_activity = activities.select(:created_at).distinct.pluck(:created_at).map(&:to_date).uniq
+    days_with_activity.sort!
+    return 1 if days_with_activity.length == 1
+
+    continuous_days = 1
+
+    days_with_activity.each_cons(2) do |a, b|
+      return 0 unless b == a + 1
+
+      continuous_days += 1
+    end
+
+    continuous_days
   end
 end

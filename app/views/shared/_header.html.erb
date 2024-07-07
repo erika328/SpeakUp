@@ -32,6 +32,12 @@
             <span>Pronunciation Test</span>
           <% end %>
         </li>
+        <li>
+          <%= link_to user_profile_path, class:"flex items-center gap-x-2.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
+            <i class="fa-solid fa-user fa-xl" style="min-width: 1.5em; text-align: center;"></i>
+            <span>Profile</span>
+          <% end %>
+        </li>
         <li class="fixed bottom-2">
           <div class="dropdown dropdown-top">
             <div tabindex="0" role="button" class="flex items-center py-5 px-3 text-sm rounded-lg hover:bg-gray-100">
@@ -85,6 +91,11 @@
       <div class="hs-tooltip inline-block [--placement:right]">
         <%= link_to pronunciation_texts_path, class:"flex items-center gap-x-3.5 py-4 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
           <i class="fa-solid fa-microphone fa-xl"></i>
+        <% end %>
+      </div>
+      <div class="hs-tooltip inline-block [--placement:right]">
+        <%= link_to user_profile_path, class:"flex items-center gap-x-3.5 py-4 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
+          <i class="fa-solid fa-user fa-xl"></i>
         <% end %>
       </div>
       <div class="dropdown dropdown-top fixed bottom-2">
@@ -165,6 +176,11 @@
       <%= link_to pronunciation_texts_path, class:"flex items-center gap-x-3.5 py-2 px-3 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
         <i class="fa-solid fa-microphone fa-xl"></i>
       <% end %>
+    </div>
+    <div class="hs-tooltip inline-block [--placement:right]">
+        <%= link_to user_profile_path, class:"flex items-center gap-x-3.5 py-4 px-2.5 text-sm rounded-lg hover:bg-gray-100", data: { turbo: false } do %>
+          <i class="fa-solid fa-user fa-xl"></i>
+        <% end %>
     </div>
     <div class="grid"><!-- 左端の透明なスペース --></div>
   </div>

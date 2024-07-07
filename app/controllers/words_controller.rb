@@ -11,6 +11,7 @@ class WordsController < ApplicationController
   def create
     @word = current_user.words.build(word_params)
     if @word.save
+      Activity.create(user: current_user, action_type: 'word_registration')
       flash.notice = "New word has been saved."
       redirect_to request.referer || word_path
     else
@@ -67,6 +68,8 @@ class WordsController < ApplicationController
     when 'hard'
       @word.update(review_status: 'hard', next_review_date: Time.zone.today) # 何度も表示
     end
+
+    Activity.create(user: current_user, action_type: 'review_completed')
     redirect_to random_words_path
   end
 
