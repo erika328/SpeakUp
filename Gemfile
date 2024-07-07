@@ -79,6 +79,7 @@ end
 gem "devise", "~> 4.9"
 gem "dockerfile-rails", ">= 1.6", :group => :development
 gem 'dotenv-rails'
+gem 'friendly_id', '~> 5.4.0'
 gem 'gon'
 gem 'httparty'
 gem 'kaminari'
