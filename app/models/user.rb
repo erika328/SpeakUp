@@ -45,12 +45,18 @@ class User < ApplicationRecord
 
     days_with_activity = activities.select(:created_at).distinct.pluck(:created_at).map(&:to_date).uniq
     days_with_activity.sort!
+
+    yesterday = Time.zone.today - 1
+
+    # 昨日アクティビティがなければ0を返す
+    return 0 unless days_with_activity.include?(yesterday)
+
     return 1 if days_with_activity.length == 1
 
     continuous_days = 1
 
     days_with_activity.each_cons(2) do |a, b|
-      return 0 unless b == a + 1
+      return 0 if b != a + 1
 
       continuous_days += 1
     end
