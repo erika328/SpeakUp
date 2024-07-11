@@ -82,13 +82,13 @@
 |デプロイ|fly.io|
 |開発環境|Docker|
 |CI/CD|GitHub Actions|
-|API|Azure Cognitive Services Speech SDK Web Speech API <br> Youtube IFrame Player API <br> Web Speech API|
+|API|Azure Cognitive Services Speech SDK Web Speech API <br> Youtube IFrame Player API <br> Web Speech API <br> DeepL API|
 
 ## 画面遷移図
 https://www.figma.com/design/utOZSCo8QNxPXmBKep3BeQ/SpeakUp-app?t=0oftbWXu2Fkoi5E3-1
 
 ## ER図
-[![Image from Gyazo](https://i.gyazo.com/50c57ca1a044fd35ead192d53d419ead.png)](https://gyazo.com/50c57ca1a044fd35ead192d53d419ead)
+[![Image from Gyazo](https://i.gyazo.com/b08fee59afedd98b1f4b1ed474def93c.png)](https://gyazo.com/b08fee59afedd98b1f4b1ed474def93c)
 
 ## Qiita
 https://qiita.com/Erika328/items/0a181eb816e4237c05ab
