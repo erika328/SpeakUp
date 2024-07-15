@@ -40,25 +40,26 @@ class User < ApplicationRecord
       .limit(limit)
   end
 
-  def continuous_days
+  def continuous_days # rubocop:disable Metrics/CyclomaticComplexity,Metrics/MethodLength
     return 0 if activities.empty?
 
     days_with_activity = activities.select(:created_at).distinct.pluck(:created_at).map(&:to_date).uniq
     days_with_activity.sort!
 
-    yesterday = Time.zone.today - 1
+    today = Time.zone.today
+    continuous_days = 0
+    last_day = nil
 
-    # 昨日アクティビティがなければ0を返す
-    return 0 unless days_with_activity.include?(yesterday)
-
-    return 1 if days_with_activity.length == 1
-
-    continuous_days = 1
-
-    days_with_activity.each_cons(2) do |a, b|
-      return 0 if b != a + 1
-
+    days_with_activity.each do |day|
+      if last_day && (day - last_day > 1)
+        continuous_days = 0 # 連続日数が途切れたらリセット
+      end
       continuous_days += 1
+      last_day = day
+    end
+
+    if last_day && (today - last_day > 1)
+      continuous_days = 0
     end
 
     continuous_days
