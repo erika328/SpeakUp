@@ -45,8 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', handleMouseUp);
 
   function openModalWithWord(word, meaning) {
-    const englishWordInput = document.querySelector('input[id="english_word"]');
-    const meaningInput = document.querySelector('textarea[id="meaning"]');
+    const englishWordInput = document.querySelector('input.english_word');
+    const meaningInput = document.querySelector('textarea.meaning');
 
     if (englishWordInput && meaningInput) {
       englishWordInput.value = word;
