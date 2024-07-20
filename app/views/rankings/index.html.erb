@@ -79,7 +79,7 @@
   <% if user_entry %>
     <% formatted_score = user_entry[:score].round(2) %>
     <div class="bg-[#bae8e8] p-2 rounded-3xl font-semibold text-[#172c66] mt-5 border-2 border-[#172c66] flex items-center justify-center">
-      <%= link_to "https://twitter.com/intent/tweet?url=https://speakup-app.com/&text=#{ERB::Util.url_encode("I am ranked #{user_entry[:rank]} in the Hard mode pronunciation scoring with an average score of #{formatted_score}! \nHardモードの発音採点で平均スコア#{user_entry[:score]}で#{user_entry[:rank]}位にランクインしたよ! #SpeakUp \n")}", target: "_blank", rel: "noopener" do %>
+      <%= link_to "https://twitter.com/intent/tweet?url=https://speakup-app.com/&text=#{ERB::Util.url_encode("I am ranked #{user_entry[:rank]} in the Hard mode pronunciation scoring with an average score of #{formatted_score}! \nHardモードの発音採点で平均スコア#{formatted_score}で#{user_entry[:rank]}位にランクインしたよ! #SpeakUp \n")}", target: "_blank", rel: "noopener" do %>
         👿 Share on <i class="fa-brands fa-x-twitter font-bold fa-lg"></i>
       <% end %>
     </div>
