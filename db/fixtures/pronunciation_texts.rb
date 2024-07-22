@@ -51,7 +51,8 @@ sentences = [
   japanese_text: "良くない革は決して湿った天気に耐えられない。", difficulty: "Hard" },
   { english_text: "Near an ear, a nearer ear, a nearly eerie ear.",
   japanese_text: "耳の近く、より近い耳、ほぼ不気味な耳。", difficulty: "Hard" },
-  
+  { english_text: "Five friendly friends fry fresh, fragrant fried chicken for Friday's festive feast.",
+  japanese_text: "5人の仲良しな友人たちが、金曜日のお祝いの宴会のために、新鮮で香り豊かなフライドチキンを揚げます。", difficulty: "Hard" },
 ]
 
 sentences.each do |sentence|

@@ -56,6 +56,11 @@ videos = [
   { video_id: 'wvUrT4DRA70', title: "The Secret Life of Pets 2 - Max Goes to the Vet", difficulty: 'Beginner', transcript_path: 'public/transcripts/pets2.txt' },
   { video_id: 'Ok21i83492k', title: "The Secret Life of Pets - Gidget Interrogates Ozone", difficulty: 'Beginner', transcript_path: 'public/transcripts/pets3.txt' },
   { video_id: 'exu61pb5X68', title: "The Secret Life of Pets 2 - Chloe on Catnip Scene", difficulty: 'Beginner', transcript_path: 'public/transcripts/pets4.txt' },
+  { video_id: 'T2kQdRZNqbA', title: "How to Make The Perfect Flat White | CRU Kafe", difficulty: 'Advanced', transcript_path: 'public/transcripts/flatwhite.txt' },
+  { video_id: 'nbF_J9uw2BE', title: "Why is CRU Coffee Better | CRU Kafe", difficulty: 'Advanced', transcript_path: 'public/transcripts/cru.txt' },
+  { video_id: '-50tS3d2Yao', title: "How to make a Flat White | Flat White Guide - Pact Coffee", difficulty: 'Advanced', transcript_path: 'public/transcripts/flatwhite_guide.txt' },
+  { video_id: 'g86JjlpegIM', title: "How to make a Mocha | Mocha Guide - Pact Coffee", difficulty: 'Advanced', transcript_path: 'public/transcripts/mocha.txt' },
+  { video_id: 'S3qoxUWpYcQ', title: "How to Make an Iced Latte | Perfect Coffee", difficulty: 'Intermediate', transcript_path: 'public/transcripts/icedlatte.txt' },
 
   # 他にも追加していく
 ]
