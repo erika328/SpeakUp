@@ -66,6 +66,11 @@
 |[![Image from Gyazo](https://i.gyazo.com/cdcb4997f6dec701396fed5fd18daa83.gif)](https://gyazo.com/cdcb4997f6dec701396fed5fd18daa83)|[![Image from Gyazo](https://i.gyazo.com/9abef2127529547cf420df730c74bc37.gif)](https://gyazo.com/9abef2127529547cf420df730c74bc37)|
 |レベル別に動画を探すことができます。練習中の動画をお気に入り登録することもできます。|シャドーイングのスクリプトと単語帳は連携しており、登録済みの単語を認識してその意味を表示します。声を録音して自分で振り返ることもできます。|
 
+|自動翻訳機能|連続学習日数ランキング|
+|:-------------|:-------------|
+|[![Image from Gyazo](https://i.gyazo.com/c48510579d5d4d1a491e41d0dbb7ea95.gif)](https://gyazo.com/c48510579d5d4d1a491e41d0dbb7ea95)|[![Image from Gyazo](https://i.gyazo.com/67020562f66d41c187a72a40e7c431f6.gif)](https://gyazo.com/67020562f66d41c187a72a40e7c431f6)|
+|わからない単語を選択し、表示されたボタンをクリックするとAPIが自動的に日本語へ翻訳＆単語登録モーダルが開かれ、スムーズに単語帳へ登録できます。|学習を継続しているユーザーのアクティビティをランキングから確認できます。競争心を煽ることが目的です。|
+
 ### UI/UX
 英語学習者は状況に合わせてPC、タブレット、スマホ全てを使い分けていることが多いです。
 これら全ての機器で使いやすいUIを意識してナビゲーションバーを切り替えています。
@@ -82,7 +87,7 @@
 |デプロイ|fly.io|
 |開発環境|Docker|
 |CI/CD|GitHub Actions|
-|API|Azure Cognitive Services Speech SDK Web Speech API <br> Youtube IFrame Player API <br> Web Speech API <br> DeepL API|
+|API|Azure Cognitive Services Speech SDK <br> Youtube IFrame Player API <br> Web Speech API <br> DeepL API|
 
 ## 画面遷移図
 https://www.figma.com/design/utOZSCo8QNxPXmBKep3BeQ/SpeakUp-app?t=0oftbWXu2Fkoi5E3-1
