@@ -22,6 +22,13 @@
               </div>
             </div>
           <% end %>
+          <div class="text-[#172c66]">
+            <%= f.label :receive_reminders, class: "block text-sm font-medium" %>
+            <div class="mt-1 flex items-center">
+              <%= f.check_box :receive_reminders, class: "h-4 w-4 text-[#ffd803] border-gray-300 rounded focus:ring-[#ffd803]" %>
+              <%= f.label :receive_reminders, "(学習リマインドメールを受け取る)", class: "ml-2 text-sm" %>
+            </div>
+          </div>
           <div class="actions">
             <%= f.submit "Save", class: "hover:cursor-pointer flex items-center justify-center w-full px-10 py-3 mt-6 font-medium text-center text-[#172c66] transition duration-500 ease-in-out transform bg-[#ffd803] rounded-xl hover:bg-[#bae8e8] focus:outline-none", data: {"turbo" => false} %>
           </div>

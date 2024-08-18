@@ -12,13 +12,17 @@ console_command = '/rails/bin/rails console'
 [deploy]
   release_command = './bin/rails db:prepare'
 
+[processes]
+  web = "bin/rails server -b 0.0.0.0"
+  cron = "supercronic /rails/crontab"
+
 [http_service]
   internal_port = 3000
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 1
-  processes = ['app']
+  processes = ['web']
 
 [[vm]]
   size = 'shared-cpu-1x'
