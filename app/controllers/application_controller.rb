@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
+  before_action :set_time_zone
 
   protected
 
@@ -17,5 +18,9 @@ class ApplicationController < ActionController::Base
 
     def after_sign_out_path_for(resource)
       new_user_session_path # ログアウト後に遷移するpathを設定
+    end
+
+    def set_time_zone
+      Time.zone = current_user.time_zone if current_user
     end
 end

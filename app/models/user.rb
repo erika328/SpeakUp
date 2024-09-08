@@ -43,7 +43,9 @@ class User < ApplicationRecord
   def continuous_days # rubocop:disable Metrics/CyclomaticComplexity,Metrics/MethodLength
     return 0 if activities.empty?
 
-    days_with_activity = activities.select(:created_at).distinct.pluck(:created_at).map(&:to_date).uniq
+    days_with_activity = activities.select(:created_at).distinct.pluck(:created_at).map { |created_at|
+      created_at.in_time_zone(time_zone).to_date
+    }.uniq
     days_with_activity.sort!
 
     today = Time.zone.today
