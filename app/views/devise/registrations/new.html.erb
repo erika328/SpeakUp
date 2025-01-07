@@ -36,13 +36,8 @@
                     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block w-full px-5 py-1 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" %>
                   </div>
                 </div>
-                <div class="text-[#172c66]">
-                  <%= f.label :time_zone, class: "block text-sm font-medium" %>
-                  <div class="mt-1">
-                    <%= f.select :time_zone, ActiveSupport::TimeZone.all.map { |tz| [tz.name, tz.name] }, { selected: @user.time_zone }, { class: "block w-full px-5 py-1 text-base placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" } %>
-                  </div>
-                </div>
 
+                <%= recaptcha_tags %>
                 <div class="actions">
                   <%= f.submit "Sign up", class: "hover:cursor-pointer flex items-center justify-center w-full px-10 py-3 mt-6 font-medium text-center text-[#172c66] transition duration-500 ease-in-out transform bg-[#ffd803] rounded-xl hover:bg-[#bae8e8] focus:outline-none", data: {"turbo" => false} %>
                 </div>
