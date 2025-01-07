@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_videos, through: :likes, source: :video
   has_many :activities, dependent: :destroy
-  validates :username, presence: true, length: { minimum: 2 }
+  validates :username, presence: true, length: { minimum: 2, maximum: 20 }
   validates :password, presence: true, on: :create
 
   def self.from_omniauth(auth)

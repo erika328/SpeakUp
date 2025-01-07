@@ -86,5 +86,6 @@ gem 'kaminari'
 gem 'omniauth', '1.9.1'
 gem 'omniauth-google-oauth2'
 gem 'ransack'
+gem 'recaptcha', require: 'recaptcha/rails'
 gem "rspec-rails", "~> 6.1", :group => :test
 gem 'seed-fu'

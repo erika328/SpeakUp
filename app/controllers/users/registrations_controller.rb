@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.new(user_params)
 
-    if @user.save
+    if verify_recaptcha && @user.save
       sign_in(@user) # ユーザーをログインさせる
       flash[:success] = "User successfully created."
       redirect_to videos_path
