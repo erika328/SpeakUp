@@ -1,7 +1,7 @@
 <div id="error_messages">
   <%= render 'words/error_messages', word: word %>
 </div>
-<%= form_with(model: word, local: true, html: { data: { form_type: word.new_record? ? 'new' : 'edit' } }) do |f| %>
+<%= form_with(model: word, local: false, id: "word_form", html: { data: { form_type: word.new_record? ? 'new' : 'edit' } }) do |f| %>
   <div class="font-bold text-lg text-center text-[#172c66]">
     <div>
       <span class="text-red-400 text-xl">*</span>
@@ -30,8 +30,44 @@
 
     <div class="flex space-x-3 justify-center">
       <div class="flex flex-col w-3/4 mt-3">
-        <%= f.submit "Save Word", class: "hover:cursor-pointer flex items-center justify-center w-full px-10 py-3 font-medium text-center text-[#172c66] transition duration-500 ease-in-out transform bg-[#ffd803] rounded-xl hover:bg-[#bae8e8] focus:outline-none", data: {"turbo" => false}%>
+        <%= f.submit "Save Word", class: "hover:cursor-pointer flex items-center justify-center w-full px-10 py-3 font-medium text-center text-[#172c66] transition duration-500 ease-in-out transform bg-[#ffd803] rounded-xl hover:bg-[#bae8e8] focus:outline-none"%>
       </div>
     </div>
   </div>
 <% end %>
+<script>
+  document.querySelector("#word_form").addEventListener("submit", function(event) {
+    event.preventDefault(); // デフォルトのフォーム送信を防ぐ
+    const formData = new FormData(event.target);
+
+    fetch(event.target.action, {
+      method: "POST",
+      body: formData,
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        "Accept": "application/json"
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      const errorMessagesDiv = document.getElementById("error_messages"); // IDを修正
+      
+      if (data.success) {
+        // 成功時の処理
+        console.log(data.message);
+        window.location.reload(); // ページをリロード
+      } else {
+        // エラー時の処理
+        errorMessagesDiv.innerHTML = ''; // 既存のメッセージをクリア
+        data.errors.forEach(error => {
+          const errorMessage = `<div class="flash text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 flex items-center p-4 mb-4"><i class="fa-solid fa-circle-info"></i>${error}</div>`;
+          errorMessagesDiv.innerHTML += errorMessage; // エラーメッセージを追加
+        });
+        errorMessagesDiv.style.display = 'block'; // エラーメッセージ表示
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  });
+</script>
