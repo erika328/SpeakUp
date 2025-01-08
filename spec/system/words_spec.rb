@@ -20,7 +20,6 @@ RSpec.describe "Words", type: :system do
 
     click_button "Save Word"
 
-    expect(page).to have_content("New word has been saved.")
     expect(page).to have_content("test")
   end
 

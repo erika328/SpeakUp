@@ -12,11 +12,16 @@ class WordsController < ApplicationController
     @word = current_user.words.build(word_params)
     if @word.save
       Activity.create(user: current_user, action_type: 'word_registration')
-      flash.notice = "New word has been saved."
-      redirect_to request.referer || word_path
+      respond_to do |format|
+        format.html { redirect_to request.referer || word_path }
+        format.json { render json: { success: true, message: "New word has been saved." }, status: :created }
+      end
     else
-      flash[:alert] = @word.errors.full_messages.join(", ")
-      redirect_to request.referer
+      flash.now[:alert] = @word.errors.full_messages
+      respond_to do |format|
+        format.html { redirect_to request.referer }
+        format.json { render json: { success: false, errors: @word.errors.full_messages }, status: :unprocessable_entity }
+      end
     end
   end
 
