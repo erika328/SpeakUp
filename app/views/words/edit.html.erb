@@ -11,7 +11,7 @@
               </div>
             </div>
     <div class="space-y-5">
-    <%= render "words/form", word: @word %>
+    <%= render "words/edit_form", word: @word %>
     <div class="delete_button flex justify-end text-[#172c66]">
       <%= link_to word_path(@word), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} do %>
         <i class="fa-regular fa-trash-can fa-xl"></i>
