@@ -60,8 +60,9 @@ class User < ApplicationRecord
       last_day = day
     end
 
+    # 最後のアクティビティから1日以上経過しているか確認
     if last_day && (today - last_day > 1)
-      continuous_days = 0
+      activities.destroy_all # アクティビティを削除
     end
 
     continuous_days
