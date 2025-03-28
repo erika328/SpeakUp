@@ -1,7 +1,7 @@
 ![SpeakUp](./app/assets/images/Xcard.png)
 
 ## サービス名
-### [SpeakUp](https://speakup-app.com/)
+### [SpeakUp](https://speakup.fly.dev/)
 
 ## サービス概要
 英語学習のためのアプリです。スピーキング力の向上に特化していて、シャドーイング、発音採点を通してスピーキング練習をしながら、単語登録機能によって新たな単語やフレーズを学ぶことができます。
